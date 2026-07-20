@@ -75,9 +75,9 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <p class="qtext">社員管理データモデルを作成。複数アプリ（名簿・休暇申請など）が Employee を頻繁に検索し、一部は作成/更新も必要。ただし作成/更新は誰にも公開せず、全アプリ共通のビジネスルール/制約に従う必要がある。どの戦略を採るべき？</p>
   
   
-  <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">Employee の Public を No にする。作成・更新・検索のラッパーアクションを作りビジネスルールを定義して公開。アプリはこれらのラッパーを使う。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">Public=Yes、Read Only=No。アプリは集計で取得し、作成/更新はエンティティアクションを呼ぶ。ビジネスルールは各アプリで作成/更新直前に定義する。</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">Public=Yes、Read Only=Yes。作成/更新用ラッパーアクションを作り、必要なビジネスルールを定義して公開。アプリは集計で取得し、ラッパーで作成/更新する。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">Public=Yes、Read Only=No。ラッパーアクションを作り作成/更新とビジネスルールを定義して公開。アプリは集計で取得し、ラッパーで作成/更新する。</span></li></ul>
+  <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">Employee の Public を No にする。作成・更新・検索のラッパーアクションを作りビジネスルールを定義して公開。アプリはこれらのラッパーを使う。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">Public=Yes、Read Only=No。アプリはAggregateで取得し、作成/更新はエンティティアクションを呼ぶ。ビジネスルールは各アプリで作成/更新直前に定義する。</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">Public=Yes、Read Only=Yes。作成/更新用ラッパーアクションを作り、必要なビジネスルールを定義して公開。アプリはAggregateで取得し、ラッパーで作成/更新する。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">Public=Yes、Read Only=No。ラッパーアクションを作り作成/更新とビジネスルールを定義して公開。アプリはAggregateで取得し、ラッパーで作成/更新する。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">エンティティは Public=Yes にして各アプリが集計で直接読めるようにしつつ、Read Only=Yes にして直接の書き込みを禁止。作成/更新は共通ビジネスルールを内包したラッパーアクション経由に限定します。これで読み取りは効率的、書き込みは規則を強制できます。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">エンティティは Public=Yes にして各アプリがAggregateで直接読めるようにしつつ、Read Only=Yes にして直接の書き込みを禁止。作成/更新は共通ビジネスルールを内包したラッパーアクション経由に限定します。これで読み取りは効率的、書き込みは規則を強制できます。</p></div>
 </article><article class="card" id="q4">
   <header class="qhead"><span class="qnum">Q4</span></header>
   <p class="qtext">小さく始まったアプリが巨大化し、デプロイが遅く、一部モジュールに UI とDB定義・ロジックが混在。UI とデータ/ロジックを分離したい（データを失わずに）。「Finance」モジュールで最も効果的に行う方法は？</p>

@@ -181,7 +181,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <header class="qhead"><span class="qnum">問19</span></header>
   <p class="qtext">外部データベースのエンティティでは何ができませんか？</p>
   
-  <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">SQLクエリでエンティティの出力を行う</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">アグリゲートで作成または削除アクションを実行する</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">異なるカタログスキーマの OutSystems エンティティとの結合（ジョイン）</span></li></ul>
+  <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">SQLクエリでエンティティの出力を行う</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">Aggregateで作成または削除アクションを実行する</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">異なるカタログスキーマの OutSystems エンティティとの結合（ジョイン）</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">外部データベースのエンティティは、異なるカタログ／スキーマにある OutSystems エンティティと直接ジョインすることはできません。結合するには、まず必要なデータを取得してから内部で突き合わせる必要があります。<br></p></div>
 </article><article class="card" id="q20">
@@ -211,14 +211,14 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">部分更新APIを使い、変更したいフィールドのみを修正する</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">更新されたフィールドを保存前に検証する</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">バッチ更新でリソース使用量を最小化する</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">SQLクエリの UPDATE を使い、3つのフィールドだけを更新する</span></li><li class="choice"><span class="lbl">E</span><span class="ctxt">ORMツールで特定フィールドだけをターゲットに更新する</span></li><li class="choice"><span class="lbl">F</span><span class="ctxt">レコードの値を更新後、CreateOrUpdate を使う</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">アグリゲート＋Update アクションはレコード全体（20属性）を書き戻すため無駄が多くなります。3つだけを更新するなら、対象列だけを書き換える SQL の UPDATE 文が最も効率的です。<br></p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">Aggregate＋Update アクションはレコード全体（20属性）を書き戻すため無駄が多くなります。3つだけを更新するなら、対象列だけを書き換える SQL の UPDATE 文が最も効率的です。<br></p></div>
 </article><article class="card" id="q24">
   <header class="qhead"><span class="qnum">問24</span></header>
   <p class="qtext">SQLクエリ（Advanced Query）を作成するとき、パフォーマンス問題を避けるために考慮すべきことは何ですか？</p>
   
-  <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">必要な属性だけを返すビューを作成してクエリする</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">返される属性だけを含む特定の出力構造（Output Structure）を作成する</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">実行時エラーを避けるため SELECT {Entity}.* を使い、パフォーマンスを上げる</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">プラットフォームが自動でSQLを最適化し、使用属性だけをフェッチするので最適化は不要</span></li></ul>
+  <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">必要な属性だけを返すビューを作成してクエリする</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">返される属性だけを含む特定の出力 Structure（Output Structure）を作成する</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">実行時エラーを避けるため SELECT {Entity}.* を使い、パフォーマンスを上げる</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">プラットフォームが自動でSQLを最適化し、使用属性だけをフェッチするので最適化は不要</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">SQLクエリでは、必要な列だけを返す専用の出力構造を定義するのがベストです。`.*` で全列を取得すると不要なデータまで転送され、パフォーマンスが低下します。また、Advanced Query はアグリゲートと異なり自動で属性最適化されません。<br></p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">SQLクエリでは、必要な列だけを返す専用の出力 Structureを定義するのがベストです。`.*` で全列を取得すると不要なデータまで転送され、パフォーマンスが低下します。また、Advanced Query はAggregateと異なり自動で属性最適化されません。<br></p></div>
 </article><article class="card" id="q25">
   <header class="qhead"><span class="qnum">問25</span></header>
   <p class="qtext">SQLクエリで Expand Inline パラメーターを使用する理由として、最も適切なものは何ですか？</p>
@@ -242,18 +242,18 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">その画面でしか使わないJSは、画面（Screen）のJavaScriptプロパティに配置します。これによりコードがまとめてブラウザキャッシュされ、式の中に直書きするより保守性・パフォーマンスとも優れます。<br></p></div>
 </article><article class="card" id="q28">
   <header class="qhead"><span class="qnum">問28</span></header>
-  <p class="qtext">高頻度で再利用されるアグリゲートは、常にサーバーアクション内で隔離するのが良いプラクティスである。</p>
+  <p class="qtext">高頻度で再利用されるAggregateは、常にサーバーアクション内で隔離するのが良いプラクティスである。</p>
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">真 — 抽象化を促進し、実装の詳細を隠すから</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">偽 — コードの難読化につながる可能性があるから</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">真 — 変更箇所が1つになり保守性が向上するから</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">偽 — 使用される属性に基づく自動クエリ最適化を妨げる可能性があるから</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">アグリゲートは「呼び出し元で実際に使われる属性」だけをフェッチするよう自動最適化されます。サーバーアクション内に隔離すると、呼び出し元の使用状況が伝わらず全属性を取得してしまい、この最適化が効かなくなる場合があります。<br></p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">Aggregateは「呼び出し元で実際に使われる属性」だけをフェッチするよう自動最適化されます。サーバーアクション内に隔離すると、呼び出し元の使用状況が伝わらず全属性を取得してしまい、この最適化が効かなくなる場合があります。<br></p></div>
 </article><article class="card" id="q29">
   <header class="qhead"><span class="qnum">問29</span></header>
-  <p class="qtext">現在は問題なく動作しているアプリに、明日から多数の新規ユーザーがアクセスし、データアクション（画像）の使用が増えます。最大レコード数50のアグリゲートとその出力リストがあります。遅延やタイムアウトを避ける最良の方法は？</p>
+  <p class="qtext">現在は問題なく動作しているアプリに、明日から多数の新規ユーザーがアクセスし、データアクション（画像）の使用が増えます。最大レコード数50のAggregateとその出力リストがあります。遅延やタイムアウトを避ける最良の方法は？</p>
   
-  <ul class="choices"><li class="choice correct"><span class="lbl">A</span><span class="ctxt">アグリゲートにキャッシュを使用する</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">タイマーを作成し、少量のバッチでレコードを処理する</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">最大レコード数を変更する</span></li></ul>
+  <ul class="choices"><li class="choice correct"><span class="lbl">A</span><span class="ctxt">Aggregateにキャッシュを使用する</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">タイマーを作成し、少量のバッチでレコードを処理する</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">最大レコード数を変更する</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">同じデータが繰り返し要求される画面表示では、アグリゲートのキャッシュ（Cache in Minutes）を有効にすることで、DBへの問い合わせ回数を減らし遅延・タイムアウトを回避できます。<br></p></div>
+  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">同じデータが繰り返し要求される画面表示では、Aggregateのキャッシュ（Cache in Minutes）を有効にすることで、DBへの問い合わせ回数を減らし遅延・タイムアウトを回避できます。<br></p></div>
 </article><article class="card" id="q30">
   <header class="qhead"><span class="qnum">問30</span></header>
   <p class="qtext">ClientEnergyData エンティティに顧客のエネルギー消費データが保存されています。タイマーで全レコードを繰り返し処理し、処理後にSQLで全レコードを削除したい。タイムアウトを避けて効率的に処理する最良のアプローチは？</p>
@@ -319,11 +319,11 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">REST/SOAP API 呼び出しのリクエスト・レスポンス本文まで含めて記録するには、ログレベルを「Full」に設定する必要があります。既定ではエラー概要程度しか記録されず、トラブルシュートに必要な詳細が出ません。<br></p></div>
 </article><article class="card" id="q39">
   <header class="qhead"><span class="qnum">問39</span></header>
-  <p class="qtext">API のレスポンスで City フィールドが値を返さないのはなぜですか？（City と Test の構造例を参照）</p>
+  <p class="qtext">API のレスポンスで City フィールドが値を返さないのはなぜですか？（City と Test の Structure 例を参照）</p>
   
-  <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">City フィールドが null または欠落しているため返されない</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">構造内の City フィールドの JSON 名が、API レスポンスの City と同じではない</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">エンドポイントが間違っている</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">API の設定やマッピングに問題があり、City フィールドが正しく埋められない</span></li></ul>
+  <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">City フィールドが null または欠落しているため返されない</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">Structure 内の City フィールドの JSON 名が、API レスポンスの City と同じではない</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">エンドポイントが間違っている</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">API の設定やマッピングに問題があり、City フィールドが正しく埋められない</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">レスポンス構造の属性名（またはその JSON Name プロパティ）が、実際のAPIレスポンスのキー名と一致していないと、デシリアライズ時にマッピングされず値が空になります。JSON Name を実レスポンスに合わせる必要があります。<br></p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">レスポンス Structure の属性名（またはその JSON Name プロパティ）が、実際のAPIレスポンスのキー名と一致していないと、デシリアライズ時にマッピングされず値が空になります。JSON Name を実レスポンスに合わせる必要があります。<br></p></div>
 </article><article class="card" id="q40">
   <header class="qhead"><span class="qnum">問40</span></header>
   <p class="qtext">既定では OutSystems は Service Actions へのリクエストのエラー詳細をログに記録せず、トラブルシュートが困難です。Service Actions のログ詳細レベルを変更するには？</p>

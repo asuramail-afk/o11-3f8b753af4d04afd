@@ -157,7 +157,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">Solution A</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">Solution B</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">Solution C</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">すべての案がベストプラクティスに従っている。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">Solution C は、必要な属性だけの専用構造（DailyConsumption: Day, ConsumptionKWh）を定義して返し、再利用可能なサーバーアクションに切り出しています。巨大なエンティティ全体ではなく必要データだけを扱う点でベストプラクティスに沿います。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">Solution C は、必要な属性だけの専用 Structure（DailyConsumption: Day, ConsumptionKWh）を定義して返し、再利用可能なサーバーアクションに切り出しています。巨大なエンティティ全体ではなく必要データだけを扱う点でベストプラクティスに沿います。</p></div>
 </article><article class="card" id="q14">
   <header class="qhead"><span class="qnum">Q14</span><span class="imgbadge">🖼 画像あり</span></header>
   <p class="qtext">SyncExtSystemUsers タイマーで大量ユーザーを外部システムと同期します。OutSystems のベストプラクティスに沿ったバッチ処理として不足しているものは？</p>
@@ -211,9 +211,9 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <p class="qtext">SQL（高度な）クエリを作成する際、パフォーマンス問題を避けるために考慮すべきことは？</p>
   
   
-  <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">プラットフォームが自動最適化するので選択部分の最適化は不要。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">どの選択肢も該当しない。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">必要なフィールドだけを返す DB ビューを作成してクエリする。</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">返されるフィールドだけを含む特定の出力構造を作成する。</span></li></ul>
+  <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">プラットフォームが自動最適化するので選択部分の最適化は不要。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">どの選択肢も該当しない。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">必要なフィールドだけを返す DB ビューを作成してクエリする。</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">返されるフィールドだけを含む特定の出力 Structureを作成する。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">Advanced SQL は自動最適化されないため、返す属性だけを含む出力構造を定義し、その列だけを SELECT します。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">Advanced SQL は自動最適化されないため、返す属性だけを含む出力 Structureを定義し、その列だけを SELECT します。</p></div>
 </article><article class="card" id="q21">
   <header class="qhead"><span class="qnum">Q21</span></header>
   <p class="qtext">実行コンテキストに応じて異なる振る舞いをするプロセスがあります。その振る舞いに影響を与えるには？</p>

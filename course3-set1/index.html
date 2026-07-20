@@ -80,8 +80,8 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">サービスアクションは内部的に REST ベースで動作する弱い依存。疎結合と独立展開を実現します。外部公開は公開 REST/SOAP、トランザクション参加や高速計算はサーバーアクション（インプロセス）が適します。</p></div>
 </article><article class="card" id="q6">
   <header class="qhead"><span class="qnum">Q6</span></header>
-  <p class="qtext">複数画面で使うブロック『ProductDetail』が集約『GetProduct』でデータを取得。『Load Details』ボタンが押されるまで GetProduct を自動実行しないようにするには？</p>
-  <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">集約の Fetch を『At start』に設定する。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">集約を『If』ウィジェットの中に置く。</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">集約の Fetch を『Only on demand』に設定する。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">集約を削除して『Data Action』を使う。</span></li></ul>
+  <p class="qtext">複数画面で使うブロック『ProductDetail』がAggregate『GetProduct』でデータを取得。『Load Details』ボタンが押されるまで GetProduct を自動実行しないようにするには？</p>
+  <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">Aggregateの Fetch を『At start』に設定する。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">Aggregateを『If』ウィジェットの中に置く。</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">Aggregateの Fetch を『Only on demand』に設定する。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">Aggregateを削除して『Data Action』を使う。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">Fetch=『Only on demand』にすると自動実行されず、明示的に RefreshAggregate を呼んだとき（例：ボタンクリック）だけ実行されます。</p></div>
 </article><article class="card" id="q7">
@@ -129,9 +129,9 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
 </article><article class="card" id="q14">
   <header class="qhead"><span class="qnum">Q14</span></header>
   <p class="qtext">リアクティブ Web アプリの Data Action で、『Employees』と『Departments』の2つのリストを返す必要があります。どう実現しますか？</p>
-  <ul class="choices"><li class="choice correct"><span class="lbl">A</span><span class="ctxt">Data Action に2つの出力パラメータ（Employees リストと Departments リスト）を追加し、フロー内で割り当てる。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">1つの Data Action は1リストしか返せないため、2つの別々の Data Action を作る。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">両リストを含む構造体を作り、それを唯一の出力パラメータにする。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">Data Action はリストを返せず基本型のみ。</span></li></ul>
+  <ul class="choices"><li class="choice correct"><span class="lbl">A</span><span class="ctxt">Data Action に2つの出力パラメータ（Employees リストと Departments リスト）を追加し、フロー内で割り当てる。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">1つの Data Action は1リストしか返せないため、2つの別々の Data Action を作る。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">両リストを含むStructureを作り、それを唯一の出力パラメータにする。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">Data Action はリストを返せず基本型のみ。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">アグリゲートと異なり、Data Action は複数の出力パラメータを持て、各パラメータは任意のデータ型（リスト含む）にできます。構造体で1出力にするのも可能ですが、複数出力の方が直接的です。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">Aggregateと異なり、Data Action は複数の出力パラメータを持て、各パラメータは任意のデータ型（リスト含む）にできます。Structureで1出力にするのも可能ですが、複数出力の方が直接的です。</p></div>
 </article><article class="card" id="q15">
   <header class="qhead"><span class="qnum">Q15</span></header>
   <p class="qtext">エンティティ『Order』と『OrderLine』。Order を削除したとき関連する全 OrderLine も自動削除し孤児を残さないようにするには、OrderLine.OrderId の Delete Rule をどう設定？</p>
