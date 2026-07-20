@@ -59,12 +59,12 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
 .seccat{font-size:1.05rem;color:var(--pri);border-left:4px solid var(--pri);padding:4px 12px;margin:24px 0 10px;background:var(--pri2);border-radius:0 8px 8px 0}
 </style></head><body><div class="wrap"><nav class="crumbs"><a href="../">相談用トップ</a> ／ <a href="./">コース1 / セット3 一覧</a> ／ <a href="../../course1-set3/#q2">問題集で開く</a> ／ 問2</nav><div class="ctx">OutSystems O11 問題集 ｜ コース1 / セット3 ｜ 問2</div><article class="card" id="q2">
   <header class="qhead"><span class="qnum">Q2</span></header>
-  <p class="qtext">特定のブロックにアクセスする権限があるかを確認するため、OnInitialize イベントで JavaScript ノードを使って役割（Role）を確認することは可能ですか？</p>
+  <p class="qtext">特定のブロックにアクセスする権限があるかを確認するため、OnInitialize イベントで JavaScript ノードを使ってロール（Role）を確認することは可能ですか？</p>
   
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">いいえ。そのブロックが使われている画面でのみチェックボックスを使う。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">いいえ。対象ブロックが使われる画面だけでチェックボックスを使う。</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">はい。OutSystems は JavaScript ノード内で Check&lt;Role&gt; 関数を使用できるため。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">はい。ただし OnReady イベントでのみ（OnInitialize 時点ではデータがないため）。</span></li><li class="choice"><span class="lbl">E</span><span class="ctxt">いいえ。実現できない。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">OutSystems では JavaScript ノード内でも Check&lt;Role&gt;() 関数を呼べるため、OnInitialize で役割を確認できます。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">OutSystems では JavaScript ノード内でも Check&lt;Role&gt;() 関数を呼べるため、OnInitialize でロールを確認できます。</p></div>
 </article><div class="pager"><a href="q1.html">← 前の問題</a><a href="q3.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

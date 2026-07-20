@@ -58,13 +58,13 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
 .seccat{font-size:1.05rem;color:var(--pri);border-left:4px solid var(--pri);padding:4px 12px;margin:24px 0 10px;background:var(--pri2);border-radius:0 8px 8px 0}
 </style></head><body><div class="wrap"><nav class="crumbs"><a href="../">相談用トップ</a> ／ <a href="./">コース1 / セット1 一覧</a> ／ <a href="../../course1-set1/#q7">問題集で開く</a> ／ 問7</nav><div class="ctx">OutSystems O11 問題集 ｜ コース1 / セット1 ｜ 問7</div><article class="card" id="q7">
   <header class="qhead"><span class="qnum">Q7</span></header>
-  <p class="qtext">「サイトプロパティは、頻繁に変更されない構造をアプリ全体で保存するのに良い選択肢である」という主張について正しいものは？</p>
+  <p class="qtext">「サイトプロパティは、頻繁に変更されない Structure をアプリ全体で保存するのに良い選択肢である」という主張について正しいものは？</p>
   
-  <ul class="choices"><li class="choice" data-correct="0"><span class="lbl">A</span><span class="ctxt">間違い。サイトプロパティは他の変数と同じ頻度で変更可能。</span></li><li class="choice correct" data-correct="1"><span class="lbl">B</span><span class="ctxt">間違い。サイトプロパティの型は基本的な型に限定されている。</span></li><li class="choice" data-correct="0"><span class="lbl">C</span><span class="ctxt">正解。サイトプロパティを変更するとキャッシュが無効になるため頻繁に変更すべきでない。</span></li><li class="choice" data-correct="0"><span class="lbl">D</span><span class="ctxt">正解。サイトプロパティはユーザーセッションに関係なく使える構造を保存できる。</span></li></ul>
+  <ul class="choices"><li class="choice" data-correct="0"><span class="lbl">A</span><span class="ctxt">間違い。サイトプロパティは他の変数と同じ頻度で変更可能。</span></li><li class="choice correct" data-correct="1"><span class="lbl">B</span><span class="ctxt">間違い。サイトプロパティの型は基本的な型に限定されている。</span></li><li class="choice" data-correct="0"><span class="lbl">C</span><span class="ctxt">正解。サイトプロパティを変更するとキャッシュが無効になるため頻繁に変更すべきでない。</span></li><li class="choice" data-correct="0"><span class="lbl">D</span><span class="ctxt">正解。サイトプロパティはユーザーセッションに関係なく使える Structure を保存できる。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer">
     <p class="ans-line"><b>正解：B</b></p>
-    <p class="expl">サイトプロパティは基本型（Text/Integer/Boolean など）に限定され、構造（Structure/Record List 等）は保存できません。よって主張は不正確です。</p>
+    <p class="expl">サイトプロパティは基本型（Text/Integer/Boolean など）に限定され、Structure や Record List などの複雑な型は保存できません。よって主張は不正確です。</p>
   </div>
 </article><div class="pager"><a href="q6.html">← 前の問題</a><a href="q8.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}

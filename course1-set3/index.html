@@ -64,12 +64,12 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">サービスアクション（Service Action）を公開すると、消費者との間に弱い依存（Weak Reference）が確立されます。REST ベースの疎結合になり、プロデューサー側の変更が消費者に強く波及しません。</p></div>
 </article><article class="card" id="q2">
   <header class="qhead"><span class="qnum">Q2</span></header>
-  <p class="qtext">特定のブロックにアクセスする権限があるかを確認するため、OnInitialize イベントで JavaScript ノードを使って役割（Role）を確認することは可能ですか？</p>
+  <p class="qtext">特定のブロックにアクセスする権限があるかを確認するため、OnInitialize イベントで JavaScript ノードを使ってロール（Role）を確認することは可能ですか？</p>
   
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">いいえ。そのブロックが使われている画面でのみチェックボックスを使う。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">いいえ。対象ブロックが使われる画面だけでチェックボックスを使う。</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">はい。OutSystems は JavaScript ノード内で Check&lt;Role&gt; 関数を使用できるため。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">はい。ただし OnReady イベントでのみ（OnInitialize 時点ではデータがないため）。</span></li><li class="choice"><span class="lbl">E</span><span class="ctxt">いいえ。実現できない。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">OutSystems では JavaScript ノード内でも Check&lt;Role&gt;() 関数を呼べるため、OnInitialize で役割を確認できます。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">OutSystems では JavaScript ノード内でも Check&lt;Role&gt;() 関数を呼べるため、OnInitialize でロールを確認できます。</p></div>
 </article><article class="card" id="q3">
   <header class="qhead"><span class="qnum">Q3</span><span class="imgbadge">🖼 画像あり</span></header>
   <p class="qtext">次のフローで、UpdateCustomerDB アクションでエラーが発生した場合、トランザクションはどうなりますか？</p>
