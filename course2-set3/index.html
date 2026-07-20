@@ -67,9 +67,9 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <p class="qtext">数千件の KPI を含む Excel を処理し、従業員の年次ボーナスを計算します。最良の方法は？</p>
   
   
-  <ul class="choices"><li class="choice correct"><span class="lbl">A</span><span class="ctxt">タイマーを作成し、ロジックはバッチのレコードを取得してから処理する。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">タイマーを作成し、設計時に Timeout を増やし、優先度を Low にする。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">2000件を読み込んでタイマーに送り、Last_Run 属性で次の2000件を呼ぶタイミングを管理する。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">タイマーを作成し、実行時間を制御して Timeout 前に停止、5分ごとにスケジュールする。</span></li></ul>
+  <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">タイマーを作成し、ロジックはバッチのレコードを取得してから処理する。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">タイマーを作成し、設計時に Timeout を増やし、優先度を Low にする。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">2000件を読み込んでタイマーに送り、Last_Run 属性で次の2000件を呼ぶタイミングを管理する。</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">タイマーを作成し、実行時間を制御して Timeout 前に停止、5分ごとにスケジュールする。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">全件をバッチ単位で取得・処理するタイマー（＋タイムアウト管理して自己再起動）が定石。Timeout を延ばす/優先度を下げる対処は根本解決になりません。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">タイマーで全件処理する際は、実行経過時間を制御し Timeout 前に安全停止して再スケジュールする（soft timeout パターン）のが最良です。単にバッチ取得して処理するだけ（A）ではタイムアウト対策になりません。</p></div>
 </article><article class="card" id="q3">
   <header class="qhead"><span class="qnum">Q3</span><span class="imgbadge">🖼 画像あり</span></header>
   <p class="qtext">図のアクションはタイマーでトリガーされます。ロジックを10分間実行し続け、その後に新しいタイマーインスタンスを起動したい。Timeout の Assign と条件は？</p>
@@ -163,9 +163,9 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <p class="qtext">医療情報フォームの送信で、クライアントアクションが SendForm（サーバーアクション）を呼び、さらに第三者 REST API を呼んで保存します。最も高性能で、かつデータ紛失を防ぐには？</p>
   
   <p class="note">※この設問はコース1セット1 Q6（同一シナリオ）では④『エラーハンドリング＋成功まで再試行』が正解とされ、正解が割れています。単一の確定的な公式定義がない設計判断問題で、実務では②（一時エンティティ＋非同期）も堅牢です。試験の版により正解が異なる点に注意してください。</p>
-  <ul class="choices"><li class="choice correct"><span class="lbl">A</span><span class="ctxt">REST API に OnAfterResponse ハンドラを作り、送信されたか利用者に通知する。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">まず一時エンティティに保存し、タイマーで非同期・小バッチに REST API へ送信する。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">フォームのバリデーションが適切なら SendForm を呼ぶだけで追加対応は不要。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">SendForm にエラーハンドリングフローを設け、エラー時は確実に保存されるまで再試行する。</span></li></ul>
+  <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">REST API に OnAfterResponse ハンドラを作り、送信されたか利用者に通知する。</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">まず一時エンティティに保存し、タイマーで非同期・小バッチに REST API へ送信する。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">フォームのバリデーションが適切なら SendForm を呼ぶだけで追加対応は不要。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">SendForm にエラーハンドリングフローを設け、エラー時は確実に保存されるまで再試行する。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">（本資料の正解は①：OnAfterResponse で送信結果を利用者に通知）</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">（コース1セット1 Q6 と同じ論点）外部REST連携は一時エンティティへ即時保存＋Timer 非同期送信で、高性能とデータ損失防止を両立します。OnAfterResponse 通知（A）は損失防止になりません。</p></div>
 </article><article class="card" id="q15">
   <header class="qhead"><span class="qnum">Q15</span><span class="imgbadge">🖼 画像あり</span></header>
   <p class="qtext">次の Compare and Merge ダイアログについて正しい記述は？</p>

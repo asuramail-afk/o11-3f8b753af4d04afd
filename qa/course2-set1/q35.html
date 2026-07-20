@@ -58,9 +58,9 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <header class="qhead"><span class="qnum">問35</span></header>
   <p class="qtext">次のうち、OutSystems が推奨するアーキテクチャのベストプラクティスでは「ない」ものはどれですか？</p>
   
-  <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">基礎（Foundation）モジュールは Core Services モジュールへ上方参照を持てる</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">基礎モジュールは UIパターンを持てない</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">どの選択肢も推奨されるベストプラクティスではない</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">基礎モジュールは読み取り専用のコアエンティティを持つべきである</span></li></ul>
+  <ul class="choices"><li class="choice correct"><span class="lbl">A</span><span class="ctxt">基礎（Foundation）モジュールは Core Services モジュールへ上方参照を持てる</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">基礎モジュールは UIパターンを持てない</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">どの選択肢も推奨されるベストプラクティスではない</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">基礎モジュールは読み取り専用のコアエンティティを持つべきである</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">基礎モジュールは上位層（Core Services 等）を参照してはならず（下方参照のみ）、UIパターンを持つことはできますし、必ずしも「読み取り専用コアエンティティ」を持つわけでもありません。したがって A・B・D すべてが誤りで、「どれも推奨ベストプラクティスではない」が正解です。<br></p></div>
+  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">Architecture Canvas では参照は常に下方向で、Foundation 層のモジュールが上位の Core Services を参照するのは禁止（ベストプラクティス違反）です。よって A が『推奨されない』記述になります。</p></div>
 </article><div class="pager"><a href="q34.html">← 前の問題</a><a href="q36.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

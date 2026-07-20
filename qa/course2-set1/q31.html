@@ -58,9 +58,9 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <header class="qhead"><span class="qnum">問31</span></header>
   <p class="qtext">少量のデータ移行を行いたい場合、最適な方法はどれですか？</p>
   
-  <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">BPT（ビジネスプロセステクノロジー）</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">Light Process（軽量プロセス）</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">Timer（タイマー）</span></li></ul>
+  <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">BPT（ビジネスプロセステクノロジー）</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">Light Process（軽量プロセス）</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">Timer（タイマー）</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">少量データの移行には、オーバーヘッドの小さい Light Process が適しています。BPT は複雑なワークフロー向けで重く、タイマーは定期・大量バッチ向けです。<br></p></div>
+  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">少量データの移行・ブートストラップにはシンプルな Timer（1回実行）が最適です。BPT / Light Process は大量データや業務プロセスの並列処理向けで、単発の少量移行には過剰です。</p></div>
 </article><div class="pager"><a href="q30.html">← 前の問題</a><a href="q32.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

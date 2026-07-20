@@ -202,9 +202,9 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <header class="qhead"><span class="qnum">問22</span></header>
   <p class="qtext">エンティティを静的エンティティ（Static Entity）に変換するとき、正しいのはどれですか？</p>
   
-  <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">静的エンティティは元の属性を保持し、さらに Order、Label、Is_Active 属性も追加する</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">Service Studio でエンティティ内のすべてのレコードを取得できる</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">静的エンティティは、エンティティのインデックスを保持しない</span></li></ul>
+  <ul class="choices"><li class="choice correct"><span class="lbl">A</span><span class="ctxt">静的エンティティは元の属性を保持し、さらに Order、Label、Is_Active 属性も追加する</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">Service Studio でエンティティ内のすべてのレコードを取得できる</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">静的エンティティは、エンティティのインデックスを保持しない</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">静的エンティティはレコードがメタデータとして扱われ、Service Studio 上で全レコードを直接参照・取得できます。（注: Order／Label／Is_Active はレコードのプロパティであり、Aの説明は不正確です。）<br></p></div>
+  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">エンティティを Static Entity に変換すると、元の属性を保持したまま Id・Label・Order・Is_Active が自動追加されます（A）。既存のDBレコードは自動では取り込まれず手動インポートが必要なので、B は誤りです。</p></div>
 </article><article class="card" id="q23">
   <header class="qhead"><span class="qnum">問23</span></header>
   <p class="qtext">属性が20個あるレコードのうち、3つの値だけを更新したい場合、最良の方法は何ですか？</p>
@@ -265,16 +265,16 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <header class="qhead"><span class="qnum">問31</span></header>
   <p class="qtext">少量のデータ移行を行いたい場合、最適な方法はどれですか？</p>
   
-  <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">BPT（ビジネスプロセステクノロジー）</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">Light Process（軽量プロセス）</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">Timer（タイマー）</span></li></ul>
+  <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">BPT（ビジネスプロセステクノロジー）</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">Light Process（軽量プロセス）</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">Timer（タイマー）</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">少量データの移行には、オーバーヘッドの小さい Light Process が適しています。BPT は複雑なワークフロー向けで重く、タイマーは定期・大量バッチ向けです。<br></p></div>
+  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">少量データの移行・ブートストラップにはシンプルな Timer（1回実行）が最適です。BPT / Light Process は大量データや業務プロセスの並列処理向けで、単発の少量移行には過剰です。</p></div>
 </article><article class="card" id="q32">
   <header class="qhead"><span class="qnum">問32</span></header>
   <p class="qtext">タイマー1がタイムアウトしてタイマー2を起動させたとき、タイマー2には何が起こりますか？</p>
   
-  <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">タイマー2は部分的に初期化されるが、タイマー1のタイムアウトで完全に実行できなくなる</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">何も起こらない。タイマー2は3回リトライし、エラー／タイムアウトが発生するとそれ以降は起きなくなる</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">タイマー2はタイマー1が正常にリトライするまで待機状態になる</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">タイマー2は、タイマー1がタイムアウトしても無期限に非アクティブのままである</span></li><li class="choice"><span class="lbl">E</span><span class="ctxt">タイマー2は、タイマー1がトリガーしなくても一定遅延後に起きる</span></li><li class="choice"><span class="lbl">F</span><span class="ctxt">タイマー2は、タイマー1のタイムアウトに関係なく独立して動作するため起きる</span></li></ul>
+  <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">タイマー2は部分的に初期化されるが、タイマー1のタイムアウトで完全に実行できなくなる</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">何も起こらない。タイマー2は3回リトライし、エラー／タイムアウトが発生するとそれ以降は起きなくなる</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">タイマー2はタイマー1が正常にリトライするまで待機状態になる</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">タイマー2は、タイマー1がタイムアウトしても無期限に非アクティブのままである</span></li><li class="choice"><span class="lbl">E</span><span class="ctxt">タイマー2は、タイマー1がトリガーしなくても一定遅延後に起きる</span></li><li class="choice correct"><span class="lbl">F</span><span class="ctxt">タイマー2は、タイマー1のタイムアウトに関係なく独立して動作するため起きる</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">タイマー1がタイムアウトすると、そこから起動されるはずのタイマー2はトリガーされません。タイマー自体はエラー／タイムアウト時に最大3回リトライされますが、それでも失敗すると以降は起動されなくなります。<br></p></div>
+  <div class="answer"><p class="ans-line"><b>正解：F</b></p><p class="expl">Wake でタイマーを起こすとスケジューラにリクエストがキューされ、そのタイマーは別スレッド・別トランザクションで独立実行されます。よって Timer1 がタイムアウト／ロールバックしても、すでに起こされた Timer2 は独立して動作します（F）。</p></div>
 </article><article class="card" id="q33">
   <header class="qhead"><span class="qnum">問33</span></header>
   <p class="qtext">どのような状況でプロセス（Process）を起動できますか？</p>
@@ -293,16 +293,16 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <header class="qhead"><span class="qnum">問35</span></header>
   <p class="qtext">次のうち、OutSystems が推奨するアーキテクチャのベストプラクティスでは「ない」ものはどれですか？</p>
   
-  <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">基礎（Foundation）モジュールは Core Services モジュールへ上方参照を持てる</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">基礎モジュールは UIパターンを持てない</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">どの選択肢も推奨されるベストプラクティスではない</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">基礎モジュールは読み取り専用のコアエンティティを持つべきである</span></li></ul>
+  <ul class="choices"><li class="choice correct"><span class="lbl">A</span><span class="ctxt">基礎（Foundation）モジュールは Core Services モジュールへ上方参照を持てる</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">基礎モジュールは UIパターンを持てない</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">どの選択肢も推奨されるベストプラクティスではない</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">基礎モジュールは読み取り専用のコアエンティティを持つべきである</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">基礎モジュールは上位層（Core Services 等）を参照してはならず（下方参照のみ）、UIパターンを持つことはできますし、必ずしも「読み取り専用コアエンティティ」を持つわけでもありません。したがって A・B・D すべてが誤りで、「どれも推奨ベストプラクティスではない」が正解です。<br></p></div>
+  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">Architecture Canvas では参照は常に下方向で、Foundation 層のモジュールが上位の Core Services を参照するのは禁止（ベストプラクティス違反）です。よって A が『推奨されない』記述になります。</p></div>
 </article><article class="card" id="q36">
   <header class="qhead"><span class="qnum">問36</span></header>
   <p class="qtext">あるアプリが小規模から大規模に成長し、展開が遅く、一部モジュールにUI・DB定義・ロジックが混在しています。UIをDB／ロジックから分離したい。特に &quot;Finance&quot; モジュールについて、データを失わない最適な方法は？</p>
   
-  <ul class="choices"><li class="choice correct"><span class="lbl">A</span><span class="ctxt">Finance を開いてクローンし、クローンを Finance_CS にリネーム。元モジュールのUIフローを削除し、DBエンティティ／アクションを削除。クローンを公開し、そのエンティティ／アクションを元モジュールで参照。最後に元モジュールを公開</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">新規に「Finance」「Finance_CS」を作成。元からUIフローを新Financeへ、DBエンティティ／アクションを新Finance_CSへ移動。依存関係を作り、元を削除して新モジュールを公開</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">Finance をクローンし、元を Finance_CS にリネーム。クローンを Finance にリネームし全DBエンティティ／アクションを削除。元を公開しエンティティ／アクションをクローンで参照。最後にクローンを公開</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">元を Finance_CS にリネームし、新規に「Finance」を作成。Refactor コンポーネントの指示に従って元から画面を新 Finance へ移行</span></li></ul>
+  <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">Finance を開いてクローンし、クローンを Finance_CS にリネーム。元モジュールのUIフローを削除し、DBエンティティ／アクションを削除。クローンを公開し、そのエンティティ／アクションを元モジュールで参照。最後に元モジュールを公開</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">新規に「Finance」「Finance_CS」を作成。元からUIフローを新Financeへ、DBエンティティ／アクションを新Finance_CSへ移動。依存関係を作り、元を削除して新モジュールを公開</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">Finance をクローンし、元を Finance_CS にリネーム。クローンを Finance にリネームし全DBエンティティ／アクションを削除。元を公開しエンティティ／アクションをクローンで参照。最後にクローンを公開</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">元を Finance_CS にリネームし、新規に「Finance」を作成。Refactor コンポーネントの指示に従って元から画面を新 Finance へ移行</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl"></p></div>
+  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">データを失わない分割の鍵は、実データ（物理エンティティ）を持つ元モジュールを残すことです。C は元を Finance_CS にリネームしてデータを保持し、クローンを UI 用 Finance にして自身の DB を削除・元を参照します。A は実データを持つ元モジュールの DB を削除するため損失します。</p></div>
 </article><article class="card" id="q37">
   <header class="qhead"><span class="qnum">問37</span></header>
   <p class="qtext">クライアント変数（Client Variable）について正しいのはどれですか？</p>

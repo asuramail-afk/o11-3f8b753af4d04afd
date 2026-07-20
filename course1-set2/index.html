@@ -75,9 +75,9 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <p class="qtext">以下のうち、正しくない（誤った）記述はどれですか？（自動化されたアクティビティについて）</p>
   
   
-  <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">自動化アクティビティは自動的にスケジュールできない。</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">自動化アクティビティにはコールバックアクションがない。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">自動化アクティビティは成功条件では実行されない。</span></li></ul>
+  <ul class="choices"><li class="choice correct"><span class="lbl">A</span><span class="ctxt">自動化アクティビティは自動的にスケジュールできない。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">自動化アクティビティにはコールバックアクションがない。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">自動化アクティビティは成功条件では実行されない。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">誤りはこれ。自動化アクティビティ（Automatic Activity）にはコールバックが存在します（他の2つは正しい記述）。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">BPT のコールバックアクション（On Ready/On Start/On Close など）は Conditional Start・Human Activity・Wait にのみ適用され、Automatic Activity には元々ありません（＝B は正しい記述）。Automatic Activity はフロー到達時にプロセスエンジンが自動実行するため、A『自動的にスケジュールできない』が誤った記述で、これが正解です。</p></div>
 </article><article class="card" id="q4">
   <header class="qhead"><span class="qnum">Q4</span></header>
   <p class="qtext">コアビジネス層（Core Business layer）に含まれるべきものはどれですか？</p>
@@ -115,9 +115,9 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <p class="qtext">エンティティを静的エンティティに変換するときの挙動はどれですか？</p>
   
   
-  <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">静的エンティティはインデックスを保持しない。</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">Service Studio でエンティティの全レコードを取得できる。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">属性を保持し、さらに Order・Label・Is_Active 属性を追加する。</span></li></ul>
+  <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">静的エンティティはインデックスを保持しない。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">Service Studio でエンティティの全レコードを取得できる。</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">属性を保持し、さらに Order・Label・Is_Active 属性を追加する。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">静的エンティティに変換すると、そのレコードはデザイン時に確定し、Service Studio 上で全レコードを参照・取得できるようになります。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">エンティティを Static Entity に変換すると、元の属性を保持したまま Order・Label・Is_Active が追加されます（C）。既存レコードは自動では Service Studio に現れず手動インポートが必要なので、B は誤りです。</p></div>
 </article><article class="card" id="q9">
   <header class="qhead"><span class="qnum">Q9</span></header>
   <p class="qtext">データベースのメンテナンス計画のメリットは何ですか？</p>
@@ -395,9 +395,9 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <p class="qtext">少量のデータを移行したい。どの方法が最適ですか？</p>
   
   
-  <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">タイマー</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">BPT（ビジネスプロセス）</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">ライトプロセス（Light Process）</span></li></ul>
+  <ul class="choices"><li class="choice correct"><span class="lbl">A</span><span class="ctxt">タイマー</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">BPT（ビジネスプロセス）</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">ライトプロセス（Light Process）</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">少量データの移行には軽量な「ライトプロセス」が適します（大量/長時間ならタイマー、業務フロー制御ならBPT）。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">少量データの移行にはシンプルな Timer が最適です。Light Process（Light BPT）は大量データの並列・高スループット処理向けで、単発の少量移行には過剰です。</p></div>
 </article><article class="card" id="q44">
   <header class="qhead"><span class="qnum">Q44</span></header>
   <p class="qtext">顧客のエネルギー消費データは ClientEnergyData エンティティに保存されています。タイマーで全既存データを反復処理し、各レコードを処理、全処理後に SQL で全レコードを削除します。タイムアウトを避け効率的に処理する最良の方法は？</p>
