@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>コース1 / セット1 ｜ 相談用</title><style>
+:root{--bg:#f4f6f9;--card:#fff;--ink:#1f2733;--sub:#5b6675;--line:#e3e8ef;--pri:#0a7d6b;--pri2:#e6f4f1;--acc:#c4453a;--ok:#0a7d6b;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Segoe UI","Hiragino Kaku Gothic ProN","Yu Gothic UI",Meiryo,sans-serif;line-height:1.7}
+.wrap{max-width:900px;margin:0 auto;padding:24px 18px 80px}
+header.top{text-align:center;padding:26px 0 10px}
+header.top h1{margin:0 0 4px;font-size:1.5rem}
+header.top .sub{color:var(--sub);font-size:.92rem}
+.toolbar{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:16px 0 6px}
+.toolbar button{border:1px solid var(--line);background:#fff;color:var(--ink);padding:7px 14px;border-radius:999px;cursor:pointer;font-size:.9rem}
+.toolbar button:hover{background:var(--pri2);border-color:var(--pri)}
+.nav{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin:14px 0 24px}
+.nav a{width:34px;height:30px;display:flex;align-items:center;justify-content:center;font-size:.82rem;border:1px solid var(--line);border-radius:7px;background:#fff;color:var(--sub);text-decoration:none}
+.nav a:hover{background:var(--pri);color:#fff;border-color:var(--pri)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin:0 0 18px;box-shadow:0 1px 3px rgba(20,30,50,.05)}
+.qhead{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.qnum{background:var(--pri);color:#fff;font-weight:700;padding:3px 12px;border-radius:8px;font-size:.95rem}
+.imgbadge{font-size:.76rem;color:var(--pri);background:var(--pri2);padding:2px 9px;border-radius:999px}
+.qtext{margin:6px 0 14px;font-size:1.02rem}
+.figs{display:flex;flex-direction:column;gap:14px;margin:0 0 16px}
+.qfig{margin:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fbfcfe}
+.qfig img{display:block;width:100%;height:auto}
+.qfig figcaption{font-size:.8rem;color:var(--sub);padding:7px 12px;border-top:1px solid var(--line)}
+.choices{list-style:none;margin:0 0 16px;padding:0;display:flex;flex-direction:column;gap:8px}
+.choice{display:flex;gap:11px;align-items:flex-start;border:1px solid var(--line);border-radius:10px;padding:10px 13px;cursor:pointer;transition:.12s}
+.choice:hover{border-color:var(--pri);background:var(--pri2)}
+.choice .lbl{flex:none;width:24px;height:24px;border-radius:50%;background:#eef1f5;color:var(--sub);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem}
+.choice.picked{border-color:var(--sub)}
+.card.revealed .choice.correct{border-color:var(--ok);background:#e7f6f2}
+.card.revealed .choice.correct .lbl{background:var(--ok);color:#fff}
+.card.revealed .choice.picked:not(.correct){border-color:var(--acc);background:#fdeceb}
+.card.revealed .choice.picked:not(.correct) .lbl{background:var(--acc);color:#fff}
+.reveal{border:1px solid var(--pri);background:#fff;color:var(--pri);padding:8px 18px;border-radius:9px;cursor:pointer;font-size:.92rem;font-weight:600}
+.reveal:hover{background:var(--pri);color:#fff}
+.answer{display:none;margin-top:14px;padding:14px 16px;background:#f7faf9;border:1px solid #d5e7e2;border-left:4px solid var(--ok);border-radius:8px}
+.card.revealed .answer{display:block}
+.ans-line{margin:0 0 6px;color:var(--ok)}
+.expl{margin:0;font-size:.94rem;color:#33404f}
+footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
+@media(max-width:520px){.wrap{padding:16px 12px 60px}.card{padding:16px}}
+
+.crumbs{font-size:.85rem;color:var(--sub);margin:2px 0 16px}
+.crumbs a{color:var(--pri);text-decoration:none}.crumbs a:hover{text-decoration:underline}
+.ctx{font-size:.82rem;color:var(--sub);background:var(--pri2);border-radius:8px;padding:6px 12px;margin:0 0 14px;display:inline-block}
+.pager{display:flex;justify-content:space-between;gap:10px;margin-top:22px}
+.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:10px;background:#fff;color:var(--pri);text-decoration:none;font-weight:600}
+.pager a:hover{background:var(--pri2);border-color:var(--pri)}
+.pager .disabled{visibility:hidden}
+.qlist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.qlist a{display:flex;gap:10px;border:1px solid var(--line);border-radius:10px;padding:11px 13px;text-decoration:none;color:var(--ink);background:#fff}
+.qlist a:hover{border-color:var(--pri);background:var(--pri2)}
+.qlist .qn{flex:none;background:var(--pri);color:#fff;font-weight:700;border-radius:7px;padding:1px 9px;font-size:.85rem;height:fit-content}
+.setgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:6px 0 22px}
+.setgrid a{border:1px solid var(--line);border-radius:10px;padding:12px;text-decoration:none;color:var(--ink);background:#fff}
+.setgrid a:hover{border-color:var(--pri);background:var(--pri2)}
+.setgrid b{color:var(--pri)}.setgrid small{color:var(--sub)}
+.seccat{font-size:1.05rem;color:var(--pri);border-left:4px solid var(--pri);padding:4px 12px;margin:24px 0 10px;background:var(--pri2);border-radius:0 8px 8px 0}
+</style></head><body><div class="wrap"><nav class="crumbs"><a href="../">相談用トップ</a> ／ <a href="../../course1-set1/">問題集（全問）</a> ／ コース1 / セット1</nav><header class="top"><h1>コース1 / セット1</h1><div class="sub">相談用（1問=1ページ）・全 39 問</div></header><ul class="qlist"><a href="q1.html"><span class="qn">問1</span><span>図に示されたアクションを考えてください。実行時に呼び出されると、強調表示された CreateAddress アクションの…</span></a><a href="q2.html"><span class="qn">問2</span><span>Integration Builder のデータベースの NULL 値に対するデフォルト設定について考えます。この場合、…</span></a><a href="q3.html"><span class="qn">問3</span><span>既存の経費管理ウェブアプリケーションに対して、ネイティブのモバイルインターフェースを提供する必要があります。適切なアプロ…</span></a><a href="q4.html"><span class="qn">問4</span><span>独自のテーマを持つウェブアプリケーションのモバイル版もサポートしたい。どうすればよいですか？</span></a><a href="q5.html"><span class="qn">問5</span><span>急速に成長するエンティティがあり、実際に使われるのはごく一部だが、法的・監査上すべての記録を保持する必要があります。アク…</span></a><a href="q6.html"><span class="qn">問6</span><span>医療情報フォームの送信で、クライアントアクションが SendForm サーバーアクションを呼び、さらに外部 REST A…</span></a><a href="q7.html"><span class="qn">問7</span><span>「サイトプロパティは、頻繁に変更されない構造をアプリ全体で保存するのに良い選択肢である」という主張について正しいものは？</span></a><a href="q8.html"><span class="qn">問8</span><span>ジョーンがモジュール公開時に競合ダイアログが表示されました。「マージして公開」を選ぶとどうなりますか？</span></a><a href="q9.html"><span class="qn">問9</span><span>図のコードスニペットは Excel ファイルのインポートと処理ロジックを実装しています。正しいものはどれですか？（複数正…</span></a><a href="q10.html"><span class="qn">問10</span><span>Doctors アプリの DoctorDetail 画面の「Check Appointment」ボタンから、Appoin…</span></a><a href="q11.html"><span class="qn">問11</span><span>開発者が他モジュールで公開されたサーバーアクションをデバッグしたい。誤った記述はどれですか？</span></a><a href="q12.html"><span class="qn">問12</span><span>モジュール B・E・A：B は E の 2 エンティティを参照、A は B の Web ブロックを参照、E は A のア…</span></a><a href="q13.html"><span class="qn">問13</span><span>デバッグ時、プロデューサーモジュールのエンティティ一覧にコンシューマーモジュールが表示されないのはなぜ？有効な理由は？</span></a><a href="q14.html"><span class="qn">問14</span><span>図のアクションはタイマーでトリガーされます。ロジックを 10 分間実行し続け、その後 10 分後に新しいタイマーインスタ…</span></a><a href="q15.html"><span class="qn">問15</span><span>SimpleBlock 内のボタンがホーム画面にインスタンス化されています。図の CSS 定義に基づき、ボタンはどう表示…</span></a><a href="q16.html"><span class="qn">問16</span><span>外部エンティティ（数千レコード）とプラットフォームエンティティを結合したい。どうすべきですか？</span></a><a href="q17.html"><span class="qn">問17</span><span>Service Center の「General Logs」にはどの情報が記録されますか？</span></a><a href="q18.html"><span class="qn">問18</span><span>数千件の KPI レコードを含む Excel を処理し年間ボーナスを計算します。最適な方法は？</span></a><a href="q19.html"><span class="qn">問19</span><span>場所に画像を関連付け、複数言語の翻訳説明を持たせる旅行代理店アプリのデータモデル。最適なシナリオは？</span></a><a href="q20.html"><span class="qn">問20</span><span>図のデータモデルと関係について正しい記述は？</span></a><a href="q21.html"><span class="qn">問21</span><span>強い結合を避け、依存関係を簡素化するには？</span></a><a href="q22.html"><span class="qn">問22</span><span>次のうち正しい記述はどれですか？</span></a><a href="q23.html"><span class="qn">問23</span><span>図のエンティティ図で、国に未割当か住所に未参照の都市を定期的に削除します。最も高性能なアプローチは？</span></a><a href="q24.html"><span class="qn">問24</span><span>ファイル経費処理タイマーの定義。タイマーが終了する前に別タイマーを起動して経費を処理・保存します。最初のタイマーがタイム…</span></a><a href="q25.html"><span class="qn">問25</span><span>図のデータモデルで Description は 1500 文字、HighlightedPicture は binaryD…</span></a><a href="q26.html"><span class="qn">問26</span><span>年間ボーナス計算アクションが、頻繁に変わるパーセンテージをハードコードしています。ベストプラクティスに従うには？</span></a><a href="q27.html"><span class="qn">問27</span><span>API キーとアプリ識別子で認証する REST API を公開します。このシナリオで「無効」な選択肢はどれですか？</span></a><a href="q28.html"><span class="qn">問28</span><span>図のアクションはスーパーマーケットの請求書 Excel を処理し Invoice/InvoiceDetails に挿入し…</span></a><a href="q29.html"><span class="qn">問29</span><span>アプリが複数の異なる外部システムから情報を収集する必要がある場合、適切な対応は？</span></a><a href="q30.html"><span class="qn">問30</span><span>利用中の Web サービスのログは確認できるが、リクエスト/レスポンスの値が見えません。考えられる理由は？</span></a><a href="q31.html"><span class="qn">問31</span><span>ユーザーに「Manager」役割がない場合、状況を正しく表す選択肢は？（左=Container、右=If）</span></a><a href="q32.html"><span class="qn">問32</span><span>AddStock サーバーアクションのフローで、いずれかが失敗したら DB 変更をロールバックする必要があります。正しい…</span></a><a href="q33.html"><span class="qn">問33</span><span>ホームバンキングのダッシュボード：口座情報、最新 50 件の取引、複数システムから集約する残高グラフ。最も高性能で UX…</span></a><a href="q34.html"><span class="qn">問34</span><span>パフォーマンスに良い影響を与えるベストプラクティスはどれですか？</span></a><a href="q35.html"><span class="qn">問35</span><span>通信記録を監査目的で 5 年保持しつつ、直近 3 か月のアクティブ顧客の通信だけを利用します。アクセス時の性能低下を避け…</span></a><a href="q36.html"><span class="qn">問36</span><span>ブロックのイベント On Destroy はいつトリガーされますか？</span></a><a href="q37.html"><span class="qn">問37</span><span>GetAllApplications アクションはアプリ一覧を返し他アクションから使われます。GetApplicatio…</span></a><a href="q38.html"><span class="qn">問38</span><span>オンライン食事注文アプリ（顧客・レストラン・外部配達 Web サービス連携、将来は自社配達モバイルアプリ追加、全ユーザー…</span></a><a href="q39.html"><span class="qn">問39</span><span>図のクライアントアクションは顧客の位置情報（国と都市）を取得します。エラー/警告インジケータは削除済み。正しい記述は？</span></a></ul></div></body></html>

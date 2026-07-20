@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>コース1 / セット2 ｜ 相談用</title><style>
+:root{--bg:#f4f6f9;--card:#fff;--ink:#1f2733;--sub:#5b6675;--line:#e3e8ef;--pri:#0a7d6b;--pri2:#e6f4f1;--acc:#c4453a;--ok:#0a7d6b;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Segoe UI","Hiragino Kaku Gothic ProN","Yu Gothic UI",Meiryo,sans-serif;line-height:1.7}
+.wrap{max-width:900px;margin:0 auto;padding:24px 18px 80px}
+header.top{text-align:center;padding:26px 0 10px}
+header.top h1{margin:0 0 4px;font-size:1.5rem}
+header.top .sub{color:var(--sub);font-size:.92rem}
+.toolbar{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:16px 0 6px}
+.toolbar button{border:1px solid var(--line);background:#fff;color:var(--ink);padding:7px 14px;border-radius:999px;cursor:pointer;font-size:.9rem}
+.toolbar button:hover{background:var(--pri2);border-color:var(--pri)}
+.nav{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin:14px 0 24px}
+.nav a{width:34px;height:30px;display:flex;align-items:center;justify-content:center;font-size:.82rem;border:1px solid var(--line);border-radius:7px;background:#fff;color:var(--sub);text-decoration:none}
+.nav a:hover{background:var(--pri);color:#fff;border-color:var(--pri)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin:0 0 18px;box-shadow:0 1px 3px rgba(20,30,50,.05)}
+.qhead{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.qnum{background:var(--pri);color:#fff;font-weight:700;padding:3px 12px;border-radius:8px;font-size:.95rem}
+.imgbadge{font-size:.76rem;color:var(--pri);background:var(--pri2);padding:2px 9px;border-radius:999px}
+.qtext{margin:6px 0 14px;font-size:1.02rem}
+.note{margin:0 0 14px;font-size:.84rem;color:#8a6d1a;background:#fff8e6;border:1px solid #f0e2b8;border-radius:8px;padding:8px 12px}
+.figs{display:flex;flex-direction:column;gap:14px;margin:0 0 16px}
+.qfig{margin:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fbfcfe}
+.qfig img{display:block;width:100%;height:auto}
+.qfig figcaption{font-size:.8rem;color:var(--sub);padding:7px 12px;border-top:1px solid var(--line)}
+.choices{list-style:none;margin:0 0 16px;padding:0;display:flex;flex-direction:column;gap:8px}
+.choice{display:flex;gap:11px;align-items:flex-start;border:1px solid var(--line);border-radius:10px;padding:10px 13px;cursor:pointer;transition:.12s}
+.choice:hover{border-color:var(--pri);background:var(--pri2)}
+.choice .lbl{flex:none;width:24px;height:24px;border-radius:50%;background:#eef1f5;color:var(--sub);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem}
+.choice.picked{border-color:var(--sub)}
+.card.revealed .choice.correct{border-color:var(--ok);background:#e7f6f2}
+.card.revealed .choice.correct .lbl{background:var(--ok);color:#fff}
+.card.revealed .choice.picked:not(.correct){border-color:var(--acc);background:#fdeceb}
+.card.revealed .choice.picked:not(.correct) .lbl{background:var(--acc);color:#fff}
+.reveal{border:1px solid var(--pri);background:#fff;color:var(--pri);padding:8px 18px;border-radius:9px;cursor:pointer;font-size:.92rem;font-weight:600}
+.reveal:hover{background:var(--pri);color:#fff}
+.answer{display:none;margin-top:14px;padding:14px 16px;background:#f7faf9;border:1px solid #d5e7e2;border-left:4px solid var(--ok);border-radius:8px}
+.card.revealed .answer{display:block}
+.ans-line{margin:0 0 6px;color:var(--ok)}
+.expl{margin:0;font-size:.94rem;color:#33404f}
+footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
+@media(max-width:520px){.wrap{padding:16px 12px 60px}.card{padding:16px}}
+
+.crumbs{font-size:.85rem;color:var(--sub);margin:2px 0 16px}
+.crumbs a{color:var(--pri);text-decoration:none}.crumbs a:hover{text-decoration:underline}
+.ctx{font-size:.82rem;color:var(--sub);background:var(--pri2);border-radius:8px;padding:6px 12px;margin:0 0 14px;display:inline-block}
+.pager{display:flex;justify-content:space-between;gap:10px;margin-top:22px}
+.pager a{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:10px;background:#fff;color:var(--pri);text-decoration:none;font-weight:600}
+.pager a:hover{background:var(--pri2);border-color:var(--pri)}
+.pager .disabled{visibility:hidden}
+.qlist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.qlist a{display:flex;gap:10px;border:1px solid var(--line);border-radius:10px;padding:11px 13px;text-decoration:none;color:var(--ink);background:#fff}
+.qlist a:hover{border-color:var(--pri);background:var(--pri2)}
+.qlist .qn{flex:none;background:var(--pri);color:#fff;font-weight:700;border-radius:7px;padding:1px 9px;font-size:.85rem;height:fit-content}
+.setgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:6px 0 22px}
+.setgrid a{border:1px solid var(--line);border-radius:10px;padding:12px;text-decoration:none;color:var(--ink);background:#fff}
+.setgrid a:hover{border-color:var(--pri);background:var(--pri2)}
+.setgrid b{color:var(--pri)}.setgrid small{color:var(--sub)}
+.seccat{font-size:1.05rem;color:var(--pri);border-left:4px solid var(--pri);padding:4px 12px;margin:24px 0 10px;background:var(--pri2);border-radius:0 8px 8px 0}
+</style></head><body><div class="wrap"><nav class="crumbs"><a href="../">相談用トップ</a> ／ <a href="../../course1-set2/">問題集（全問）</a> ／ コース1 / セット2</nav><header class="top"><h1>コース1 / セット2</h1><div class="sub">相談用（1問=1ページ）・全 44 問</div></header><ul class="qlist"><a href="q1.html"><span class="qn">問1</span><span>エンティティをアーカイブカタログにコピーするときに削除されるプロパティは何ですか？</span></a><a href="q2.html"><span class="qn">問2</span><span>タイムスタンプに基づくアーカイブのためにエンティティに追加される列はどれですか？</span></a><a href="q3.html"><span class="qn">問3</span><span>以下のうち、正しくない（誤った）記述はどれですか？（自動化されたアクティビティについて）</span></a><a href="q4.html"><span class="qn">問4</span><span>コアビジネス層（Core Business layer）に含まれるべきものはどれですか？</span></a><a href="q5.html"><span class="qn">問5</span><span>Produto（外部DB定義・拡張経由）と OrderProduct（Service Studio定義、Produtoへ…</span></a><a href="q6.html"><span class="qn">問6</span><span>不適切なアーカイブの周期（頻度）はパフォーマンスにどう影響しますか？</span></a><a href="q7.html"><span class="qn">問7</span><span>20個の属性を持つレコードのうち3つの値だけを更新したい。最良の方法は？</span></a><a href="q8.html"><span class="qn">問8</span><span>エンティティを静的エンティティに変換するときの挙動はどれですか？</span></a><a href="q9.html"><span class="qn">問9</span><span>データベースのメンテナンス計画のメリットは何ですか？</span></a><a href="q10.html"><span class="qn">問10</span><span>言及された2つのアーカイブのバリアント（種類）は何ですか？</span></a><a href="q11.html"><span class="qn">問11</span><span>画面アクションから起動されたタイマーが、一時エンティティの生 transit データから Traveler レコードを作…</span></a><a href="q12.html"><span class="qn">問12</span><span>ライトアーカイブ（軽量アーカイブ）の基本的な特徴は何ですか？</span></a><a href="q13.html"><span class="qn">問13</span><span>なぜ履歴アーカイブでは、アーカイブされたエンティティが JSON フォーマットで保存されるのですか？</span></a><a href="q14.html"><span class="qn">問14</span><span>データベースのエンティティをエンティティ・インポートウィザードでインポートする場合、どうなりますか？</span></a><a href="q15.html"><span class="qn">問15</span><span>モジュールA・B・E：AはBのブロックを参照、BはEの2つのロールを参照、EはAの各種アクション・Structureを参…</span></a><a href="q16.html"><span class="qn">問16</span><span>保存済みデータのクレンジング戦略を持たないことの一般的な落とし穴は何ですか？</span></a><a href="q17.html"><span class="qn">問17</span><span>どのような状況でプロセスを起動できますか？</span></a><a href="q18.html"><span class="qn">問18</span><span>On Destroy イベントはいつ発生しますか？</span></a><a href="q19.html"><span class="qn">問19</span><span>アーカイブカタログのクレンジングが行われない場合の結果は何ですか？</span></a><a href="q20.html"><span class="qn">問20</span><span>既定では OutSystems はサービスアクションへのリクエストのエラー詳細を記録しません。ログ詳細レベルを変更するに…</span></a><a href="q21.html"><span class="qn">問21</span><span>「非常に再利用性の高いAggregateは、常にサーバーアクション内に分離しておくのが良い実践だ」— 正しい？</span></a><a href="q22.html"><span class="qn">問22</span><span>外部データベースのエンティティでできないことは何ですか？</span></a><a href="q23.html"><span class="qn">問23</span><span>Web参照（Web Reference）に関して正しい記述は？</span></a><a href="q24.html"><span class="qn">問24</span><span>OutSystems が推奨するアーキテクチャのベストプラクティスで「ない」のはどれですか？</span></a><a href="q25.html"><span class="qn">問25</span><span>明日から大量アクセスが予想されます。最大50件のAggregateとリスト出力があります。遅延やタイムアウトを避ける最良…</span></a><a href="q26.html"><span class="qn">問26</span><span>設計段階でのデータ成長の予測はどのように役立ちますか？</span></a><a href="q27.html"><span class="qn">問27</span><span>ユーザーが URL パラメータやフォームの隠しデータを操作して機密情報を改ざんしないようにするには？</span></a><a href="q28.html"><span class="qn">問28</span><span>SQLクエリでインライン展開（Expand Inline）パラメータを使う際、推奨されない方法はどれですか？</span></a><a href="q29.html"><span class="qn">問29</span><span>Web画面で使う大きな JavaScript コードはどこに置くべきですか？</span></a><a href="q30.html"><span class="qn">問30</span><span>ファイル保存クエリのタイムアウトを防ぐ推奨戦略は何ですか？</span></a><a href="q31.html"><span class="qn">問31</span><span>SQLクエリで Expand Inline パラメータを使う最良の理由は何ですか？</span></a><a href="q32.html"><span class="qn">問32</span><span>2つのフロントエンド（Mod A・Mod B）と再利用サービスを抽象化した Mod C。Mod A が Mod B のロ…</span></a><a href="q33.html"><span class="qn">問33</span><span>データのアーカイブはなぜパフォーマンスのために重要ですか？</span></a><a href="q34.html"><span class="qn">問34</span><span>API 利用時、ログがない/Service Center にほとんど情報が出ません。なぜ？</span></a><a href="q35.html"><span class="qn">問35</span><span>強い結合を避け、依存関係を簡素化するには？</span></a><a href="q36.html"><span class="qn">問36</span><span>軽量アーカイブと履歴アーカイブの主な違いは何ですか？</span></a><a href="q37.html"><span class="qn">問37</span><span>アーカイビングエンジン（Archiving Engine）モジュールは何をしますか？</span></a><a href="q38.html"><span class="qn">問38</span><span>SQL（高度な）クエリを作成するとき、パフォーマンス問題を避けるため何に注意すべきですか？</span></a><a href="q39.html"><span class="qn">問39</span><span>タイマー Timer1 が Timer2 を Wake します。Timer1 がタイムアウトした場合、Timer2 はど…</span></a><a href="q40.html"><span class="qn">問40</span><span>なぜインデックスはファイルカタログで重要ですか？</span></a><a href="q41.html"><span class="qn">問41</span><span>API 利用時、レスポンスの構造で &amp;#x27;Ciudad&amp;#x27;（市）フィールドに値が表示されないのはなぜ？</span></a><a href="q42.html"><span class="qn">問42</span><span>なぜアーカイブタイマーは非ピーク時間帯に実行すべきですか？</span></a><a href="q43.html"><span class="qn">問43</span><span>少量のデータを移行したい。どの方法が最適ですか？</span></a><a href="q44.html"><span class="qn">問44</span><span>顧客のエネルギー消費データは ClientEnergyData エンティティに保存されています。タイマーで全既存データを…</span></a></ul></div></body></html>
