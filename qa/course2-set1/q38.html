@@ -60,7 +60,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice correct"><span class="lbl">A</span><span class="ctxt">ロギングレベルを「Full」に設定しなければならない（APIのリクエスト／レスポンスの全情報が含まれるため最も完全）</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">エンドポイントが間違っている</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">ロギングレベルを「Troubleshooting」に設定しなければならない</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">REST/SOAP API 呼び出しのリクエスト・レスポンス本文まで含めて記録するには、ログレベルを「Full」に設定する必要があります。既定ではエラー概要程度しか記録されず、トラブルシュートに必要な詳細が出ません。<br></p></div>
+  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">API のリクエスト／レスポンスの内容まで含めた完全なログを Service Center に記録するには、ロギングレベルを「Full」に設定する必要があります。既定のレベルではエラーの概要程度しか記録されず、トラブルシュートに必要な詳細が表示されません。</p></div>
 </article><div class="pager"><a href="q37.html">← 前の問題</a><a href="q39.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

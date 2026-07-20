@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">UpdateCustomerExternal の変更はロールバックされるが、UpdateCustomerDB の変更は確定される。</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">UpdateCustomerDB の変更はロールバックされるが、UpdateCustomerExternal の変更はロールバックされない。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">両方の変更が確定される。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">両方の変更がロールバックされる。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">UpdateCustomerExternal は外部システムへの REST 呼び出し（CustomerExternal.UpdateCustomer）で、DBトランザクションの外にあります。よって DB 変更（UpdateCustomerDB）はロールバックされますが、既に実行済みの外部呼び出しは自動では取り消せません（補償処理が別途必要）。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">UpdateCustomerExternal は外部システムへの REST 呼び出しであり、データベーストランザクションの管理外です。そのためエラー発生時、UpdateCustomerDB による DB 変更はロールバックされますが、既に実行された外部呼び出しは自動では取り消されません（取り消すには別途補償処理が必要です）。</p></div>
 </article><div class="pager"><a href="q2.html">← 前の問題</a><a href="q4.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

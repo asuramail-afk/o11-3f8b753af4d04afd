@@ -65,7 +65,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice correct"><span class="lbl">A</span><span class="ctxt">Public=Yes、Expose Read Only=Yes。作成/更新用ラッパーアクションを作りビジネスルールを定義して公開。アプリはAggregateで取得し、必要に応じラッパーで作成/更新する。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">Public=Yes、Read Only=No。Aggregateで取得し、作成/更新はエンティティアクションを呼ぶ。ビジネスルールは各アプリで直前に定義する。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">Public=Yes、Read Only=No。ラッパーアクションを作りビジネスルールを定義して公開。アプリはAggregateで取得しラッパーを呼ぶ。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">Public=No。作成/更新/取得用のラッパーアクションを作りビジネスルールを定義して公開。アプリはこれらのラッパーで取得・更新する。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">Public=Yes かつ Read Only=Yes にして各アプリがAggregateで直接読めるようにしつつ、直接の書き込みを禁止。作成/更新は共通ビジネスルールを内包したラッパーアクション経由に限定します。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">Entity を Public=Yes かつ Expose Read Only=Yes にすれば、各アプリは Aggregate で自由に読み取れる一方、エンティティアクションによる直接の書き込みはできなくなります。作成・更新は共通のビジネスルールを実装した公開ラッパーアクション経由に限定することで、全アプリで一貫したルールを強制できます。</p></div>
 </article><div class="pager"><a href="q18.html">← 前の問題</a><a href="q20.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

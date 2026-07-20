@@ -65,7 +65,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">エンティティにクエリし、各レコードを反復して結合データを選択する。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">外部エンティティとプラットフォームエンティティは直接結合できない。</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">小さいサブセットを格納する一時テーブルを作り、それとプラットフォームエンティティを結合する。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">パフォーマンス最適化のためインデックスを作る。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">外部エンティティは直接結合すると非効率なため、必要なサブセットを一時テーブルに格納してから結合します。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">外部 Entity とプラットフォームの Entity は別データベースにあるため直接の Join は非効率です。必要な小さいサブセットをプラットフォーム側の一時テーブル（Entity）に取り込み、それとプラットフォームの Entity を Join するのが正しいアプローチです。</p></div>
 </article><div class="pager"><a href="q25.html">← 前の問題</a><a href="q27.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

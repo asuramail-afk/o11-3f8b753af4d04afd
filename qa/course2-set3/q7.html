@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">Property を2分割（一方に基本詳細、もう一方に残り）する。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">HasParking/HasGarage を int 属性に置き換える。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">Description 属性にインデックスを作成する。</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">HighlightedPicture と HighlightedLabel を持つ新しい拡張エンティティを作成する。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">巨大な binary（HighlightedPicture）を別の拡張エンティティに分離すると、本体テーブルが軽くなり部分一致検索のクエリ性能が向上します。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">サイズの大きい binary 属性（HighlightedPicture）を別の拡張 Entity に分離すると、本体テーブルの行が軽くなり、Description の部分一致検索のクエリ性能が向上します。なお部分一致（LIKE）検索ではインデックス作成（C）は効果がありません。</p></div>
 </article><div class="pager"><a href="q6.html">← 前の問題</a><a href="q8.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

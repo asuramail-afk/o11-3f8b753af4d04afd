@@ -56,7 +56,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <p class="qtext">モバイルアプリで、DOM が完全に読み込まれウィジェットが操作可能になったときだけロジックを実行したい。使うべきイベントは？</p>
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">OnRender</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">OnParametersChanged</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">OnReady</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">OnInitialize</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">OnReady は画面/ブロックの DOM が準備完了し、全ウィジェットがレンダリングされ JavaScript からアクセス可能になったときに呼ばれます。OnInitialize は DOM レンダリング前です。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">OnReady は画面やブロックの DOM の準備が完了し、すべてのウィジェットがレンダリングされて JavaScript からアクセス可能になった時点で呼ばれます。OnInitialize は DOM のレンダリング前に実行されるため、ウィジェット操作には使えません。</p></div>
 </article><div class="pager"><a href="q9.html">← 前の問題</a><a href="q11.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

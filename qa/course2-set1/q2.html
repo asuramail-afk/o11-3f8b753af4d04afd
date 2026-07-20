@@ -60,7 +60,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">メインストレージの使用量を増加させる</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">すべてのアクティブなデータを圧縮する</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">バックアップとリカバリの時間を短縮する</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">重要なシステムログを削除する</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">- A) メインストレージの使用量が増えると、逆にコスト増につながります。<br>- B) 圧縮はストレージ効率を上げますが、直接のコスト削減にはつながりにくいです。<br>- C) 正解。アクティブデータ量が減ることでバックアップ／リカバリの時間が短縮され、運用コストとダウンタイムを削減できます。<br>- D) 重要なシステムログを削除すると、障害調査や監査に支障が出ます。<br></p></div>
+  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">アーカイブによってプライマリカタログのアクティブデータ量が減るため、バックアップやリカバリにかかる時間が短縮され、運用コストとダウンタイムを削減できます。ストレージ使用量の増加やログの削除は、コスト削減どころか逆効果や運用リスクにつながります。</p></div>
 </article><div class="pager"><a href="q1.html">← 前の問題</a><a href="q3.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

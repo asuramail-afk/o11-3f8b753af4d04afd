@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">Timer2 は固定遅延後に起動する（Timer1 がトリガーしなくても）。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">Timer2 はタイムアウトに関係なく独立して動く。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">Timer2 は永遠に待機状態になる。</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">何も起こらない。タイマーは3回再試行し、その後もエラー/タイムアウトなら Timer2 は起動しない。</span></li><li class="choice"><span class="lbl">E</span><span class="ctxt">Timer2 は Timer1 が正常に再試行されるまで待つ。</span></li><li class="choice"><span class="lbl">F</span><span class="ctxt">Timer2 は部分的に初期化されるが完全実行できない。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">Timer1 がタイムアウトするとトランザクションはロールバックされ、Wake（Timer2起動）も取り消されます。既定で3回リトライされ、最終的に失敗すると Timer2 は起動しません。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">Timer1 がタイムアウトするとトランザクションがロールバックされ、Timer2 の Wake も取り消されます。Timer は既定で 3 回再試行され、それでも失敗した場合、Timer2 は起動しません。</p></div>
 </article><div class="pager"><a href="q38.html">← 前の問題</a><a href="q40.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

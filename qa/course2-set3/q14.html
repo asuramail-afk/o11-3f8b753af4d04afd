@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <p class="note">※この設問はコース1セット1 Q6（同一シナリオ）では④『エラーハンドリング＋成功まで再試行』が正解とされ、正解が割れています。単一の確定的な公式定義がない設計判断問題で、実務では②（一時エンティティ＋非同期）も堅牢です。試験の版により正解が異なる点に注意してください。</p>
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">REST API に OnAfterResponse ハンドラを作り、送信されたか利用者に通知する。</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">まず一時エンティティに保存し、タイマーで非同期・小バッチに REST API へ送信する。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">フォームのバリデーションが適切なら SendForm を呼ぶだけで追加対応は不要。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">SendForm にエラーハンドリングフローを設け、エラー時は確実に保存されるまで再試行する。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">（コース1セット1 Q6 と同じ論点）外部REST連携は一時エンティティへ即時保存＋Timer 非同期送信で、高性能とデータ損失防止を両立します。OnAfterResponse 通知（A）は損失防止になりません。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">フォームデータをまず一時 Entity に保存し、Timer で非同期・小バッチに REST API へ送信する方法なら、ユーザーの応答性（高性能）と外部 API 障害時のデータ損失防止を両立できます。OnAfterResponse で通知する A は損失防止にならず、同期的に再試行する D は性能を犠牲にします。</p></div>
 </article><div class="pager"><a href="q13.html">← 前の問題</a><a href="q15.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

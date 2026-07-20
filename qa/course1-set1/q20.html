@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer">
     <p class="ans-line"><b>正解：B</b></p>
-    <p class="expl">Patient→Visit、Patient→Disease が protect（保護）ルールのため、Patient を消すには先に関連する Visit と Disease を削除する必要があります。</p>
+    <p class="expl">Patient への外部キーに Protect の Delete Rule が設定されているため、Patient レコードを削除するには、先に関連する Visit と Disease のレコードを削除する必要があります。Protect は参照元レコードが存在する限り親の削除を禁止するルールです。</p>
   </div>
 </article><div class="pager"><a href="q19.html">← 前の問題</a><a href="q21.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}

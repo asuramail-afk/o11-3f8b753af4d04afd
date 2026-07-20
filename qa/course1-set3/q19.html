@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">属性を維持し、さらに Order・Label・Is_Active 属性を追加する。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">静的エンティティはインデックスを保持しない。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">Service Studio で全データを埋めた静的エンティティを得られる。</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">Service Studio でエンティティのすべてのデータレコードを取得できる。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">静的エンティティに変換すると、そのレコードはデザイン時に確定し、Service Studio 上で全レコードを取得・参照できるようになります。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">Entity を Static Entity に変換すると、レコードはデザイン時のデータとして扱われ、Service Studio 上でエンティティのすべてのデータレコードを取得・参照できるようになります。既存の属性やインデックスが失われるわけではありません。</p></div>
 </article><div class="pager"><a href="q18.html">← 前の問題</a><a href="q20.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

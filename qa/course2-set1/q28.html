@@ -60,7 +60,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">真 — 抽象化を促進し、実装の詳細を隠すから</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">偽 — コードの難読化につながる可能性があるから</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">真 — 変更箇所が1つになり保守性が向上するから</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">偽 — 使用される属性に基づく自動クエリ最適化を妨げる可能性があるから</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">Aggregateは「呼び出し元で実際に使われる属性」だけをフェッチするよう自動最適化されます。サーバーアクション内に隔離すると、呼び出し元の使用状況が伝わらず全属性を取得してしまい、この最適化が効かなくなる場合があります。<br></p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">Aggregate は呼び出し元で実際に使われる属性だけをフェッチするよう自動最適化されます。Server Action 内に隔離すると呼び出し元での使用状況が伝わらず全属性を取得してしまい、この最適化が効かなくなる可能性があるため、常に隔離するのは良いプラクティスとはいえません。</p></div>
 </article><div class="pager"><a href="q27.html">← 前の問題</a><a href="q29.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

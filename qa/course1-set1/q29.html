@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer">
     <p class="ans-line"><b>正解：B</b></p>
-    <p class="expl">システムごとに個別統合を作って標準化されたデータに変換し、タイマーで自アプリの主エンティティへ同期するのが疎結合で堅牢です。</p>
+    <p class="expl">外部システムごとに個別の統合を用意してデータを標準形式に変換し、別の Timer がその標準化データを自アプリの主 Entity へ同期する構成が適切です。各統合が独立するため疎結合になり、システムの追加や変更にも強くなります。</p>
   </div>
 </article><div class="pager"><a href="q28.html">← 前の問題</a><a href="q30.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}

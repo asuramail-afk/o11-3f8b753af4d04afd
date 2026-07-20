@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">プラットフォームが自動最適化するので選択部分の最適化は不要。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">どの選択肢も該当しない。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">必要なフィールドだけを返す DB ビューを作成してクエリする。</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">返されるフィールドだけを含む特定の出力 Structureを作成する。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">Advanced SQL は自動最適化されないため、返す属性だけを含む出力 Structureを定義し、その列だけを SELECT します。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">Advanced SQL はプラットフォームによる自動最適化の対象外のため、返すフィールドだけを含む専用の出力 Structure を定義し、その列だけを SELECT するのがベストプラクティスです。これにより不要なデータの取得と転送を防げます。</p></div>
 </article><div class="pager"><a href="q19.html">← 前の問題</a><a href="q21.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

@@ -65,7 +65,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <p class="note">※【訂正済み】原資料は④『変更ロールバックだが2つ目は実行される』を正解としていましたが、公式ドキュメント上 WakeTimer はトランザクション内の操作で、ロールバック時に取り消されるため2つ目のタイマーは起動しません。公式準拠の正解は③で、コース1セット1 Q24・コース2セット1 問32とも一致します。</p>
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">変更は保存され、2つ目のタイマーは実行される。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">変更は保存されるが、2つ目のタイマーは実行されない。</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">変更はロールバックされ、2つ目のタイマーは実行されない。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">変更はロールバックされるが、2つ目のタイマーは引き続き実行される。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">Timer1 がタイムアウトするとトランザクションはロールバックされます。Timer2 を起動する WakeTimer も同一トランザクション内の DB 操作（対象タイマーの NextRun 更新）のため取り消され、Timer2 は起動しません。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">Timer がタイムアウトすると、その実行中のトランザクションはロールバックされます。WakeTimer による2つ目の Timer の起動も、同一トランザクション内のデータベース更新（対象 Timer の次回実行時刻の更新）で実現されているため一緒に取り消され、結果として変更は保存されず2つ目の Timer も実行されません。</p></div>
 </article><div class="pager"><a href="q28.html">← 前の問題</a><a class="disabled">→</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

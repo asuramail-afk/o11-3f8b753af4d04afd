@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">実行完了を待つ必要のない非同期アクション。</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">これらの定義はいずれも正しくない。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">出力パラメータを持たないアクションフロー。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">ユーザーが割り当てられていないヒューマンアクティビティ。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">提示された定義はいずれも正確ではありません。自動アクティビティはサーバーロジック（アクション）を実行するプロセス要素で、非同期・出力なし・ヒューマン未割当といった定義では正しく説明できません。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">提示された定義はいずれも正確ではありません。Automatic Activity はプロセスフロー内でサーバーロジックを実行するアクティビティであり、「非同期アクション」「出力パラメータを持たないフロー」「ユーザー未割り当てのヒューマンアクティビティ」といった説明では正しく定義できません。</p></div>
 </article><div class="pager"><a href="q17.html">← 前の問題</a><a href="q19.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">両方のボタンが実行時に表示され、生成 HTML の一部である。</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">どちらも実行時に表示されないが、左（Container）ではボタンは生成 HTML の一部である。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">どちらも実行時に表示されないが、右（If）ではボタンは生成 HTML の一部である。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">どちらも実行時に表示されず、生成 HTML の一部でもない。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">Container は Visible=False でも要素自体は HTML に出力され CSS で非表示になるだけ。If は False 分岐だと要素自体が HTML に生成されません。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">Container の Visible が False の場合、要素自体は HTML に生成され CSS で非表示になるだけです。一方 If は条件が False の分岐の要素を HTML にまったく生成しません。したがって、どちらも画面には表示されないが、Container 側のボタンだけは生成 HTML に含まれる B が正解です。</p></div>
 </article><div class="pager"><a href="q7.html">← 前の問題</a><a href="q9.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

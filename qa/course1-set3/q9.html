@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">両バージョンから選択した要素と、公開済みバージョンの競合変更がマージされ、公開される。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">選択した要素がマージされ、両バージョンの競合変更は破棄され、公開される。</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">Service Studio から競合解決のメッセージが表示され、競合が解消されるまでマージは実行できない。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">選択した要素とローカルバージョンの競合変更がマージされ、公開される。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">同一要素の競合は自動マージできません。競合が残っている状態では、まず手動で競合を解決するよう求められ、解消するまで公開（マージ）は完了しません。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">同一要素に対する競合は自動ではマージできません。競合が残っている状態で Merge and Publish を選ぶと、Service Studio が競合解決を求めるメッセージを表示し、競合を手動で解消するまでマージ（公開）は実行されません。</p></div>
 </article><div class="pager"><a href="q8.html">← 前の問題</a><a href="q10.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

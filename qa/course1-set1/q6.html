@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer">
     <p class="ans-line"><b>正解：C</b></p>
-    <p class="expl">外部REST連携では、まずローカルの一時（ステージング）エンティティに保存してユーザー応答を即時に返し（高性能）、Timer で非同期・小バッチに送信します。こうすれば外部APIが不調でもデータは保存済みで失われません。同期リトライ（B）はユーザーをブロックし、リトライを使い切れば損失リスクも残ります。</p>
+    <p class="expl">まずローカルの一時（ステージング）Entity に保存してユーザーへ即座に応答を返し、Timer で非同期に小バッチずつ外部 REST API へ送信します。外部 API が不調でもデータはすでに保存済みなので損失がなく、性能とデータ保全を両立できます。B の同期リトライはユーザーを待たせるうえ、失敗し続ければデータ損失のリスクが残ります。</p>
   </div>
 </article><div class="pager"><a href="q5.html">← 前の問題</a><a href="q7.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}

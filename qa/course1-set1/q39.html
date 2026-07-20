@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer">
     <p class="ans-line"><b>正解：A</b></p>
-    <p class="expl">ループの各反復でサーバーアクションを呼ぶとサーバーラウンドトリップが多発し性能が悪化します。ループ内でのサーバーアクション呼び出しは避けるべきです。</p>
+    <p class="expl">ループの反復ごとに Server Action を呼び出すと、その都度サーバーへのラウンドトリップが発生して性能が大きく悪化します。Client Action のループ内での Server Action 呼び出しは避け、まとめて取得する設計にすべきです。なおエラーにはならないため D は誤りです。</p>
   </div>
 </article><div class="pager"><a href="q38.html">← 前の問題</a><a class="disabled">→</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}

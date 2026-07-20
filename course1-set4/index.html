@@ -61,7 +61,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">元は Client アプリの画面をエクスポートして利用しており消費者と供給者が強く結合していた。新解決策は同機能を公開しつつ外部URLでより緩く結合する。この変更に欠点はなく、独立したリリースサイクルを可能にしビジネス価値を高める。</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">元は Client アプリのサーバーアクションを利用しており消費者が供給者に強く結合していた。新解決策は同機能をサービスアクションで公開し、より緩く結合できる。ただし複数リクエストやトランザクション処理のための追加ロジックが必要で、開発コストが増える。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">両者の違いは、元はサーバーアクションを公開していたのに対し新はWebサービスを公開する点。Webサービスを使うことだけが、独立したリリースサイクルを実現しクライアントを変更せず更新できる唯一の方法である。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">すべての選択肢が正しい。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">元はサーバーアクション（強い依存）で消費者が供給者に強結合していました。サービスアクション（弱い依存）に変えると疎結合になり独立リリースが可能になりますが、サービスアクションは別トランザクション/リクエストのため、失敗時のロールバック等を扱う追加ロジックが必要でコストが増えます。よって「欠点はない」とする①は不正確、②が最も正確です。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">元のアーキテクチャでは消費者が供給者の Server Action を直接参照しており、強い依存で密結合になっていました。新しい解決策では同じ機能を Service Action として公開することで弱い依存となり、疎結合と独立したリリースサイクルが実現できます。ただし Service Action は別リクエスト・別トランザクションで実行されるため、失敗時のロールバックなどを扱う追加ロジックが必要になり開発コストが増える、という欠点も正しく述べた B が正解です。「欠点はない」とする A は不正確です。</p></div>
 </article><article class="card" id="q2">
   <header class="qhead"><span class="qnum">Q2</span><span class="imgbadge">🖼 画像あり</span></header>
   <p class="qtext">保険会社の社内システム。請求解決のSLAは4か月。完了後は一部が6か月ごとに監査対象となり、顧客との関係期間は記録を保存。データは Claim と ClaimDocument（1対多）に保存。請求増加で全体性能が低下。パフォーマンス向上のために何をすべき？</p>
@@ -69,7 +69,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">Claim/ClaimDocument の定義を ClaimBackup/ClaimDocumentBackup に複製し、定期的に4か月以上経過したクローズ済み請求を元からバックアップへ移動し、アクセス画面を別に作る。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">定義を複製し、4か月以上経過した請求をバックアップへ移動して元の記録とマージし、必要に応じてバックアップにアクセスする画面を作る。</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">定義を ClaimBackup/ClaimDocumentBackup に複製し、タイマーを設定して4か月以上経過したクローズ済み請求を元エンティティから移動・保存し、必要に応じてバックアップにアクセスする画面セットを作る。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">全検索属性と Claim・ClaimDocument の属性の組み合わせにインデックスを設定し、請求保存を変更して非同期に保存するタイマーを起動する。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">アクティブな主テーブルを小さく保つため、バックアップ用エンティティを用意し、タイマーで一定期間経過したクローズ済み請求を移動（アーカイブ）します。監査等で必要なときは専用画面でバックアップを参照します。①も近いですが、明示的にタイマーで移動する③が最適です。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">アクティブな Entity を小さく保つことが性能改善の鍵です。Claim と ClaimDocument の定義を ClaimBackup と ClaimDocumentBackup に複製し、Timer で定期的に4か月以上経過したクローズ済み請求をバックアップ側へ移動（アーカイブ）します。監査などで必要なときは専用画面からバックアップを参照すれば十分です。移動処理を Timer で自動化する点まで明示した C が最適です。</p></div>
 </article><article class="card" id="q3">
   <header class="qhead"><span class="qnum">Q3</span></header>
   <p class="qtext">社員管理データモデルを作成。複数アプリ（名簿・休暇申請など）が Employee を頻繁に検索し、一部は作成/更新も必要。ただし作成/更新は誰にも公開せず、全アプリ共通のビジネスルール/制約に従う必要がある。どの戦略を採るべき？</p>
@@ -77,7 +77,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">Employee の Public を No にする。作成・更新・検索のラッパーアクションを作りビジネスルールを定義して公開。アプリはこれらのラッパーを使う。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">Public=Yes、Read Only=No。アプリはAggregateで取得し、作成/更新はエンティティアクションを呼ぶ。ビジネスルールは各アプリで作成/更新直前に定義する。</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">Public=Yes、Read Only=Yes。作成/更新用ラッパーアクションを作り、必要なビジネスルールを定義して公開。アプリはAggregateで取得し、ラッパーで作成/更新する。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">Public=Yes、Read Only=No。ラッパーアクションを作り作成/更新とビジネスルールを定義して公開。アプリはAggregateで取得し、ラッパーで作成/更新する。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">エンティティは Public=Yes にして各アプリがAggregateで直接読めるようにしつつ、Read Only=Yes にして直接の書き込みを禁止。作成/更新は共通ビジネスルールを内包したラッパーアクション経由に限定します。これで読み取りは効率的、書き込みは規則を強制できます。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">Entity を Public=Yes かつ Read Only=Yes にすると、各アプリは Aggregate で効率よく直接読み取りできる一方、Entity Action による直接の書き込みは禁止されます。作成・更新は共通のビジネスルールを内包したラッパーアクションを公開してそこに限定することで、全アプリに同じ制約を強制できます。Read Only=No にする B や D では直接書き込みが可能になり、ルールを回避できてしまいます。</p></div>
 </article><article class="card" id="q4">
   <header class="qhead"><span class="qnum">Q4</span></header>
   <p class="qtext">小さく始まったアプリが巨大化し、デプロイが遅く、一部モジュールに UI とDB定義・ロジックが混在。UI とデータ/ロジックを分離したい（データを失わずに）。「Finance」モジュールで最も効果的に行う方法は？</p>
@@ -85,7 +85,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice correct"><span class="lbl">A</span><span class="ctxt">Finance を開いてクローンする。元モジュールを Finance_CS に改名し全UIフローを削除。クローンを Finance に改名し全エンティティ/アクションを削除。その後クローン（Finance）を公開し、そのエンティティ/アクションを元（Finance_CS）から参照する。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">Finance をクローンし、クローンを Finance_CS に改名して全UIフローを削除。元から全エンティティ/アクションを削除。クローンを公開し、そのエンティティ/アクションを元に参照させる。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">Finance をクローンし、元を Finance_CS に改名して全UIフローを削除。クローンを Finance に改名し全DBエンティティ/アクションを削除。その後元を公開し、そこからクローンのエンティティ/アクションを参照する。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">新規に Finance と Finance_CS の2モジュールを作成。元から UI フローを Finance へ、エンティティ/アクションを Finance_CS へ移動。Finance→Finance_CS の依存を作り、元を削除して公開する。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">クローンを使い、データ（エンティティ/アクション）を持つ側を Finance_CS（Core Service）、UI を持つ側を Finance に分離します。元モジュールをクローンすることで既存データ（発行済みのエンティティ＝物理テーブル）を保持したまま、UI 層とデータ層を別モジュールに切り分けられます（①）。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">既存の Module をクローンし、元の Module を Finance_CS に改名して UI フローを削除（データ層として残す）、クローンを Finance に改名して Entity とアクションを削除（UI 層にする）します。元の Module 側に Entity を残すことで、発行済みの物理テーブルとデータを失わずに済み、Finance が Finance_CS の公開 Entity やアクションを参照する形で UI とデータ・ロジックを分離できます。新規 Module に Entity を移動する D では物理テーブルが作り直されデータが失われます。</p></div>
 </article>
 <footer>OutSystems O11（Reactive）試験対策 — セット4 ／ 選択肢をクリックすると自己採点できます。</footer>
 </div>

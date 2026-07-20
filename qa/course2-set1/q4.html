@@ -60,7 +60,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">古いデータと新しいデータを統合する</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">すべてのデータベースインデックスを高速化する</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">プライマリ（主要）データのボリュームを最小限に抑える</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">使われていないアプリケーションを削除する</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">アーカイブによってメインカタログ上のデータ量を最小化することで、アクティブなクエリ対象が減り、実行時パフォーマンスが向上します。<br></p></div>
+  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">アーカイブによりプライマリデータのボリュームを最小限に抑えると、クエリが走査するアクティブデータが減り、実行時パフォーマンスが向上します。これがアーカイブがパフォーマンスにとって重要な理由です。</p></div>
 </article><div class="pager"><a href="q3.html">← 前の問題</a><a href="q5.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

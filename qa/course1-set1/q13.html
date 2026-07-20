@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer">
     <p class="ans-line"><b>正解：D</b></p>
-    <p class="expl">参照（依存関係）はコンシューマー側で更新（Refresh）する必要があります。更新して初めて呼び出し元として認識されます。</p>
+    <p class="expl">Reference（依存関係）の更新はコンシューマー側の Module で行う必要があります。コンシューマーで Reference をリフレッシュして公開して初めて、プロデューサーのデバッグ時に呼び出し元（Entry Module）として認識されます。</p>
   </div>
 </article><div class="pager"><a href="q12.html">← 前の問題</a><a href="q14.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}

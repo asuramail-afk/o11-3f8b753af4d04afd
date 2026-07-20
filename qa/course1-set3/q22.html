@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <p class="note">※原資料（O11.txt）はこの設問の正解が欠落（本文が選択肢の直後で終了）しています。上記の正解Dは OutSystems のデータモデリング・ベストプラクティス（大きなテキスト/バイナリは専用エンティティに分離）からの推定です。原文の正解が判明すれば差し替えます。</p>
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">Description を Order エンティティ内に Text 属性として含める。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">Description を外部エンティティに置き、Order と1対多、Binary Data 属性で格納する。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">Description を Order エンティティ内に Binary Data 属性として含める。</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">Description を外部エンティティに置き、Order と1対1、Text 属性で格納する。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">2000 文字超のテキストは本体エンティティを重くするため、別エンティティに 1 対 1 で分離し、Text 属性として保持するのがベストプラクティスです（バイナリ化は不要）。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">2000 文字を超える長いテキストを Order エンティティ本体に含めると、Order を扱うすべてのクエリが重くなります。Description を別エンティティに 1 対 1 で分離し、Text 属性として保持するのがベストプラクティスです。テキストなので Binary Data にする必要はありません。</p></div>
 </article><div class="pager"><a href="q21.html">← 前の問題</a><a href="q23.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

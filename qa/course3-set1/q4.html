@@ -56,7 +56,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <p class="qtext">タイマーで 50,000 件のレコードを処理します。トランザクションのタイムアウトエラーを避ける最適な方法は？</p>
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">タイマーの Timeout プロパティを環境の最大値に設定する。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">UI の画面アクションを作り、REST API 経由でタイマーから呼ぶ。</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">小さなバッチに分けて処理し、各バッチ後に明示的に CommitTransaction を呼んでタイムアウトをリセットするループを実装する。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">全 50,000 件を1つのサーバーアクションの For Each で処理し、コミットしない。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">バッチに分けて各バッチ後に CommitTransaction すると、リソースを解放しトランザクションのタイムアウトをリセットできます。Timeout 延長は一時しのぎで、データ増加で結局超過します。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">小さなバッチに分けて処理し、各バッチ後に CommitTransaction を呼ぶことで、リソースが解放されトランザクションのタイムアウトがリセットされます。Timeout プロパティの延長は一時しのぎに過ぎず、データが増えればいずれ上限を超えてしまいます。</p></div>
 </article><div class="pager"><a href="q3.html">← 前の問題</a><a href="q5.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

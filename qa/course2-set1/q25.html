@@ -60,7 +60,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice correct"><span class="lbl">A</span><span class="ctxt">必要な句をインジェクションすることで動的条件を実装するため</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">通常のパラメーター使用による SQL インジェクションを防ぐため</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">EncodeSql 関数とともに使い、SQL インジェクションを避けるため</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">クエリのいずれかの句を省略可能（オプション）にするため</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">Expand Inline は、パラメーターの中身を SQL 文の一部として展開（インジェクション）します。これにより、条件句そのものを動的に組み立てられます。ただしエスケープされないため、SQLインジェクションのリスクがある点に注意が必要です。<br></p></div>
+  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">Expand Inline を有効にすると、パラメーターの中身がSQL文の一部としてそのまま展開されるため、条件句などを動的に組み立てられます。ただし値がエスケープされないため、SQLインジェクションのリスクに注意して使う必要があります。</p></div>
 </article><div class="pager"><a href="q24.html">← 前の問題</a><a href="q26.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

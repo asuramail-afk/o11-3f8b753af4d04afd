@@ -60,7 +60,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">部分更新APIを使い、変更したいフィールドのみを修正する</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">更新されたフィールドを保存前に検証する</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">バッチ更新でリソース使用量を最小化する</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">SQLクエリの UPDATE を使い、3つのフィールドだけを更新する</span></li><li class="choice"><span class="lbl">E</span><span class="ctxt">ORMツールで特定フィールドだけをターゲットに更新する</span></li><li class="choice"><span class="lbl">F</span><span class="ctxt">レコードの値を更新後、CreateOrUpdate を使う</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">Aggregate＋Update アクションはレコード全体（20属性）を書き戻すため無駄が多くなります。3つだけを更新するなら、対象列だけを書き換える SQL の UPDATE 文が最も効率的です。<br></p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">Aggregate で取得して Update アクションで保存するとレコード全体（20属性）を書き戻すことになり無駄が多くなります。3つの値だけを更新するなら、対象列のみを書き換える SQL の UPDATE 文が最も効率的です。</p></div>
 </article><div class="pager"><a href="q22.html">← 前の問題</a><a href="q24.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

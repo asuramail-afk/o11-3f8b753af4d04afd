@@ -65,7 +65,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">率ごとにサイトプロパティを作り、Service Center で変更、ロジックは直接使う。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">率ごとにレコードを持つ静的エンティティを作り、ロジックは直接使う。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">コメント要素を作り Reminder=Yes にして、ハードコード箇所を見つけやすくする。</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">率を保存するエンティティを作り、管理者が編集できる画面を用意。ロジックは DB から取得して使う。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">頻繁に変わる業務データはエンティティに保存し、管理者が UI から編集できるようにするのが適切です（サイトプロパティ/静的エンティティは頻繁な変更に不向き）。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">頻繁に変わる業務データはハードコードせず、Entity に保存して管理者が編集できる画面を用意し、ロジックはデータベースから取得して使うのがベストプラクティスです。Site Property や Static Entity の変更には開発者や管理者による操作・再公開が絡むため、頻繁に変わる値の管理には不向きです。</p></div>
 </article><div class="pager"><a href="q27.html">← 前の問題</a><a href="q29.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

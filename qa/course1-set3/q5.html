@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">決して許容されない（アクションを消費する方が効率的だから）。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">推奨される（緩い結合を促進するから）。</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">強い結合を避け、依存関係を簡素化するために許容される。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">外部システムに対応する必要がある場合のみ許容される。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">ローカル Web サービス（弱い依存）は、強い結合を避け依存関係を簡素化する目的で許容されます。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">公開アクションの参照は強い依存を生むため、強い結合を避けて依存関係を簡素化する目的であれば、ローカル Web サービス（弱い依存）の利用は許容されます。外部システム連携の場合に限られるわけではありません。</p></div>
 </article><div class="pager"><a href="q4.html">← 前の問題</a><a href="q6.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

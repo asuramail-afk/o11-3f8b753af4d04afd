@@ -56,7 +56,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <p class="qtext">Service Center の『Error』ログに『Request Transaction Aborted』が表示されました。最も一般的な原因は？</p>
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">ユーザーがリクエスト処理中にブラウザを閉じた。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">リクエスト処理に10秒以上かかった。</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">ユーザー例外または特定の DB 例外が発生し、適切に処理されずトランザクションがロールバックされた。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">データベースサーバーがオフライン。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">キャッチされない例外がトップレベルに達すると、プラットフォームはデータ整合性のためトランザクションを中断し、『Request Transaction Aborted』を記録します。タイムアウトは別の『Request Timed Out』エラーです。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">適切に処理されなかった例外（ユーザー例外や特定の DB 例外）がトップレベルまで到達すると、プラットフォームはデータ整合性を守るためトランザクションをロールバックし、Request Transaction Aborted としてログに記録します。処理時間の超過は別の Request Timed Out エラーになります。</p></div>
 </article><div class="pager"><a href="q8.html">← 前の問題</a><a href="q10.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

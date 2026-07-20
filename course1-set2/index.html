@@ -61,7 +61,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice correct"><span class="lbl">A</span><span class="ctxt">自動採番プロパティ（AutoNumber）</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">アーカイブ属性（IsArchived）</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">主キー（Primary key）</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">アクティブフラグ（IsActive）</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">アーカイブカタログへコピーする際、AutoNumber（自動採番）プロパティは引き継がれず削除されます。採番は元エンティティ固有のため、アーカイブ側では通常の属性として保持されます。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">アーカイブカタログへ Entity をコピーする際、AutoNumber プロパティは削除されます。自動採番は元の Entity 側で行われるため、アーカイブ側では採番機能のない通常の属性として値をそのまま保持します。</p></div>
 </article><article class="card" id="q2">
   <header class="qhead"><span class="qnum">Q2</span></header>
   <p class="qtext">タイムスタンプに基づくアーカイブのためにエンティティに追加される列はどれですか？</p>
@@ -69,7 +69,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice correct"><span class="lbl">A</span><span class="ctxt">LastUpdatedOn（最終更新日時）</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">IsArchived</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">IsActive</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">IsDraft</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">タイムスタンプ方式のアーカイブでは、最終更新日時（LastUpdatedOn）列を基準に、一定期間更新のないレコードをアーカイブ対象と判定します。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">タイムスタンプ方式のアーカイブでは、Entity に LastUpdatedOn（最終更新日時）列を追加し、この値を基準に一定期間更新のないレコードをアーカイブ対象として判定します。</p></div>
 </article><article class="card" id="q3">
   <header class="qhead"><span class="qnum">Q3</span></header>
   <p class="qtext">以下のうち、正しくない（誤った）記述はどれですか？（自動化されたアクティビティについて）</p>
@@ -77,7 +77,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice correct"><span class="lbl">A</span><span class="ctxt">自動化アクティビティは自動的にスケジュールできない。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">自動化アクティビティにはコールバックアクションがない。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">自動化アクティビティは成功条件では実行されない。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">BPT のコールバックアクション（On Ready/On Start/On Close など）は Conditional Start・Human Activity・Wait にのみ適用され、Automatic Activity には元々ありません（＝B は正しい記述）。Automatic Activity はフロー到達時にプロセスエンジンが自動実行するため、A『自動的にスケジュールできない』が誤った記述で、これが正解です。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">Automatic Activity はプロセスフローが到達した時点でプロセスエンジンが自動的にスケジュール・実行するため、A の「自動的にスケジュールできない」が誤った記述であり、これが正解です。なお、コールバックアクション（On Ready や On Close など）を持たないという B は正しい記述です。</p></div>
 </article><article class="card" id="q4">
   <header class="qhead"><span class="qnum">Q4</span></header>
   <p class="qtext">コアビジネス層（Core Business layer）に含まれるべきものはどれですか？</p>
@@ -85,7 +85,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">テーマの定義</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">プロセスフローでユースケースを調整（ワークフロー定義）</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">ダッシュボード付きのホームページ</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">ビジネスログ</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">テーマ/UI/ダッシュボードはEnd-User層、ビジネスログのような業務データ・サービスはCore（コアビジネス）層に属します。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">テーマ、ダッシュボード付きホームページ、ワークフローの UI 調整はエンドユーザー層に属します。ビジネスログのような業務データ・サービスは Core Business 層に置くべき要素です。</p></div>
 </article><article class="card" id="q5">
   <header class="qhead"><span class="qnum">Q5</span></header>
   <p class="qtext">Produto（外部DB定義・拡張経由）と OrderProduct（Service Studio定義、Produtoへの参照）を結合します。正しいものは？</p>
@@ -93,7 +93,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">外部DBの全データセットで結合するのが常に推奨（DBが最適化するため）。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">Service Studio定義のエンティティは外部DBの参照エンティティを参照できない。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">常に個別にクエリしてループで照合するのがよい。</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">可能なら結合前に外部DBから必要最小限のサブセットを取得する（一時エンティティ等）。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">数千件の外部エンティティを直接全結合すると非効率。必要な最小サブセットを取得してから結合するのがベストプラクティスです。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">外部データベースの大量データを直接すべて結合するのは非効率です。可能であれば、まず必要最小限のサブセットを外部 DB から取得（一時的な Entity に格納するなど）してから結合するのがベストプラクティスです。</p></div>
 </article><article class="card" id="q6">
   <header class="qhead"><span class="qnum">Q6</span></header>
   <p class="qtext">不適切なアーカイブの周期（頻度）はパフォーマンスにどう影響しますか？</p>
@@ -101,7 +101,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">アーカイブされたデータにアクセスされないことを保証する。</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">メインのカタログが遅くなる。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">データのアーカイブを妨げる。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">不要なインデックス作成を加速させる。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">アーカイブ頻度が不適切だと主カタログにデータが溜まり続け、主テーブルが肥大化してアクセスが遅くなります。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">アーカイブの周期が不適切だとメインカタログにデータが溜まり続け、主テーブルが肥大化してアクセスが遅くなります。</p></div>
 </article><article class="card" id="q7">
   <header class="qhead"><span class="qnum">Q7</span></header>
   <p class="qtext">20個の属性を持つレコードのうち3つの値だけを更新したい。最良の方法は？</p>
@@ -109,7 +109,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">部分更新APIで特定フィールドだけ変更</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">値を更新してCreatorUpdate</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">保存前に更新フィールドを検証</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">ORMツールで特定フィールドだけ更新</span></li><li class="choice"><span class="lbl">E</span><span class="ctxt">バッチ更新でリソース消費を最小化</span></li><li class="choice correct"><span class="lbl">F</span><span class="ctxt">SQLクエリで3つのフィールドだけ更新</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：F</b></p><p class="expl">3属性だけの更新は、SQLクエリで対象カラムのみUPDATEするのが最も軽量。エンティティのUpdateは全属性を書き込むため無駄が多くなります。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：F</b></p><p class="expl">3 つの属性だけを更新する場合は、SQL クエリで対象カラムのみを UPDATE するのが最も効率的です。Entity の Update アクションは 20 個すべての属性を書き込むため、無駄な更新が発生します。</p></div>
 </article><article class="card" id="q8">
   <header class="qhead"><span class="qnum">Q8</span></header>
   <p class="qtext">エンティティを静的エンティティに変換するときの挙動はどれですか？</p>
@@ -117,7 +117,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">静的エンティティはインデックスを保持しない。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">Service Studio でエンティティの全レコードを取得できる。</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">属性を保持し、さらに Order・Label・Is_Active 属性を追加する。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">エンティティを Static Entity に変換すると、元の属性を保持したまま Order・Label・Is_Active が追加されます（C）。既存レコードは自動では Service Studio に現れず手動インポートが必要なので、B は誤りです。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">Entity を Static Entity に変換すると、元の属性を保持したまま Order・Label・Is_Active 属性が追加されます。既存レコードは Service Studio に自動では取り込まれず手動でのインポートが必要なため、B は誤りです。</p></div>
 </article><article class="card" id="q9">
   <header class="qhead"><span class="qnum">Q9</span></header>
   <p class="qtext">データベースのメンテナンス計画のメリットは何ですか？</p>
@@ -125,7 +125,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">アーカイブデータを自動的に削除する。</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">データベースの整合性と最適化を保証する。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">インデックス作成の必要性を減らす。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">すべてのクエリ遅延を防ぐ。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">メンテナンス計画（統計更新・インデックス再構成等）はDBの整合性維持と最適化を目的とします。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">メンテナンス計画（統計情報の更新やインデックスの再構成など）は、データベースの整合性維持と最適化を保証するためのものです。すべてのクエリ遅延を防げるわけではありません。</p></div>
 </article><article class="card" id="q10">
   <header class="qhead"><span class="qnum">Q10</span></header>
   <p class="qtext">言及された2つのアーカイブのバリアント（種類）は何ですか？</p>
@@ -133,7 +133,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">高速アーカイブと重いアーカイブ</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">履歴アーカイブと一時的アーカイブ</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">内部アーカイブと外部アーカイブ</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">軽量アーカイブと履歴アーカイブ</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">2種類は「軽量（Light）アーカイブ」と「履歴（Historical）アーカイブ」です。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">言及されている 2 種類のバリアントは、軽量（Light）アーカイブと履歴（Historical）アーカイブです。</p></div>
 </article><article class="card" id="q11">
   <header class="qhead"><span class="qnum">Q11</span><span class="imgbadge">🖼 画像あり</span></header>
   <p class="qtext">画面アクションから起動されたタイマーが、一時エンティティの生 transit データから Traveler レコードを作成します。処理後は一時レコードを削除する必要があり、乗客数が多くタイムアウトしがちです。タイムアウトを避け、作業を繰り返さず全データを処理する方法は？</p>
@@ -141,7 +141,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">実行ごとに最大1000件だけ取得し、終了時に同じ1000件を削除する。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">各イテレーションで Traveler 作成を確認し、使用した交通データを即座に削除する。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">実行時間を制御し、タイムアウトに達しそうなら停止する。</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">読み取り可能なバッチを読み込み・処理・コミットし、作業が残る間バッチを続け、タイムアウトが近づいたらタイマーを起動して終了する。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">バッチ処理＋各バッチ後にコミットし、タイムアウトが近づいたら自分自身をWakeして再開する（Wake Timerパターン）のが、タイムアウト回避と再処理防止を両立します。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">バッチ単位で読み込み・処理・コミットを繰り返し、タイムアウトが近づいたら WakeTimer で自分自身を再起動して続きから処理するのが定石です。これにより、タイムアウトを回避しつつ処理済みの作業を繰り返さずに全データを処理できます。</p></div>
 </article><article class="card" id="q12">
   <header class="qhead"><span class="qnum">Q12</span></header>
   <p class="qtext">ライトアーカイブ（軽量アーカイブ）の基本的な特徴は何ですか？</p>
@@ -149,7 +149,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">アーカイブデータは永久にアクセスできなくなる。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">アーカイブデータは外部にのみ保存される。</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">アーカイブデータは検索と復元が可能。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">アーカイブデータはすぐに削除される。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">軽量アーカイブのデータは引き続き検索・復元が可能です（アクセス可能なまま保持）。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">軽量アーカイブの基本的な特徴は、アーカイブ後もデータの検索と復元が可能で、アクセスできる状態が保たれることです。</p></div>
 </article><article class="card" id="q13">
   <header class="qhead"><span class="qnum">Q13</span></header>
   <p class="qtext">なぜ履歴アーカイブでは、アーカイブされたエンティティが JSON フォーマットで保存されるのですか？</p>
@@ -157,7 +157,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">一括削除を可能にするため</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">メタデータのタグ付けを可能にするため</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">セキュリティリスクを軽減するため</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">すべてのクエリを最適化するため</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">JSON形式で保存することで、メタデータのタグ付け（柔軟な付帯情報の保持）が可能になります。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">履歴アーカイブで Entity を JSON 形式で保存するのは、メタデータのタグ付け、つまり柔軟な付帯情報の保持を可能にするためです。</p></div>
 </article><article class="card" id="q14">
   <header class="qhead"><span class="qnum">Q14</span></header>
   <p class="qtext">データベースのエンティティをエンティティ・インポートウィザードでインポートする場合、どうなりますか？</p>
@@ -165,7 +165,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">複合主キーを許可し、キー列数ぶんのパラメータを持つ Get&lt;Entity&gt; を生成する。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">開発者が外部キーを識別子型に明示的にマップする必要がある。</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">まずService Centerでデータベース接続を設定しなければならない。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">拡張作成後、これらのエンティティをクエリでき、Service Studio定義エンティティとの結合も使える。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">外部DBのエンティティを取り込むには、まずService Centerでデータベース接続（Database Connection）を設定しておく必要があります。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">外部データベースの Entity をインポートウィザードで取り込むには、事前に Service Center でデータベース接続（Database Connection）を設定しておく必要があります。</p></div>
 </article><article class="card" id="q15">
   <header class="qhead"><span class="qnum">Q15</span><span class="imgbadge">🖼 画像あり</span></header>
   <p class="qtext">モジュールA・B・E：AはBのブロックを参照、BはEの2つのロールを参照、EはAの各種アクション・Structureを参照。正しい記述は？</p>
@@ -173,7 +173,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">循環依存はない（供給者が消費者を消費していないため）。</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">すべてのモジュールを参照警告なしで公開する唯一の方法は Solution である。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">Solution を公開すると無限ループが生成される。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">A の新バージョンを公開しても B には影響しない（B は A を参照しないため）。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">A→B→E→A の循環参照が存在します。Solution でまとめて公開することで「最新でない」警告なく全モジュールを公開できます（恒久対策は循環の解消）。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">A→B→E→A という循環参照が存在するため、個別に公開すると「参照が最新でない」という警告が必ず残ります。Solution としてまとめて公開すれば、警告なしに全 Module を公開できます（恒久的な対策は循環参照そのものの解消です）。</p></div>
 </article><article class="card" id="q16">
   <header class="qhead"><span class="qnum">Q16</span></header>
   <p class="qtext">保存済みデータのクレンジング戦略を持たないことの一般的な落とし穴は何ですか？</p>
@@ -181,7 +181,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">プライマリストレージのデータが破損する。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">保存済みデータが復元できなくなる。</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">保存ストレージが時間とともに肥大化し遅くなる。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">保存済みデータがエンドユーザーにアクセス不能になる。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">クレンジングしないとアーカイブ/主ストレージが増え続け、時間とともにパフォーマンスが低下します。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">クレンジング戦略がないと、保存済みデータのストレージが時間とともに肥大化し、パフォーマンスが徐々に低下していきます。</p></div>
 </article><article class="card" id="q17">
   <header class="qhead"><span class="qnum">Q17</span></header>
   <p class="qtext">どのような状況でプロセスを起動できますか？</p>
@@ -189,7 +189,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">エンティティのレコード更新時に自動、またはアクションフローで明示的にのみ。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">エンティティのレコード更新時に自動、またはアクションフローで明示的に。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">エンティティのレコードの作成または更新時に自動。</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">プロセスイベントを公開するエンティティのレコードが作成されたときに自動。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">BPTプロセスは、プロセスイベント（Entityの launch）を公開するエンティティにレコードが作成されたときに自動起動します（明示起動も可）。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">BPT のプロセスは、プロセスイベントを公開している Entity にレコードが作成されたときに自動起動します（更新時ではありません）。アクションフローからの明示的な起動も可能です。</p></div>
 </article><article class="card" id="q18">
   <header class="qhead"><span class="qnum">Q18</span></header>
   <p class="qtext">On Destroy イベントはいつ発生しますか？</p>
@@ -197,7 +197,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">コンポーネントの再レンダリングの間。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">親の全子コンポーネントが破棄された後。</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">画面やブロックを破棄して DOM から取り除く前。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">ブラウザがページをアンロードするか、ウィンドウを閉じるとき。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">On Destroy は、画面/ブロックが破棄され DOM から取り除かれる前に発生します。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">On Destroy イベントは、画面や Web Block が破棄されて DOM から取り除かれる直前に発生します。</p></div>
 </article><article class="card" id="q19">
   <header class="qhead"><span class="qnum">Q19</span></header>
   <p class="qtext">アーカイブカタログのクレンジングが行われない場合の結果は何ですか？</p>
@@ -205,7 +205,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice correct"><span class="lbl">A</span><span class="ctxt">アーカイブデータが増え続ける。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">データが自動的に圧縮される。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">アーカイブデータはアクセス可能なまま。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">データベースのパフォーマンスが向上する。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">クレンジングしなければアーカイブデータは無制限に増え続けます。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">アーカイブカタログをクレンジングしないと、アーカイブデータは際限なく増え続けます。</p></div>
 </article><article class="card" id="q20">
   <header class="qhead"><span class="qnum">Q20</span></header>
   <p class="qtext">既定では OutSystems はサービスアクションへのリクエストのエラー詳細を記録しません。ログ詳細レベルを変更するには？</p>
@@ -213,7 +213,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">Service Center でアプリケーション詳細ページを開き、Operationsタブで設定。</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">Service Center でモジュール詳細ページを開き、Operationsタブで記録レベルを設定。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">Service Center ではログ詳細レベルを変更できない。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">Service Studio の状態バーからトラブルシューティングを選び Start Debugging。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">サービスアクションの記録レベルは、Service Center のモジュール詳細ページ →「Operations」タブで変更します。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">サービスアクションのログ記録レベルは、Service Center のモジュール詳細ページにある Operations タブで変更します。アプリケーション詳細ページではなく、モジュール単位の設定である点がポイントです。</p></div>
 </article><article class="card" id="q21">
   <header class="qhead"><span class="qnum">Q21</span></header>
   <p class="qtext">「非常に再利用性の高いAggregateは、常にサーバーアクション内に分離しておくのが良い実践だ」— 正しい？</p>
@@ -221,7 +221,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice correct"><span class="lbl">A</span><span class="ctxt">偽。自動的なクエリ最適化を妨げる可能性があるため。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">偽。コードの難読化につながる可能性があるため。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">真。変更箇所が一つになり保守性が向上するため。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">真。実装の詳細を隠す抽象化を促進するため。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">Aggregateをサーバーアクションに包むと、呼び出し元ごとの利用状況に応じたプラットフォームの自動クエリ最適化（使用列だけ取得等）が効かなくなる恐れがあります。よって「常に良い」は偽。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">Aggregate を Server Action 内に分離すると、呼び出し元の画面ごとに使用する列だけを取得するといったプラットフォームの自動クエリ最適化が効かなくなる可能性があります。そのため「常に良い実践」という記述は偽です。</p></div>
 </article><article class="card" id="q22">
   <header class="qhead"><span class="qnum">Q22</span></header>
   <p class="qtext">外部データベースのエンティティでできないことは何ですか？</p>
@@ -229,7 +229,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice correct"><span class="lbl">A</span><span class="ctxt">異なるカタログ/スキーマの OutSystems エンティティと結合する。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">SQLクエリの出力からエンティティを出力する。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">Aggregateアクションを作成または削除する。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">外部エンティティは、異なるカタログ/スキーマにある OutSystems エンティティと直接結合することはできません。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">外部データベースの Entity は、異なるカタログ/スキーマにある OutSystems の Entity と直接結合することはできません。</p></div>
 </article><article class="card" id="q23">
   <header class="qhead"><span class="qnum">Q23</span></header>
   <p class="qtext">Web参照（Web Reference）に関して正しい記述は？</p>
@@ -237,7 +237,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice correct"><span class="lbl">A</span><span class="ctxt">Webサービスが削除されると、参照モジュール公開時に Service Studio は警告を表示する。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">Webサービスが削除されると、公開時にエラーを表示する。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">Web参照のアクションと呼び出し元の画面アクションは同じトランザクションを使う。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">Web参照のタイムアウト（秒）は画面アクションで使うたびに設定が必要。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">参照先Webサービスが削除された場合、公開時に表示されるのは（エラーではなく）警告です。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">参照先の Web サービスが削除されている場合、参照している Module の公開時に Service Studio が表示するのはエラーではなく警告です。</p></div>
 </article><article class="card" id="q24">
   <header class="qhead"><span class="qnum">Q24</span></header>
   <p class="qtext">OutSystems が推奨するアーキテクチャのベストプラクティスで「ない」のはどれですか？</p>
@@ -245,7 +245,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">Foundation モジュールは主要エンティティを読み取り専用にすべき。</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">Foundation モジュールは Core Services モジュールへ上向き参照を持てる。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">Foundation モジュールは UI パターンを持てない。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">これらのいずれも推奨されるベストプラクティスではない。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">Foundation は最下層であり、上位の Core Services を参照（上向き参照）してはいけません。これがベストプラクティスに反する記述です。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">Foundation Module はアーキテクチャの最下層に位置するため、上位の Core Services Module への上向き参照を持ってはいけません。したがって B がベストプラクティスに反する記述です。</p></div>
 </article><article class="card" id="q25">
   <header class="qhead"><span class="qnum">Q25</span></header>
   <p class="qtext">明日から大量アクセスが予想されます。最大50件のAggregateとリスト出力があります。遅延やタイムアウトを避ける最良の方法は？</p>
@@ -253,7 +253,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">最大レコード数を変更する</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">Aggregateにキャッシュを使う</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">タイマーで小さなバッチに分けて処理する</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">頻繁に読まれ、かつ結果が概ね一定のAggregateには Cache in Minutes を設定すると、DB負荷を下げ遅延・タイムアウトを回避できます。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">頻繁に読み取られ、結果がほぼ一定の Aggregate には Cache in Minutes を設定するのが最良です。キャッシュによりデータベースへの負荷が下がり、大量アクセス時の遅延やタイムアウトを回避できます。</p></div>
 </article><article class="card" id="q26">
   <header class="qhead"><span class="qnum">Q26</span></header>
   <p class="qtext">設計段階でのデータ成長の予測はどのように役立ちますか？</p>
@@ -261,7 +261,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">データベース監視の必要性を減らす</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">アーカイブの必要性をなくす</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">すべてのアクティブなデータの保持を保証する</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">アプリケーションのパフォーマンス問題を防ぐ</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">早期にデータ成長を見積もることで、アーカイブ/インデックス設計を先回りでき、将来のパフォーマンス問題を防げます。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">設計段階でデータ成長を予測しておくと、アーカイブやインデックスの設計を先回りして行え、将来のアプリケーションのパフォーマンス問題を防げます。</p></div>
 </article><article class="card" id="q27">
   <header class="qhead"><span class="qnum">Q27</span></header>
   <p class="qtext">ユーザーが URL パラメータやフォームの隠しデータを操作して機密情報を改ざんしないようにするには？</p>
@@ -269,7 +269,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">システム活動を監査して不正アクセスを試みるユーザーを見つける</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">画面の入力パラメータの代わりにセッション変数で機密情報を隠す</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">画面遷移に NAVIGATE でなく SUBMIT（POST）を使う</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">HTTPS（SSL）を有効にして URL パラメータを暗号化する</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">画面の入力パラメータはクライアント側で改ざん可能です。機密値はサーバー側のセッション変数に保持することで改ざんを防げます。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">画面の入力パラメータやフォームの隠しデータはクライアント側で改ざん可能です。機密情報はサーバー側で保持される Session Variable に格納することで、ユーザーによる改ざんを防げます。</p></div>
 </article><article class="card" id="q28">
   <header class="qhead"><span class="qnum">Q28</span></header>
   <p class="qtext">SQLクエリでインライン展開（Expand Inline）パラメータを使う際、推奨されない方法はどれですか？</p>
@@ -277,7 +277,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">EncodeSql で内容を完全エンコード（例：myparameter = EncodeSql(&quot;WHERE ... &quot; + @v1 ...)）</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">EncodeSql で包んで IN (@values) を作る（values = EncodeSql(name1+&quot;,&quot;+...)）</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">Replace 関数で文字列を手動エンコードする</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">すべての選択肢が悪い実践方法である</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">いずれもインジェクションを招く/正しくエスケープできない誤用です。Expand Inline は動的な句の注入に使い、値は通常パラメータ＋適切なエンコードで渡すべきです。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">いずれの方法も SQL インジェクションを招くか正しくエスケープできない誤用であり、すべて悪い実践です。Expand Inline は動的な句の組み立てに限定して使い、値は通常のパラメータとして渡すべきです。</p></div>
 </article><article class="card" id="q29">
   <header class="qhead"><span class="qnum">Q29</span></header>
   <p class="qtext">Web画面で使う大きな JavaScript コードはどこに置くべきですか？</p>
@@ -285,7 +285,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">関数の戻り値パラメータとして（後でエスケープせず使用、再利用可能）</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">Web画面の JavaScript プロパティ（ブラウザキャッシュを活用できる）</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">Web画面のエスケープなしの式として（一度きり/明示的）</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">モジュールの JavaScript プロパティ（唯一キャッシュできる場所）</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">画面固有の大きなJSは、その画面の JavaScript プロパティに置くと、ブラウザキャッシュが効きます。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">画面で使う大きな JavaScript コードは、その Web 画面の JavaScript プロパティに置くのが最良です。外部スクリプトとして配信されるため、ブラウザキャッシュを活用できます。</p></div>
 </article><article class="card" id="q30">
   <header class="qhead"><span class="qnum">Q30</span></header>
   <p class="qtext">ファイル保存クエリのタイムアウトを防ぐ推奨戦略は何ですか？</p>
@@ -293,7 +293,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">アーカイブ処理をより頻繁に実行する</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">アーカイブエンティティに適切なインデックスを作成・維持する</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">クエリのタイムアウト制限を増やす</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">アーカイブストレージを複数のデータベースに分割する</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">適切なインデックスを設計・維持することでクエリ性能を確保し、タイムアウトを防ぎます。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">アーカイブ用の Entity に適切なインデックスを作成・維持することでクエリ性能を確保し、タイムアウトを防ぐのが推奨される戦略です。</p></div>
 </article><article class="card" id="q31">
   <header class="qhead"><span class="qnum">Q31</span></header>
   <p class="qtext">SQLクエリで Expand Inline パラメータを使う最良の理由は何ですか？</p>
@@ -301,7 +301,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">EncodeSql と併用して SQL インジェクションを防止するため</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">必要な条件句を注入して動的条件を実装するため</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">通常パラメータを使うことで SQL インジェクションを防止するため</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">クエリの一部を省略して任意にできるようにするため</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">Expand Inline は、実行時に条件句（WHERE の一部など）を動的に組み立て・注入するためのものです。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">Expand Inline パラメータは、WHERE 句の一部など SQL の条件句を実行時に動的に組み立てて注入するために使うのが本来の目的です。値の受け渡しには通常のパラメータを使います。</p></div>
 </article><article class="card" id="q32">
   <header class="qhead"><span class="qnum">Q32</span><span class="imgbadge">🖼 画像あり</span></header>
   <p class="qtext">2つのフロントエンド（Mod A・Mod B）と再利用サービスを抽象化した Mod C。Mod A が Mod B のロジックを再利用し、両方が Mod C の概念を使う。アーキテクチャ上の問題と代替案は？</p>
@@ -309,7 +309,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">側面/下向き参照のみなので問題はない。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">循環依存がないので問題はない。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">Mod B のロジックを Mod C に移動すべき（A・B が参照でき循環を避けられる）。</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">Mod A が使う Mod B のロジックを新しいコアモジュール（Mod AB）へ移動すべき（A・B が参照し、側面参照を避けられる）。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">Mod A→Mod B はフロントエンド間の「側面参照（lateral reference）」でアンチパターン。共有ロジックを新しいコアモジュール（Mod AB）に切り出し、A・B の双方がそれを参照する形にします。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">フロントエンドである Mod A から Mod B への参照は側面参照（lateral reference）と呼ばれるアンチパターンです。Mod A が使う Mod B のロジックを新しいコアモジュール（Mod AB）へ切り出し、A・B の双方がそれを参照する形にすることで側面参照を避けられます。</p></div>
 </article><article class="card" id="q33">
   <header class="qhead"><span class="qnum">Q33</span></header>
   <p class="qtext">データのアーカイブはなぜパフォーマンスのために重要ですか？</p>
@@ -317,7 +317,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">すべてのDBインデックス作成を高速化する。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">使用されていないアプリを削除する。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">古いデータと新しいデータをマージする。</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">主要（プライマリ）データの量を最小化する。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">アーカイブにより主テーブルのデータ量を小さく保て、頻繁にアクセスする主要データのクエリ性能が向上します。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">アーカイブによって主要（プライマリ）データの量を小さく保てるため、頻繁にアクセスされるデータへのクエリ性能が向上します。</p></div>
 </article><article class="card" id="q34">
   <header class="qhead"><span class="qnum">Q34</span></header>
   <p class="qtext">API 利用時、ログがない/Service Center にほとんど情報が出ません。なぜ？</p>
@@ -325,7 +325,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">記録レベルがトラブルシューティング用に設定されていない。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">エンドポイントが間違っている。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">記録レベルを Full に変更する必要がある（要求と応答のすべての情報を持つ）。</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">記録レベルを Full に切り替える必要がある（リクエストとレスポンスのすべての情報を持つため、最も完全な回答）。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">既定ではリクエスト/レスポンス本文は記録されません。ログレベルを Full にすると要求・応答の全情報が記録され、最も詳細に確認できます。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">既定ではリクエスト/レスポンスの本文は記録されません。記録レベルを Full に変更するとリクエストとレスポンスのすべての情報が記録され、最も詳細なトラブルシューティングが可能になります。</p></div>
 </article><article class="card" id="q35">
   <header class="qhead"><span class="qnum">Q35</span></header>
   <p class="qtext">強い結合を避け、依存関係を簡素化するには？</p>
@@ -333,7 +333,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice correct"><span class="lbl">A</span><span class="ctxt">パブリックアクションの代わりにローカルWebサービスを使う。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">モジュールの変更を監視して反応するタイマーを使う。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">2つのモジュールを1つに統合する。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">更新時に暗黙的に開始し変更に反応する BPT を作る。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">ローカルWebサービス（弱い依存）を使うと、強い結合を避けて依存を簡素化できます。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">パブリックアクション（強い依存）の代わりにローカル Web サービスを使うと、依存が弱い結合になり、モジュール間の依存関係を簡素化できます。</p></div>
 </article><article class="card" id="q36">
   <header class="qhead"><span class="qnum">Q36</span></header>
   <p class="qtext">軽量アーカイブと履歴アーカイブの主な違いは何ですか？</p>
@@ -341,7 +341,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">履歴アーカイブは軽量より多くのストレージを必要とする。</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">軽量アーカイブのデータはアクセス可能なまま、履歴アーカイブは定期アクセスに不向き。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">軽量アーカイブは履歴より高速。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">軽量アーカイブはコンプライアンス目的で、履歴はそうでない。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">軽量アーカイブはデータがアクセス可能なまま。履歴アーカイブは長期保存向けで、定期的なアクセスには適しません。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">軽量アーカイブではデータがアクセス可能なまま保たれるのに対し、履歴アーカイブは長期保存向けであり、定期的なアクセスには適しません。</p></div>
 </article><article class="card" id="q37">
   <header class="qhead"><span class="qnum">Q37</span></header>
   <p class="qtext">アーカイビングエンジン（Archiving Engine）モジュールは何をしますか？</p>
@@ -349,7 +349,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">UI 関連のデータだけを管理する。</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">アーカイブ・クリーンアップ・リストアを実装する。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">古くなったテーブルを削除する。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">データベースのバックアップを自動化する。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">アーカイビングエンジンは、アーカイブ・クリーンアップ・リストアの各処理を実装します。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">Archiving Engine モジュールは、アーカイブ・クリーンアップ・リストアの各処理を実装します。</p></div>
 </article><article class="card" id="q38">
   <header class="qhead"><span class="qnum">Q38</span></header>
   <p class="qtext">SQL（高度な）クエリを作成するとき、パフォーマンス問題を避けるため何に注意すべきですか？</p>
@@ -357,7 +357,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">必要な属性だけを返すビューを作成する。</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">返される属性だけを含む特定の出力 Structureを作成する。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">プラットフォームが自動最適化するので属性選択の最適化は不要。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">{Entity}.* を使ってエラーを防ぎ性能を上げる。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">Advanced SQL は自動最適化されないため、必要な属性だけを含む出力 Structureを定義し、SELECT でその列だけ取得します（{Entity}.* は避ける）。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">Advanced SQL はプラットフォームによる自動最適化の対象外です。そのため、返す属性だけを含む出力用の Structure を定義し、SELECT でその列のみを取得します。{Entity}.* の使用は避けるべきです。</p></div>
 </article><article class="card" id="q39">
   <header class="qhead"><span class="qnum">Q39</span></header>
   <p class="qtext">タイマー Timer1 が Timer2 を Wake します。Timer1 がタイムアウトした場合、Timer2 はどうなりますか？</p>
@@ -365,7 +365,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">Timer2 は固定遅延後に起動する（Timer1 がトリガーしなくても）。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">Timer2 はタイムアウトに関係なく独立して動く。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">Timer2 は永遠に待機状態になる。</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">何も起こらない。タイマーは3回再試行し、その後もエラー/タイムアウトなら Timer2 は起動しない。</span></li><li class="choice"><span class="lbl">E</span><span class="ctxt">Timer2 は Timer1 が正常に再試行されるまで待つ。</span></li><li class="choice"><span class="lbl">F</span><span class="ctxt">Timer2 は部分的に初期化されるが完全実行できない。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">Timer1 がタイムアウトするとトランザクションはロールバックされ、Wake（Timer2起動）も取り消されます。既定で3回リトライされ、最終的に失敗すると Timer2 は起動しません。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">Timer1 がタイムアウトするとトランザクションがロールバックされ、Timer2 の Wake も取り消されます。Timer は既定で 3 回再試行され、それでも失敗した場合、Timer2 は起動しません。</p></div>
 </article><article class="card" id="q40">
   <header class="qhead"><span class="qnum">Q40</span></header>
   <p class="qtext">なぜインデックスはファイルカタログで重要ですか？</p>
@@ -373,7 +373,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">ユーザー入力なしでレコードを削除するため</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">自動クリーンアップを可能にするため</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">検索パフォーマンスを向上させるため</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">システムリソースの使用を削減するため</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">インデックスは検索（クエリ）のパフォーマンスを向上させます。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">インデックスは、ファイルカタログに対する検索（クエリ）のパフォーマンスを向上させるために重要です。</p></div>
 </article><article class="card" id="q41">
   <header class="qhead"><span class="qnum">Q41</span></header>
   <p class="qtext">API 利用時、レスポンスの構造で &#x27;Ciudad&#x27;（市）フィールドに値が表示されないのはなぜ？</p>
@@ -381,7 +381,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">&#x27;Ciudad&#x27; の値が null または存在しないから。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">API の設定/マッピングに問題があるから。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">エンドポイントが間違っているから。</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">&#x27;Ciudad&#x27; の JSON 名がStructure 内で使われている名前と一致していないから。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">レスポンスの JSON プロパティ名と、OutSystems Structure の属性の JSON 名（Name in JSON）が一致していないと値がマッピングされず空になります。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">レスポンス JSON のプロパティ名と、Structure 属性の JSON 名（Name in JSON）が一致していないと値がマッピングされず、フィールドが空のままになります。</p></div>
 </article><article class="card" id="q42">
   <header class="qhead"><span class="qnum">Q42</span></header>
   <p class="qtext">なぜアーカイブタイマーは非ピーク時間帯に実行すべきですか？</p>
@@ -389,7 +389,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">ユーザーのアクセスを簡素化するため</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">システムのダウンタイムを短縮するため</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">インデックス作成のパフォーマンスを向上させるため</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">データベースの負荷を軽減するため</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">アーカイブは重い処理なので、ピーク外に実行して通常業務時のデータベース負荷を避けます。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">アーカイブは負荷の高い処理のため、非ピーク時間帯に実行することで、業務時間中のデータベース負荷を軽減できます。</p></div>
 </article><article class="card" id="q43">
   <header class="qhead"><span class="qnum">Q43</span></header>
   <p class="qtext">少量のデータを移行したい。どの方法が最適ですか？</p>
@@ -397,7 +397,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice correct"><span class="lbl">A</span><span class="ctxt">タイマー</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">BPT（ビジネスプロセス）</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">ライトプロセス（Light Process）</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">少量データの移行にはシンプルな Timer が最適です。Light Process（Light BPT）は大量データの並列・高スループット処理向けで、単発の少量移行には過剰です。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">少量データの単発移行にはシンプルな Timer が最適です。Light Process は大量イベントの並列・高スループット処理向けであり、この用途には過剰です。</p></div>
 </article><article class="card" id="q44">
   <header class="qhead"><span class="qnum">Q44</span></header>
   <p class="qtext">顧客のエネルギー消費データは ClientEnergyData エンティティに保存されています。タイマーで全既存データを反復処理し、各レコードを処理、全処理後に SQL で全レコードを削除します。タイムアウトを避け効率的に処理する最良の方法は？</p>
@@ -405,7 +405,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">For-Each ループ内でレコードを削除し、明示的にコミットして、タイムアウトが発生してもすべてがコミットされていることを保証する。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">タイマーの実行時間を管理し、タイムアウト前に停止する。</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">レコードのバッチを処理してコミットし、各バッチの後に経過時間を制御し、タイムアウトが近づいたらタイマーを再起動する。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">タイマー実行時に常に一定数のレコードだけを処理する。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">バッチ単位で処理してコミットし、各バッチ後に経過時間を監視、タイムアウトが近づいたら自分自身を再起動（Wake Timer）して続きを処理します。これによりタイムアウトを避けつつ全データを確実に処理できます（Q11・Q39と同じ定石）。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">レコードをバッチ単位で処理してコミットし、各バッチの後に経過時間を確認して、タイムアウトが近づいたらタイマーを再起動して続きから処理します。これにより、タイムアウトを回避しつつ全データを確実に処理できます。</p></div>
 </article>
 <footer>OutSystems O11（Reactive）試験対策 — セット2 ／ 選択肢をクリックすると自己採点できます。</footer>
 </div>

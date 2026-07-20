@@ -65,7 +65,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">決して起きない（ブロックは OnDestroy をトリガーしない）。</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">親画面の OnDestroy がトリガーされた後、かつブロックが DOM から削除される前。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">親画面の OnDestroy がトリガーされる前、かつブロックが DOM から削除される前。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">ブロックと画面の両方が DOM から削除された後。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">OnDestroy はトップダウン（まず画面、次にブロック）でトリガーされ、ブロックの OnDestroy は親画面の OnDestroy の後、かつブロックが DOM から削除される前に発生します。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">OnDestroy はトップダウンで発火するため、Web Block の OnDestroy は親画面の OnDestroy の後、かつその Web Block が DOM から削除される前にトリガーされます。DOM 削除後ではない点に注意してください。</p></div>
 </article><div class="pager"><a class="disabled">←</a><a href="q2.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

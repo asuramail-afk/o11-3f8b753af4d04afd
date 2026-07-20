@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">シナリオ1：ロケールはテキストコード、場所ごとに画像は1つ、翻訳は複数可。</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">シナリオ3：バイナリ（画像）を分離し、翻訳は静的エンティティの Id でインデックスする。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">シナリオ2と3：プラットフォームが高度なクエリを最適化し未使用時はバイナリを取得しない。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">シナリオ2：翻訳は静的エンティティで強い型付けの恩恵を受ける。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">バイナリ（画像）を別エンティティに分離し（クエリ性能向上）、翻訳は静的エンティティの Id でインデックスするシナリオ3が最適です。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">画像などのバイナリは別 Entity に分離することで本体テーブルのクエリ性能が向上し、事前定義された言語は Static Entity にしてその Id で翻訳をインデックスするのが最適です。この両方を満たすシナリオ3が正解です。</p></div>
 </article><div class="pager"><a href="q3.html">← 前の問題</a><a href="q5.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

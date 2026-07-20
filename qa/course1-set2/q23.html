@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice correct"><span class="lbl">A</span><span class="ctxt">Webサービスが削除されると、参照モジュール公開時に Service Studio は警告を表示する。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">Webサービスが削除されると、公開時にエラーを表示する。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">Web参照のアクションと呼び出し元の画面アクションは同じトランザクションを使う。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">Web参照のタイムアウト（秒）は画面アクションで使うたびに設定が必要。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">参照先Webサービスが削除された場合、公開時に表示されるのは（エラーではなく）警告です。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">参照先の Web サービスが削除されている場合、参照している Module の公開時に Service Studio が表示するのはエラーではなく警告です。</p></div>
 </article><div class="pager"><a href="q22.html">← 前の問題</a><a href="q24.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

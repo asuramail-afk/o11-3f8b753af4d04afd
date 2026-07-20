@@ -60,7 +60,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <p class="note">※原資料（問題集.txt / 完成版.md）は正解を B（Audit も作成されない）としていますが、これは公式ドキュメントの挙動と矛盾します。Abort Transaction はロールバック後にハンドラを『新しいトランザクション』で実行するため、ハンドラ内の Audit は残ります（正解 A）。コース1セット1 Q1（同一シナリオ・公式検証済み）、コース2セット2 Q24（監査レコードだけ追加）とも一致します。</p>
   <ul class="choices"><li class="choice correct"><span class="lbl">A</span><span class="ctxt">ロールバックが行われ、Audit エンティティにレコードが作成される</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">ロールバックが行われ、レコードは作成されない</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">例外ハンドラの Abort Transaction=Yes は、そこまでのCRUD変更（主フロー）をロールバックし、同時に現在のトランザクションを終了して新しいトランザクションを開始します。例外ハンドラ内で実行される Audit の CRUD はこの新トランザクションでコミットされるため、ロールバックは行われても Audit レコードは作成されます。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">Exception Handler の Abort Transaction=Yes は、それまでのCRUD変更をロールバックしたうえでトランザクションを終了し、新しいトランザクションを開始します。Exception Handler 内で実行される Audit のCRUDはこの新しいトランザクションでコミットされるため、主フローはロールバックされても Audit レコードは作成されます。</p></div>
 </article><div class="pager"><a href="q43.html">← 前の問題</a><a class="disabled">→</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

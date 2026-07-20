@@ -60,7 +60,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice correct"><span class="lbl">A</span><span class="ctxt">ビジネスロジック</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">テーマ定義</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">ユースケースを調整するプロセスワークフロー定義</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">ダッシュボードを持つホームページ</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">コアビジネス層には、再利用されるビジネスロジックやコアエンティティが含まれます。テーマ定義やホームページはエンドユーザー層（UI）、業務全体を調整するオーケストレーションはより上位の層に属します。<br></p></div>
+  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">Core Business 層には、再利用されるビジネスロジックやコアとなる Entity が含まれます。テーマ定義やホームページはエンドユーザー（UI）層、ユースケース全体を調整するプロセスワークフローはオーケストレーション層に属します。</p></div>
 </article><div class="pager"><a href="q33.html">← 前の問題</a><a href="q35.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

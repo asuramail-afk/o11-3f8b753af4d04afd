@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer">
     <p class="ans-line"><b>正解：B</b></p>
-    <p class="expl">外部エンティティは直接結合すると非効率なため、必要なサブセットを一時テーブルに格納してから結合します。</p>
+    <p class="expl">外部 Entity とプラットフォームの Entity は別データベースにあるため、直接結合すると非常に非効率です。必要なレコードの小さなサブセットを一時テーブル（ローカル Entity）に格納し、それとプラットフォームの Entity を結合するのが適切です。</p>
   </div>
 </article><div class="pager"><a href="q15.html">← 前の問題</a><a href="q17.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}

@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">アーカイブ処理をより頻繁に実行する</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">アーカイブエンティティに適切なインデックスを作成・維持する</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">クエリのタイムアウト制限を増やす</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">アーカイブストレージを複数のデータベースに分割する</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">適切なインデックスを設計・維持することでクエリ性能を確保し、タイムアウトを防ぎます。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">アーカイブ用の Entity に適切なインデックスを作成・維持することでクエリ性能を確保し、タイムアウトを防ぐのが推奨される戦略です。</p></div>
 </article><div class="pager"><a href="q29.html">← 前の問題</a><a href="q31.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

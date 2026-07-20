@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">Service Center は現在の週と過去9週間のログを、種類ごとに表示する。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">REST API のエラーログは、API リクエストのエラーのみ Integration logs に表示される。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">既定のログレベルで、消費/公開した REST API の全リクエストとレスポンスが記録される。</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">LogMessage サーバーアクションで作成したカスタムログは General logs にのみ表示される。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">LogMessage で出力したカスタムログは General logs に記録されます。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">LogMessage サーバーアクションで作成したカスタムログは General logs にのみ表示されます。なお、既定のログレベルでは REST API の全リクエスト・レスポンスは記録されず、Service Center のログ保持期間は過去 9 週間ではありません。</p></div>
 </article><div class="pager"><a href="q14.html">← 前の問題</a><a href="q16.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

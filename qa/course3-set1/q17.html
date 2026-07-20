@@ -56,7 +56,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <p class="qtext">リアクティブ Web アプリの画面で Aggregate を使ってデータ取得。データが取得され利用可能になった直後に特定のクライアントアクションを実行したい。どうする？</p>
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">『OnReady』で Aggregate リストが空でないか確認する。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">画面の『OnRender』でクライアントアクションを呼ぶ。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">『OnInitialize』の最後でクライアントアクションを呼ぶ。</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">Aggregate の『On After Fetch』プロパティに目的のクライアントアクションを設定する。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">Aggregate は非同期に動作します。取得完了と連携するには、その Aggregate の『On After Fetch』イベントハンドラを使うのが最適。OnReady/OnInitialize は取得前に走る可能性があります。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">Aggregate のデータ取得は非同期で行われるため、取得完了の直後に処理を実行するには、その Aggregate の On After Fetch イベントにクライアントアクションを設定するのが正解です。OnReady や OnInitialize は取得完了前に実行される可能性があります。</p></div>
 </article><div class="pager"><a href="q16.html">← 前の問題</a><a href="q18.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

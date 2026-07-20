@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">GetProduct/GetWarehouse のAggregateをキャッシュしてリクエストのタイムアウトを避ける。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">タイマーで請求書を非同期挿入し、Aggregateを1つのキャッシュ可能なクエリに変換する。</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">Excel データを一時テーブルに保存し、タイムアウト管理付きタイマーで非同期処理。GetProduct/GetWarehouse Aggregateは別アクションに分離し結果をキャッシュする。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">Excel データを一時テーブルに保存し、タイマーで非同期処理、各反復末尾で CommitTransaction を呼ぶ。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">一時テーブル＋タイムアウト管理付きタイマーで非同期処理し、繰り返し使うAggregateは別アクションに切り出してキャッシュするのが最も効率的です。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">Excel データをまず一時テーブルに保存し、タイムアウト管理付きの Timer で非同期に処理します。さらに、繰り返し実行される GetProduct/GetWarehouse の Aggregate は別の Server Action に分離して結果をキャッシュすることで、反復ごとのクエリ実行を削減できます。この組み合わせが最も効率的でタイムアウトも防げます。</p></div>
 </article><div class="pager"><a href="q5.html">← 前の問題</a><a href="q7.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

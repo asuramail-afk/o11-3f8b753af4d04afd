@@ -60,7 +60,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">インデックスの必要性を減らす</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">アーカイブされたデータを自動的に削除する</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">すべてのクエリの遅延を防止する</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">データベースの健全性と最適化を保証する</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">定期的なメンテナンス計画により、アーカイブDBの統計情報更新や再編成が行われ、データベースの健全性と最適化が保たれます。<br></p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">アーカイブデータに対しても定期的なメンテナンス計画（統計情報の更新やインデックスの再編成など）を実施することで、データベースの健全性と最適化が保証されます。</p></div>
 </article><div class="pager"><a href="q7.html">← 前の問題</a><a href="q9.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

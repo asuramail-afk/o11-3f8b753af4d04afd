@@ -60,7 +60,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">コンポーネントの再レンダリング中に発生する</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">ブラウザがウェブページのアンロードやウィンドウを閉じるときにトリガーされる</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">画面またはブロックを破棄する前に、DOM から削除されるときに発生する</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">親コンポーネントのすべての子コンポーネントが破棄された後に発生する</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">On Destroy は、画面（Screen）またはブロック（Block）が破棄され DOM から取り除かれる直前に一度だけ実行されます。イベントリスナーの解除やタイマー停止など、後片付け処理に使います。<br></p></div>
+  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">On Destroy イベントは、画面または Web Block が破棄されて DOM から削除される直前に発生します。イベントリスナーの解除やタイマーの停止といったクリーンアップ処理に使用します。</p></div>
 </article><div class="pager"><a href="q41.html">← 前の問題</a><a href="q43.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

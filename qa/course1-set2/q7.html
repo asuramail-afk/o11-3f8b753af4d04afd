@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">部分更新APIで特定フィールドだけ変更</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">値を更新してCreatorUpdate</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">保存前に更新フィールドを検証</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">ORMツールで特定フィールドだけ更新</span></li><li class="choice"><span class="lbl">E</span><span class="ctxt">バッチ更新でリソース消費を最小化</span></li><li class="choice correct"><span class="lbl">F</span><span class="ctxt">SQLクエリで3つのフィールドだけ更新</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：F</b></p><p class="expl">3属性だけの更新は、SQLクエリで対象カラムのみUPDATEするのが最も軽量。エンティティのUpdateは全属性を書き込むため無駄が多くなります。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：F</b></p><p class="expl">3 つの属性だけを更新する場合は、SQL クエリで対象カラムのみを UPDATE するのが最も効率的です。Entity の Update アクションは 20 個すべての属性を書き込むため、無駄な更新が発生します。</p></div>
 </article><div class="pager"><a href="q6.html">← 前の問題</a><a href="q8.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

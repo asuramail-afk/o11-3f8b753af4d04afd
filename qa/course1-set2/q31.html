@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">EncodeSql と併用して SQL インジェクションを防止するため</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">必要な条件句を注入して動的条件を実装するため</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">通常パラメータを使うことで SQL インジェクションを防止するため</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">クエリの一部を省略して任意にできるようにするため</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">Expand Inline は、実行時に条件句（WHERE の一部など）を動的に組み立て・注入するためのものです。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">Expand Inline パラメータは、WHERE 句の一部など SQL の条件句を実行時に動的に組み立てて注入するために使うのが本来の目的です。値の受け渡しには通常のパラメータを使います。</p></div>
 </article><div class="pager"><a href="q30.html">← 前の問題</a><a href="q32.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

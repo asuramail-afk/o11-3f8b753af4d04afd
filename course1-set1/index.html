@@ -61,7 +61,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer">
     <p class="ans-line"><b>正解：A</b></p>
-    <p class="expl">例外ハンドラの Abort Transaction = Yes は、そこまでの変更（CreateCity と失敗した CreateAddress）をロールバックし、同時に現在のトランザクションを終了して新しいトランザクションを開始します。ハンドラ内の CreateAudit はこの新しいトランザクションで実行・コミットされるため保存されます。結果、監査レコードだけが追加されます。（Abort Transaction=No なら都市＋監査が残り B になります）</p>
+    <p class="expl">Exception Handler の Abort Transaction = Yes により、例外発生までの変更（CreateCity と失敗した CreateAddress）はロールバックされ、同時に新しいトランザクションが開始されます。ハンドラ内の CreateAudit はこの新しいトランザクションで実行・コミットされるため、監査レコードだけがデータベースに追加されます。なお Abort Transaction = No であれば都市のレコードも残り、B の結果になります。</p>
   </div>
 </article><article class="card" id="q2">
   <header class="qhead"><span class="qnum">Q2</span></header>
@@ -71,7 +71,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer">
     <p class="ans-line"><b>正解：C</b></p>
-    <p class="expl">「NULL 値を維持する」= 外部 DB 側は NULL のまま保存され、OutSystems エンティティ上では Integration Builder の既定値で表現されます。</p>
+    <p class="expl">「データベースの NULL 値を維持する」を選ぶと、外部データベース側では値が NULL のまま保存され、OutSystems の Entity 上では Integration Builder のデフォルト値として表現されます。つまり保存時に NULL がデフォルト値へ書き換えられることはありません。</p>
   </div>
 </article><article class="card" id="q3">
   <header class="qhead"><span class="qnum">Q3</span></header>
@@ -81,7 +81,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer">
     <p class="ans-line"><b>正解：D</b></p>
-    <p class="expl">UI とロジック/データを分離し、既存アプリの公開アクション・エンティティを参照する新規モバイルアプリを作るのがベストプラクティスです。</p>
+    <p class="expl">UI とロジック・データを分離するのがベストプラクティスです。既存の経費アプリが公開している Server Action と Entity を Reference として参照し、モバイル用の画面だけを持つ新しいモバイルアプリを作成します。Web アプリの画面はモバイルアプリでは再利用できないため、画面再利用を前提とする他の選択肢は不適切です。</p>
   </div>
 </article><article class="card" id="q4">
   <header class="qhead"><span class="qnum">Q4</span></header>
@@ -91,7 +91,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer">
     <p class="ans-line"><b>正解：D</b></p>
-    <p class="expl">モバイルは別アプリとして作成し、Web アプリの公開アクション・エンティティを再利用します。画面は共有できません。</p>
+    <p class="expl">モバイル版は独自テーマを持つ別アプリとして新規作成し、既存 Web アプリが公開している Server Action と Entity を参照して再利用します。Web アプリの画面はモバイルアプリと共有できないため、画面を利用する A や、既存アプリ内にフローを追加する C は不適切です。</p>
   </div>
 </article><article class="card" id="q5">
   <header class="qhead"><span class="qnum">Q5</span></header>
@@ -101,7 +101,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer">
     <p class="ans-line"><b>正解：D</b></p>
-    <p class="expl">アーカイブ用エンティティへ移動して主テーブルを小さく保つのが最も高性能。監査時は両方を参照する画面を用意します。</p>
+    <p class="expl">未使用レコードを定期的にアーカイブ用の Entity へ移動する Timer を用意し、メインの Entity を小さく保つのが最も高性能です。すべての記録は保持されるため法的・監査要件も満たせ、必要時には両方の Entity を参照する画面で全データにアクセスできます。</p>
   </div>
 </article><article class="card" id="q6">
   <header class="qhead"><span class="qnum">Q6</span></header>
@@ -111,7 +111,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer">
     <p class="ans-line"><b>正解：C</b></p>
-    <p class="expl">外部REST連携では、まずローカルの一時（ステージング）エンティティに保存してユーザー応答を即時に返し（高性能）、Timer で非同期・小バッチに送信します。こうすれば外部APIが不調でもデータは保存済みで失われません。同期リトライ（B）はユーザーをブロックし、リトライを使い切れば損失リスクも残ります。</p>
+    <p class="expl">まずローカルの一時（ステージング）Entity に保存してユーザーへ即座に応答を返し、Timer で非同期に小バッチずつ外部 REST API へ送信します。外部 API が不調でもデータはすでに保存済みなので損失がなく、性能とデータ保全を両立できます。B の同期リトライはユーザーを待たせるうえ、失敗し続ければデータ損失のリスクが残ります。</p>
   </div>
 </article><article class="card" id="q7">
   <header class="qhead"><span class="qnum">Q7</span></header>
@@ -121,7 +121,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer">
     <p class="ans-line"><b>正解：B</b></p>
-    <p class="expl">サイトプロパティは基本型（Text/Integer/Boolean など）に限定され、Structure や Record List などの複雑な型は保存できません。よって主張は不正確です。</p>
+    <p class="expl">Site Property に使える型は Text や Integer などの基本型に限定されており、Structure や Record List のような複合型は保存できません。したがって「Structure の保存に良い選択肢」という主張自体が誤りです。</p>
   </div>
 </article><article class="card" id="q8">
   <header class="qhead"><span class="qnum">Q8</span><span class="imgbadge">🖼 画像あり</span></header>
@@ -131,7 +131,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer">
     <p class="ans-line"><b>正解：D</b></p>
-    <p class="expl">「マージして公開」で Compare and Merge ウィンドウが開き、要素ごとにどちらの版を残すか選んで競合を解決します。</p>
+    <p class="expl">「マージして公開」を選ぶと Compare and Merge ウィンドウが開き、競合している要素ごとにどちらのバージョンを残すかをジョーン自身が選択して解決できます。どちらかの版が自動的に破棄されるわけではありません。</p>
   </div>
 </article><article class="card" id="q9">
   <header class="qhead"><span class="qnum">Q9</span><span class="imgbadge">🖼 画像あり</span></header>
@@ -141,7 +141,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer">
     <p class="ans-line"><b>正解：A・B</b></p>
-    <p class="expl">(A) エンティティアクションは別モジュールのもので画面と同一モジュールではない。(B) InvoiceProcess はタイマーであり、ボタン押下とは別のサーバーリクエストで非同期実行されます。</p>
+    <p class="expl">A：CreateImportedInvoices を呼ぶ ImportInvoice_Create は別 Module の Entity アクションであり、画面と同じ Module には定義されていません。B：InvoiceProcess は Timer から実行されるため、ボタン押下のリクエストとは別のサーバーリクエストで非同期に処理されます。したがって D の「同一リクエスト内で実行」は誤りです。</p>
   </div>
 </article><article class="card" id="q10">
   <header class="qhead"><span class="qnum">Q10</span></header>
@@ -151,7 +151,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer">
     <p class="ans-line"><b>正解：B</b></p>
-    <p class="expl">他アプリの画面を参照（Reference）し、ボタンの Destination に直接選ぶのが正攻法。強い型付けのリンクになり保守しやすくなります。</p>
+    <p class="expl">Appointments アプリの画面を Reference として追加し、ボタンの Destination に直接指定するのが正攻法です。強く型付けされたリンクになるため、URL のハードコードや環境ごとの切り替え設定が不要で、保守性にも優れます。</p>
   </div>
 </article><article class="card" id="q11">
   <header class="qhead"><span class="qnum">Q11</span></header>
@@ -161,7 +161,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer">
     <p class="ans-line"><b>正解：D</b></p>
-    <p class="expl">デバッグのトリガーは画面である必要はありません（タイマー・サービス・プロセス等でも可）。よってこれが誤りです。</p>
+    <p class="expl">デバッグを開始するトリガーは画面からである必要はなく、Timer やサービス、プロセスなどからの呼び出しでもデバッグできます。したがって D が誤った記述です。他の選択肢（コンシューマーの公開権限、Reference の最新化、Server Action の参照）はいずれもデバッグに必要な条件です。</p>
   </div>
 </article><article class="card" id="q12">
   <header class="qhead"><span class="qnum">Q12</span><span class="imgbadge">🖼 画像あり</span></header>
@@ -171,7 +171,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer">
     <p class="ans-line"><b>正解：D</b></p>
-    <p class="expl">循環参照が存在するため、Solution でまとめて公開することで「最新でない（Outdated）」警告を出さずに全モジュールを公開できます。</p>
+    <p class="expl">B→E→A→B という循環参照が存在するため、個別に公開すると必ずどこかで Outdated 警告が発生します。Solution としてまとめて公開すれば、すべての Module を Outdated 警告なしに一度に公開できます。</p>
   </div>
 </article><article class="card" id="q13">
   <header class="qhead"><span class="qnum">Q13</span></header>
@@ -181,7 +181,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer">
     <p class="ans-line"><b>正解：D</b></p>
-    <p class="expl">参照（依存関係）はコンシューマー側で更新（Refresh）する必要があります。更新して初めて呼び出し元として認識されます。</p>
+    <p class="expl">Reference（依存関係）の更新はコンシューマー側の Module で行う必要があります。コンシューマーで Reference をリフレッシュして公開して初めて、プロデューサーのデバッグ時に呼び出し元（Entry Module）として認識されます。</p>
   </div>
 </article><article class="card" id="q14">
   <header class="qhead"><span class="qnum">Q14</span><span class="imgbadge">🖼 画像あり</span></header>
@@ -191,7 +191,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer">
     <p class="ans-line"><b>正解：B</b></p>
-    <p class="expl">開始時に Timeout = 現在時刻+10分 を設定し、ループ内で CurrDateTime() &gt;= Timeout になったら（=10分経過）タイマーを再起動します。</p>
+    <p class="expl">開始時の Assign で Timeout = AddMinutes(CurrDateTime(), 10) と終了予定時刻を設定し、ループ内の条件で CurrDateTime() &gt;= Timeout を判定します。現在時刻が Timeout に達したら 10 分経過とみなしてループを抜け、次の Timer インスタンスを起動します。</p>
   </div>
 </article><article class="card" id="q15">
   <header class="qhead"><span class="qnum">Q15</span><span class="imgbadge">🖼 画像あり</span></header>
@@ -201,7 +201,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer">
     <p class="ans-line"><b>正解：A</b></p>
-    <p class="expl">SimpleBlock の .Button に background-color: red !important が指定されているため、テーマの他定義より優先され、赤（OPTION 1）で表示されます。</p>
+    <p class="expl">SimpleBlock の CSS で .Button に background-color: red !important が指定されています。!important 指定はテーマ側の他の定義より優先されるため、ボタンは赤（オプション1）で表示されます。</p>
   </div>
 </article><article class="card" id="q16">
   <header class="qhead"><span class="qnum">Q16</span></header>
@@ -211,7 +211,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer">
     <p class="ans-line"><b>正解：B</b></p>
-    <p class="expl">外部エンティティは直接結合すると非効率なため、必要なサブセットを一時テーブルに格納してから結合します。</p>
+    <p class="expl">外部 Entity とプラットフォームの Entity は別データベースにあるため、直接結合すると非常に非効率です。必要なレコードの小さなサブセットを一時テーブル（ローカル Entity）に格納し、それとプラットフォームの Entity を結合するのが適切です。</p>
   </div>
 </article><article class="card" id="q17">
   <header class="qhead"><span class="qnum">Q17</span></header>
@@ -221,7 +221,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer">
     <p class="ans-line"><b>正解：C</b></p>
-    <p class="expl">General Logs には LogMessage アクションの出力と、遅いクエリ（Slow Queries）のログが記録されます。</p>
+    <p class="expl">Service Center の General Logs には、LogMessage アクションで出力したログと、実行に時間のかかったクエリ（Slow Queries）のログが記録されます。画面アクセスやログインは別のログ画面で確認します。</p>
   </div>
 </article><article class="card" id="q18">
   <header class="qhead"><span class="qnum">Q18</span></header>
@@ -231,7 +231,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer">
     <p class="ans-line"><b>正解：B</b></p>
-    <p class="expl">バッチ単位で処理し、各バッチ後にタイマーを再起動してタイムアウトを管理・再活性化するのがスケーラブルで確実な方法です。</p>
+    <p class="expl">全件を一度に処理するとタイムアウトするため、Timer でバッチ単位に取得・処理し、各バッチの完了後にタイムアウトを管理しながら Timer を再起動（再ウェイク）して続きを処理するのがスケーラブルで確実な方法です。</p>
   </div>
 </article><article class="card" id="q19">
   <header class="qhead"><span class="qnum">Q19</span><span class="imgbadge">🖼 画像あり</span></header>
@@ -241,7 +241,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer">
     <p class="ans-line"><b>正解：D</b></p>
-    <p class="expl">バイナリ（画像）を別エンティティに分離し（クエリ性能向上）、翻訳は静的エンティティの Id でインデックスするシナリオ3が最適です。</p>
+    <p class="expl">シナリオ3が最適です。画像などのバイナリデータを別 Entity に分離することで本体テーブルへのクエリが軽くなり、翻訳はロケールを表す Static Entity の Identifier でインデックスすることで、強い型付けと検索性能の両方が得られます。</p>
   </div>
 </article><article class="card" id="q20">
   <header class="qhead"><span class="qnum">Q20</span><span class="imgbadge">🖼 画像あり</span></header>
@@ -251,7 +251,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer">
     <p class="ans-line"><b>正解：B</b></p>
-    <p class="expl">Patient→Visit、Patient→Disease が protect（保護）ルールのため、Patient を消すには先に関連する Visit と Disease を削除する必要があります。</p>
+    <p class="expl">Patient への外部キーに Protect の Delete Rule が設定されているため、Patient レコードを削除するには、先に関連する Visit と Disease のレコードを削除する必要があります。Protect は参照元レコードが存在する限り親の削除を禁止するルールです。</p>
   </div>
 </article><article class="card" id="q21">
   <header class="qhead"><span class="qnum">Q21</span></header>
@@ -261,7 +261,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer">
     <p class="ans-line"><b>正解：C</b></p>
-    <p class="expl">ローカル Web サービス（疎結合の参照）を使うと、強い結合（Strong Dependency）を避けられ依存が簡素化されます。</p>
+    <p class="expl">公開アクション（Public な Server Action）の参照は強い結合（コンパイル時依存）を生みますが、ローカル Web サービス経由の呼び出しに置き換えると疎結合になり、Module 間の依存関係を簡素化できます。</p>
   </div>
 </article><article class="card" id="q22">
   <header class="qhead"><span class="qnum">Q22</span></header>
@@ -271,7 +271,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer">
     <p class="ans-line"><b>正解：A</b></p>
-    <p class="expl">サイトプロパティの実効値（Effective Value）は Service Center で変更できますが、設計時のデフォルト値は Service Center からは変更できません。</p>
+    <p class="expl">Site Property の実効値（Effective Value）は Service Center で変更できますが、Service Studio で設定したデフォルト値は Service Center からは変更できません。なお Client Variable は基本型のみでレコード型は不可、ブラウザを閉じてもリセットされないため B と D は誤りです。</p>
   </div>
 </article><article class="card" id="q23">
   <header class="qhead"><span class="qnum">Q23</span><span class="imgbadge">🖼 画像あり</span></header>
@@ -281,7 +281,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer">
     <p class="ans-line"><b>正解：B</b></p>
-    <p class="expl">単一の Advanced SQL で一括 DELETE するのが最も高性能。Aggregate→ループ削除は行ごとのラウンドトリップが発生し非効率です。</p>
+    <p class="expl">単一の Advanced SQL で条件を指定して一括 DELETE するのが最も高性能です。データベース内で 1 回の命令として完結するためです。Aggregate で取得してループで DeleteCity を呼ぶ方法は、レコードごとにデータベースへのラウンドトリップが発生し非効率です。</p>
   </div>
 </article><article class="card" id="q24">
   <header class="qhead"><span class="qnum">Q24</span><span class="imgbadge">🖼 画像あり</span></header>
@@ -291,7 +291,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer">
     <p class="ans-line"><b>正解：A</b></p>
-    <p class="expl">タイムアウトするとそのタイマーのトランザクションはロールバックされます。2 番目のタイマー起動（WakeTimer）も同一トランザクション内なので取り消され、実行されません。</p>
+    <p class="expl">Timer がタイムアウトすると、その実行中のトランザクション全体がロールバックされます。アクションによるデータ変更に加え、同一トランザクション内で行われた 2 番目の Timer の起動（WakeTimer）も取り消されるため、2 番目の Timer は実行されません。</p>
   </div>
 </article><article class="card" id="q25">
   <header class="qhead"><span class="qnum">Q25</span><span class="imgbadge">🖼 画像あり</span></header>
@@ -301,7 +301,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer">
     <p class="ans-line"><b>正解：C</b></p>
-    <p class="expl">巨大な binary（HighlightedPicture）を別の拡張エンティティに分離すると、本体テーブルが軽くなり部分一致検索のクエリ性能が向上します。</p>
+    <p class="expl">巨大なバイナリ属性（HighlightedPicture）を別の拡張 Entity に分離することで本体テーブルの行サイズが小さくなり、部分一致検索のクエリ性能が向上します。なお部分一致（LIKE '%...%'）検索ではインデックスは効かないため、A は有効ではありません。</p>
   </div>
 </article><article class="card" id="q26">
   <header class="qhead"><span class="qnum">Q26</span></header>
@@ -311,7 +311,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer">
     <p class="ans-line"><b>正解：A</b></p>
-    <p class="expl">頻繁に変わる業務データはエンティティに保存し、管理者が UI から編集できるようにするのが適切。サイトプロパティ/静的エンティティは頻繁な変更に不向きです。</p>
+    <p class="expl">頻繁に変わる業務データは Entity に保存し、管理者が画面から編集・保存できるようにするのがベストプラクティスです。Site Property の変更はキャッシュ無効化を伴い Service Center での操作も必要なため頻繁な変更に不向きで、Static Entity の変更には再公開が必要です。</p>
   </div>
 </article><article class="card" id="q27">
   <header class="qhead"><span class="qnum">Q27</span></header>
@@ -321,7 +321,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer">
     <p class="ans-line"><b>正解：A</b></p>
-    <p class="expl">認証は OnAuthentication コールバックで実装すべきで、OnRequest で認証を行う案は無効です。</p>
+    <p class="expl">公開 REST API の認証ロジックは OnAuthentication コールバックで実装するのが正しい方法です。OnRequest はリクエスト内容の加工などに使うコールバックであり、そこで毎回 API キーとアプリ識別子を検証する A の案は無効です。</p>
   </div>
 </article><article class="card" id="q28">
   <header class="qhead"><span class="qnum">Q28</span><span class="imgbadge">🖼 画像あり</span></header>
@@ -331,7 +331,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer">
     <p class="ans-line"><b>正解：D</b></p>
-    <p class="expl">一時テーブル＋タイムアウト管理付きタイマーで非同期処理し、繰り返し使うAggregateは別アクションに切り出してキャッシュするのが最も効率的です。</p>
+    <p class="expl">一時テーブルに取り込んでからタイムアウト管理付きの Timer で非同期処理し、繰り返し呼ばれる GetProduct / GetWarehouse の Aggregate は別の Server Action に切り出して結果をキャッシュするのが最も効率的です。ユーザーを待たせず、重複クエリも排除できます。</p>
   </div>
 </article><article class="card" id="q29">
   <header class="qhead"><span class="qnum">Q29</span></header>
@@ -341,7 +341,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer">
     <p class="ans-line"><b>正解：B</b></p>
-    <p class="expl">システムごとに個別統合を作って標準化されたデータに変換し、タイマーで自アプリの主エンティティへ同期するのが疎結合で堅牢です。</p>
+    <p class="expl">外部システムごとに個別の統合を用意してデータを標準形式に変換し、別の Timer がその標準化データを自アプリの主 Entity へ同期する構成が適切です。各統合が独立するため疎結合になり、システムの追加や変更にも強くなります。</p>
   </div>
 </article><article class="card" id="q30">
   <header class="qhead"><span class="qnum">Q30</span></header>
@@ -351,7 +351,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer">
     <p class="ans-line"><b>正解：D</b></p>
-    <p class="expl">リクエスト/レスポンスの本文を記録するには適切なログレベル設定が必要。設定されていないため値が表示されません。</p>
+    <p class="expl">Web サービスのリクエスト/レスポンスの内容までログに記録するには、Service Center で該当統合のログレベルを適切に設定する必要があります。ログレベルが既定のままでは呼び出しの記録は残っても本文の値は表示されません。</p>
   </div>
 </article><article class="card" id="q31">
   <header class="qhead"><span class="qnum">Q31</span><span class="imgbadge">🖼 画像あり</span></header>
@@ -361,7 +361,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer">
     <p class="ans-line"><b>正解：A</b></p>
-    <p class="expl">Container は Visible=False でも要素自体は HTML に出力され CSS で非表示になるだけ。If は False 分岐だと要素自体が HTML に生成されません。</p>
+    <p class="expl">Container の Visible = False は CSS で非表示にするだけなので、ボタンは生成 HTML には含まれたまま画面に表示されません。一方 If は条件が False の分岐の要素を HTML 自体に生成しません。したがって両方とも表示されないが、Container 側だけ HTML に残る A が正解です。</p>
   </div>
 </article><article class="card" id="q32">
   <header class="qhead"><span class="qnum">Q32</span><span class="imgbadge">🖼 画像あり</span></header>
@@ -371,7 +371,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer">
     <p class="ans-line"><b>正解：D</b></p>
-    <p class="expl">サービスアクション(OrderCreate)は独自トランザクションでコミット済みのため、後続の OrderProductsCreate が失敗しても自動では戻りません。補償（ロールバック）ロジックが必要です。</p>
+    <p class="expl">Service Action である OrderCreate は独立したトランザクションで実行され、成功時点でコミット済みです。そのため後続の OrderProductsCreate が失敗しても自動ではロールバックされず、OrderCreate の変更を取り消す補償ロジックを開発者が追加する必要があります。</p>
   </div>
 </article><article class="card" id="q33">
   <header class="qhead"><span class="qnum">Q33</span></header>
@@ -381,7 +381,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer">
     <p class="ans-line"><b>正解：A</b></p>
-    <p class="expl">軽い DB 取得は画面Aggregate（並列取得・非同期描画）に、複数システムからの重いAggregateはデータアクションに分けると、性能と UX の両立ができます。</p>
+    <p class="expl">軽いデータベース取得（口座情報・最新取引）は画面の Aggregate として定義すれば並列取得と非同期描画の恩恵を受けられ、複数の外部システムから集約する重いグラフ計算は Data Action に分けます。この組み合わせが性能と UX の両立に最適です。</p>
   </div>
 </article><article class="card" id="q34">
   <header class="qhead"><span class="qnum">Q34</span><span class="imgbadge">🖼 画像あり</span></header>
@@ -391,7 +391,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer">
     <p class="ans-line"><b>正解：A</b></p>
-    <p class="expl">ラウンドトリップ削減のため、複数クエリはできるだけ 1 つのクエリにまとめるのが性能上有利です。</p>
+    <p class="expl">データベースへのラウンドトリップは性能への影響が大きいため、多少クエリが複雑になっても、複数回のクエリをできるだけ 1 つにまとめるのがベストプラクティスです。Aggregate と Advanced SQL のどちらか一方を常に優先すべきという規則はありません。</p>
   </div>
 </article><article class="card" id="q35">
   <header class="qhead"><span class="qnum">Q35</span></header>
@@ -401,7 +401,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer">
     <p class="ans-line"><b>正解：A</b></p>
-    <p class="expl">アクティブなデータ量を小さく保つため、古い通信を別エンティティにアーカイブし、監査時のみ両方を結合する画面を用意します。</p>
+    <p class="expl">3 か月以上使われていない通信記録を Timer で別のアーカイブ用 Entity へ移動し、アクティブなデータ量を小さく保つのが最良です。記録自体は 5 年保持されるため監査要件も満たせ、監査時には両方の Entity を結合して表示する画面を使います。</p>
   </div>
 </article><article class="card" id="q36">
   <header class="qhead"><span class="qnum">Q36</span></header>
@@ -411,7 +411,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer">
     <p class="ans-line"><b>正解：C</b></p>
-    <p class="expl">破棄の順序は、親画面の OnDestroy がトリガーされた後、ブロックが DOM から削除される前にブロックの OnDestroy が発火します。</p>
+    <p class="expl">破棄時のイベントは親から子の順に伝播します。ブロックの On Destroy は、親画面の On Destroy がトリガーされた後、かつブロックが DOM から削除される前に発火します。</p>
   </div>
 </article><article class="card" id="q37">
   <header class="qhead"><span class="qnum">Q37</span><span class="imgbadge">🖼 画像あり</span></header>
@@ -421,7 +421,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer">
     <p class="ans-line"><b>正解：D</b></p>
-    <p class="expl">Aggregate を（Server Action に包まず）直接使うと、プラットフォームは呼び出し先ごとに実際に使用される属性だけを取得するようクエリを最適化できます。Aggregate を Server Action に隔離すると、呼び出し側が使う列が分からないため全カラムを取得してしまいます。よって最適化の観点から D が正解です。（A の「キャッシュは Aggregate にのみ適用」は誤り。Server Action も Cache in Minutes でキャッシュできます）</p>
+    <p class="expl">Aggregate を画面やアクションで直接使うと、プラットフォームは呼び出し箇所ごとに実際に使用される属性だけを取得するようクエリを自動最適化します。Aggregate を Server Action の中に包むと、呼び出し側がどの列を使うか分からないため全カラムを取得してしまいます。なお A は誤りで、キャッシュは Server Action にも設定できます。</p>
   </div>
 </article><article class="card" id="q38">
   <header class="qhead"><span class="qnum">Q38</span><span class="imgbadge">🖼 画像あり</span></header>
@@ -431,7 +431,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer">
     <p class="ans-line"><b>正解：A</b></p>
-    <p class="expl">END USER / CORE / FOUNDATIONS の 4 レイヤー分割（再利用可能な CORE サービスと共通 Theme を Foundation に）が適切なオプション2が正解です。</p>
+    <p class="expl">END USER / CORE / FOUNDATIONS のレイヤーに分割したオプション2が適切です。再利用可能なビジネスロジックとデータを Core 層に、共通の Theme や外部連携の基盤を Foundation 層に置くことで、将来の自社配達モバイルアプリ追加時にも資産を再利用できます。</p>
   </div>
 </article><article class="card" id="q39">
   <header class="qhead"><span class="qnum">Q39</span><span class="imgbadge">🖼 画像あり</span></header>
@@ -441,7 +441,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer">
     <p class="ans-line"><b>正解：A</b></p>
-    <p class="expl">ループの各反復でサーバーアクションを呼ぶとサーバーラウンドトリップが多発し性能が悪化します。ループ内でのサーバーアクション呼び出しは避けるべきです。</p>
+    <p class="expl">ループの反復ごとに Server Action を呼び出すと、その都度サーバーへのラウンドトリップが発生して性能が大きく悪化します。Client Action のループ内での Server Action 呼び出しは避け、まとめて取得する設計にすべきです。なおエラーにはならないため D は誤りです。</p>
   </div>
 </article>
 <footer>OutSystems O11（Reactive）試験対策 — セット1 ／ 選択肢をクリックすると自己採点できます。</footer>

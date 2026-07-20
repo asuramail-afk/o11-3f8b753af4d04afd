@@ -60,7 +60,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice correct"><span class="lbl">A</span><span class="ctxt">アーカイブされたデータは容量が増え続ける</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">データは自動的に圧縮される</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">データベースのパフォーマンスが向上する</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">アーカイブされたデータはアクセス可能なままである</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">アーカイブは移動であり削除ではないため、パージ（不要になった古いアーカイブの整理）を行わないと、アーカイブカタログの容量が際限なく増え続けます。<br></p></div>
+  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">アーカイブはデータの移動であって削除ではないため、不要になった古いアーカイブを整理するパージを行わないと、アーカイブカタログの容量は増え続けます。</p></div>
 </article><div class="pager"><a href="q10.html">← 前の問題</a><a href="q12.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

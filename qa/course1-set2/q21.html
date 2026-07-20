@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice correct"><span class="lbl">A</span><span class="ctxt">偽。自動的なクエリ最適化を妨げる可能性があるため。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">偽。コードの難読化につながる可能性があるため。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">真。変更箇所が一つになり保守性が向上するため。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">真。実装の詳細を隠す抽象化を促進するため。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">Aggregateをサーバーアクションに包むと、呼び出し元ごとの利用状況に応じたプラットフォームの自動クエリ最適化（使用列だけ取得等）が効かなくなる恐れがあります。よって「常に良い」は偽。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">Aggregate を Server Action 内に分離すると、呼び出し元の画面ごとに使用する列だけを取得するといったプラットフォームの自動クエリ最適化が効かなくなる可能性があります。そのため「常に良い実践」という記述は偽です。</p></div>
 </article><div class="pager"><a href="q20.html">← 前の問題</a><a href="q22.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

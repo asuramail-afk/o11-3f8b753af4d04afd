@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer">
     <p class="ans-line"><b>正解：C</b></p>
-    <p class="expl">ローカル Web サービス（疎結合の参照）を使うと、強い結合（Strong Dependency）を避けられ依存が簡素化されます。</p>
+    <p class="expl">公開アクション（Public な Server Action）の参照は強い結合（コンパイル時依存）を生みますが、ローカル Web サービス経由の呼び出しに置き換えると疎結合になり、Module 間の依存関係を簡素化できます。</p>
   </div>
 </article><div class="pager"><a href="q20.html">← 前の問題</a><a href="q22.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}

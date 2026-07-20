@@ -60,7 +60,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">常にエンティティを個別にクエリし、ループでレコードをマッチさせるのが良い</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">可能なら外部DBのテーブル全体を結合に使うのが常に推奨される。外部DBはこの操作に最適化されている</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">可能なら、結合前に必要最小限のデータを外部DBから取得し、一時エンティティなどを使って行う</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">プラットフォームは、Service Studio定義エンティティが外部DB定義の参照エンティティを参照することを許可していない</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">大量レコードを丸ごと結合するとパフォーマンスが著しく劣化します。ベストプラクティスは、外部DBから必要最小限のデータだけを取得し、一時（ローカル）エンティティ等に落としてから結合することです。<br></p></div>
+  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">何千件もあるテーブルを丸ごと結合するとパフォーマンスが大きく劣化します。ベストプラクティスは、結合前に外部DBから必要最小限のデータだけを取得し、一時的な Entity などに格納してから結合することです。</p></div>
 </article><div class="pager"><a href="q20.html">← 前の問題</a><a href="q22.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

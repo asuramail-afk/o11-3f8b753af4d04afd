@@ -65,7 +65,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">モジュールの変更を監視して反応するタイマーを使う。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">更新時に暗黙的に開始し変更に反応する BPT を作る。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">2つのモジュールを1つにマージする。</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">パブリックアクションの代わりにローカル Web サービスを使う。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">ローカル Web サービス（弱い依存）を使うと、強い結合を避け依存を簡素化できます。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">パブリックアクションの直接参照は強い結合（コンパイル時依存）を生みますが、ローカル Web サービス経由の呼び出しなら弱い依存となり、モジュール間の結合を避けて依存関係を簡素化できます。Timer や BPT で変更を監視する方法は結合の解消にはなりません。</p></div>
 </article><div class="pager"><a href="q5.html">← 前の問題</a><a href="q7.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

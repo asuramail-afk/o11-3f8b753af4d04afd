@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer">
     <p class="ans-line"><b>正解：C</b></p>
-    <p class="expl">破棄の順序は、親画面の OnDestroy がトリガーされた後、ブロックが DOM から削除される前にブロックの OnDestroy が発火します。</p>
+    <p class="expl">破棄時のイベントは親から子の順に伝播します。ブロックの On Destroy は、親画面の On Destroy がトリガーされた後、かつブロックが DOM から削除される前に発火します。</p>
   </div>
 </article><div class="pager"><a href="q35.html">← 前の問題</a><a href="q37.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}

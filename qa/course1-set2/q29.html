@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">関数の戻り値パラメータとして（後でエスケープせず使用、再利用可能）</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">Web画面の JavaScript プロパティ（ブラウザキャッシュを活用できる）</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">Web画面のエスケープなしの式として（一度きり/明示的）</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">モジュールの JavaScript プロパティ（唯一キャッシュできる場所）</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">画面固有の大きなJSは、その画面の JavaScript プロパティに置くと、ブラウザキャッシュが効きます。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">画面で使う大きな JavaScript コードは、その Web 画面の JavaScript プロパティに置くのが最良です。外部スクリプトとして配信されるため、ブラウザキャッシュを活用できます。</p></div>
 </article><div class="pager"><a href="q28.html">← 前の問題</a><a href="q30.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">ユーザーのアクセスを簡素化するため</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">システムのダウンタイムを短縮するため</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">インデックス作成のパフォーマンスを向上させるため</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">データベースの負荷を軽減するため</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">アーカイブは重い処理なので、ピーク外に実行して通常業務時のデータベース負荷を避けます。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">アーカイブは負荷の高い処理のため、非ピーク時間帯に実行することで、業務時間中のデータベース負荷を軽減できます。</p></div>
 </article><div class="pager"><a href="q41.html">← 前の問題</a><a href="q43.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

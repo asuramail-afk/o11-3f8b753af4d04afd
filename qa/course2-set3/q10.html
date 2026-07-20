@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">非競合の変更がマージされ、競合要素は Jane の版が保存され古い版は破棄され、公開される。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">非競合の変更がマージされ、競合要素は古い版が保持され Jane の版は破棄される。</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">比較とマージのウィンドウが開き、Jane が公開前に競合を解決する。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">Service Studio がエラーを出しダイアログが閉じる。Jane はログを分析して修正後に公開する。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">「マージして公開」で Compare and Merge ウィンドウが開き、要素ごとにどちらの版を残すか選んで競合を解決します。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">「マージして公開」を選ぶと Compare and Merge ウィンドウが開き、Jane は競合している要素ごとにどちらのバージョンを残すかを選択して競合を解決したうえで公開できます。自動的に一方の版が破棄されるわけではありません。</p></div>
 </article><div class="pager"><a href="q9.html">← 前の問題</a><a href="q11.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

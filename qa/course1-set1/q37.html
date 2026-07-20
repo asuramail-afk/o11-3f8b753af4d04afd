@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer">
     <p class="ans-line"><b>正解：D</b></p>
-    <p class="expl">Aggregate を（Server Action に包まず）直接使うと、プラットフォームは呼び出し先ごとに実際に使用される属性だけを取得するようクエリを最適化できます。Aggregate を Server Action に隔離すると、呼び出し側が使う列が分からないため全カラムを取得してしまいます。よって最適化の観点から D が正解です。（A の「キャッシュは Aggregate にのみ適用」は誤り。Server Action も Cache in Minutes でキャッシュできます）</p>
+    <p class="expl">Aggregate を画面やアクションで直接使うと、プラットフォームは呼び出し箇所ごとに実際に使用される属性だけを取得するようクエリを自動最適化します。Aggregate を Server Action の中に包むと、呼び出し側がどの列を使うか分からないため全カラムを取得してしまいます。なお A は誤りで、キャッシュは Server Action にも設定できます。</p>
   </div>
 </article><div class="pager"><a href="q36.html">← 前の問題</a><a href="q38.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}

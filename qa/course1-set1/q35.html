@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer">
     <p class="ans-line"><b>正解：A</b></p>
-    <p class="expl">アクティブなデータ量を小さく保つため、古い通信を別エンティティにアーカイブし、監査時のみ両方を結合する画面を用意します。</p>
+    <p class="expl">3 か月以上使われていない通信記録を Timer で別のアーカイブ用 Entity へ移動し、アクティブなデータ量を小さく保つのが最良です。記録自体は 5 年保持されるため監査要件も満たせ、監査時には両方の Entity を結合して表示する画面を使います。</p>
   </div>
 </article><div class="pager"><a href="q34.html">← 前の問題</a><a href="q36.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}

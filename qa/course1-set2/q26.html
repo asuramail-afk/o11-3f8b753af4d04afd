@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">データベース監視の必要性を減らす</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">アーカイブの必要性をなくす</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">すべてのアクティブなデータの保持を保証する</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">アプリケーションのパフォーマンス問題を防ぐ</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">早期にデータ成長を見積もることで、アーカイブ/インデックス設計を先回りでき、将来のパフォーマンス問題を防げます。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">設計段階でデータ成長を予測しておくと、アーカイブやインデックスの設計を先回りして行え、将来のアプリケーションのパフォーマンス問題を防げます。</p></div>
 </article><div class="pager"><a href="q25.html">← 前の問題</a><a href="q27.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

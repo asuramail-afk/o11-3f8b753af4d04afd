@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer">
     <p class="ans-line"><b>正解：D</b></p>
-    <p class="expl">モバイルは別アプリとして作成し、Web アプリの公開アクション・エンティティを再利用します。画面は共有できません。</p>
+    <p class="expl">モバイル版は独自テーマを持つ別アプリとして新規作成し、既存 Web アプリが公開している Server Action と Entity を参照して再利用します。Web アプリの画面はモバイルアプリと共有できないため、画面を利用する A や、既存アプリ内にフローを追加する C は不適切です。</p>
   </div>
 </article><div class="pager"><a href="q3.html">← 前の問題</a><a href="q5.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}

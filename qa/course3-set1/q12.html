@@ -56,7 +56,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <p class="qtext">公開する REST API のセキュリティのベストプラクティスは？</p>
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">API キーを認証のためロジック内にハードコードする。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">全メソッドに『匿名（Anonymous）』ロールを使い統合を容易にする。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">『Internal Access Only』を『No』に設定してセキュリティを確保する。</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">認証（Basic Auth やカスタム OAuth 等）を適用し、SSL/TLS（HTTPS）で全公開エンドポイントを保護する。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">公開 API には適切な認証と HTTPS による通信暗号化が必須。API キーはハードコードせずサイトプロパティ/暗号化エンティティに保存し、Anonymous は機密操作に不適切です。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">公開 REST API には、Basic Auth やカスタム OAuth などの認証と、SSL/TLS（HTTPS）による通信の暗号化が必須です。API キーのハードコードは避けて Site Property や暗号化した Entity に保存し、機密操作に Anonymous ロールを使うのは不適切です。</p></div>
 </article><div class="pager"><a href="q11.html">← 前の問題</a><a href="q13.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

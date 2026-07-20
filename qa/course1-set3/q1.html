@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice correct"><span class="lbl">A</span><span class="ctxt">サービスアクション（Service Action）を作成する</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">タイマーを作成する</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">いずれの選択肢でもない</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">サーバーアクションとエンティティを作成し、消費者向けのロジックを生成する</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">サービスアクション（Service Action）を公開すると、消費者との間に弱い依存（Weak Reference）が確立されます。REST ベースの疎結合になり、プロデューサー側の変更が消費者に強く波及しません。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">Service Action を公開すると、コンシューマーとの間に弱い依存（Weak Reference）が確立されます。実行時に REST ベースで呼び出される疎結合の仕組みのため、プロデューサー側の内部変更がコンシューマーへ強く波及しません。Server Action や Entity の公開は強い依存（Strong Reference）を生みます。</p></div>
 </article><div class="pager"><a class="disabled">←</a><a href="q2.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

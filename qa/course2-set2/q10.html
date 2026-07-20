@@ -65,7 +65,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">毎日短い間隔でスケジュールされ、作業を繰り返さない。</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">タイムアウト制限に達することがなく、最終的に全作業が完了することを保証する。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">スケジュール未定義で、実行時に動的にタイムアウトを調整し一回で全作業を完了する。</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">変更データの整合性を保証し、全作業を完了させるためのタイムアウトを持つ。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B・D</b></p><p class="expl">バッチ用タイマーは、タイムアウトに達しないよう自己再起動（Wake）して全作業完了を保証し（②）、各バッチをコミットしてデータ整合性を保ちます（④）。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B・D</b></p><p class="expl">バッチ処理用の Timer は、タイムアウトに達する前に自らを再起動（Wake）することで最終的に全作業が完了することを保証し（B）、バッチごとにコミットしてタイムアウト時もデータ整合性を保てるようタイムアウトを前提に設計します（D）。スケジュールなしで一回で全件処理する設計はタイムアウトのリスクがあり不適切です。</p></div>
 </article><div class="pager"><a href="q9.html">← 前の問題</a><a href="q11.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

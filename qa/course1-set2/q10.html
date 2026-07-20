@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">高速アーカイブと重いアーカイブ</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">履歴アーカイブと一時的アーカイブ</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">内部アーカイブと外部アーカイブ</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">軽量アーカイブと履歴アーカイブ</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">2種類は「軽量（Light）アーカイブ」と「履歴（Historical）アーカイブ」です。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">言及されている 2 種類のバリアントは、軽量（Light）アーカイブと履歴（Historical）アーカイブです。</p></div>
 </article><div class="pager"><a href="q9.html">← 前の問題</a><a href="q11.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

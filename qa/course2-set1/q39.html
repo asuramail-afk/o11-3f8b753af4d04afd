@@ -60,7 +60,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">City フィールドが null または欠落しているため返されない</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">Structure 内の City フィールドの JSON 名が、API レスポンスの City と同じではない</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">エンドポイントが間違っている</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">API の設定やマッピングに問題があり、City フィールドが正しく埋められない</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">レスポンス Structure の属性名（またはその JSON Name プロパティ）が、実際のAPIレスポンスのキー名と一致していないと、デシリアライズ時にマッピングされず値が空になります。JSON Name を実レスポンスに合わせる必要があります。<br></p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">レスポンス用 Structure の属性名（または JSON Name プロパティ）が、実際のAPIレスポンスのキー名と一致していないと、デシリアライズ時にマッピングされず値が空になります。JSON Name を実際のレスポンスに合わせて修正する必要があります。</p></div>
 </article><div class="pager"><a href="q38.html">← 前の問題</a><a href="q40.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

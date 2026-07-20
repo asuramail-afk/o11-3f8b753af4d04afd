@@ -60,7 +60,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">Service Center でアプリケーションの詳細ページを開き、「Operation」タブで Service Actions のログレベルを設定する</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">ログ詳細レベルは変更できない</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">Service Studio で「Start Debugging」を選び、ログ詳細レベルのドロップダウンで「Troubleshooting」を選択する</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">Service Center で **モジュール**の詳細ページを開き、「Operation」タブで Service Actions のログレベルを設定する</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">ログレベルは Service Center 上で対象**モジュール**の詳細ページ →「Operation」タブから設定します（アプリケーション単位ではなくモジュール単位）。これでリクエストのエラー詳細まで記録できます。<br></p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">Service Actions のログレベルは、Service Center で対象モジュールの詳細ページを開き、「Operation」タブで設定します。アプリケーション単位ではなくモジュール単位の設定である点に注意してください。これでリクエストのエラー詳細まで記録できるようになります。</p></div>
 </article><div class="pager"><a href="q39.html">← 前の問題</a><a href="q41.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

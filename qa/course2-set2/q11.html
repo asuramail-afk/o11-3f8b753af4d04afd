@@ -65,7 +65,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">口座情報と最新取引を1つの画面Aggregateで定義し、残高チャート計算用の Data アクションを作る。</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">口座情報用と最新取引用の2つの画面Aggregateを定義し、残高チャート計算用の Data アクションを作る。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">OnInitialize で3つのサーバーアクション（口座情報・最新取引・残高計算）を呼ぶ。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">口座情報・最新取引・残高チャート計算をすべて1つの Data アクションで定義する。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">軽いDB取得は画面Aggregate（並列取得）に、複数システムからの重いAggregateは Data アクションに分けると、性能とUXを両立できます。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">口座情報と最新取引は軽い DB 取得なので、2つの画面 Aggregate に分けて定義すれば並列に取得され、それぞれが揃い次第表示できます。複数の外部システムを集約する重い残高チャート計算は Data Action に分離することで、画面表示をブロックせず性能と UX を両立できます。</p></div>
 </article><div class="pager"><a href="q10.html">← 前の問題</a><a href="q12.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

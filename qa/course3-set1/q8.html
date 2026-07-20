@@ -56,7 +56,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <p class="qtext">パフォーマンスのため属性『CustomerName』にインデックスを追加します。この変更は Create/Update 操作にどう影響しますか？</p>
   <ul class="choices"><li class="choice correct"><span class="lbl">A</span><span class="ctxt">Create/Update がわずかに遅くなる可能性がある。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">テーブルが大きい場合、公開プロセス中にタイムアウトが発生する。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">Create/Update に影響しない。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">Create/Update が高速化される。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">インデックスは読み取り（SELECT）を高速化する一方、書き込み（INSERT/UPDATE/DELETE）ではインデックス構造の更新が必要なため、わずかに遅くなります（トレードオフ）。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">インデックスは読み取り（SELECT）を高速化する一方、Create/Update/Delete ではインデックス構造の更新が追加で必要になるため、書き込みはわずかに遅くなります。読み取り性能と書き込みコストのトレードオフです。</p></div>
 </article><div class="pager"><a href="q7.html">← 前の問題</a><a href="q9.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

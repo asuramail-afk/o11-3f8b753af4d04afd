@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">For-Each ループ内でレコードを削除し、明示的にコミットして、タイムアウトが発生してもすべてがコミットされていることを保証する。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">タイマーの実行時間を管理し、タイムアウト前に停止する。</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">レコードのバッチを処理してコミットし、各バッチの後に経過時間を制御し、タイムアウトが近づいたらタイマーを再起動する。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">タイマー実行時に常に一定数のレコードだけを処理する。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">バッチ単位で処理してコミットし、各バッチ後に経過時間を監視、タイムアウトが近づいたら自分自身を再起動（Wake Timer）して続きを処理します。これによりタイムアウトを避けつつ全データを確実に処理できます（Q11・Q39と同じ定石）。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">レコードをバッチ単位で処理してコミットし、各バッチの後に経過時間を確認して、タイムアウトが近づいたらタイマーを再起動して続きから処理します。これにより、タイムアウトを回避しつつ全データを確実に処理できます。</p></div>
 </article><div class="pager"><a href="q43.html">← 前の問題</a><a class="disabled">→</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

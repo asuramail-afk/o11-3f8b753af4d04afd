@@ -60,7 +60,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">アーカイブされたデータは即座に削除される</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">アーカイブされたデータは外部にのみ保存される</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">アーカイブされたデータは永続的にアクセスできない</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">アーカイブされたデータは検索・復元が可能</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">ライトアーカイブの特徴は、データを削除せず二次ストレージに残すため、必要に応じて検索・復元ができる点です。<br></p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">ライトアーカイビングの主な特徴は、データを削除せず二次ストレージに保持するため、必要に応じて検索や復元が可能なことです。即時削除やアクセス不能になるわけではありません。</p></div>
 </article><div class="pager"><a href="q12.html">← 前の問題</a><a href="q14.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

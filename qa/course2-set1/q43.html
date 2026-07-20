@@ -60,7 +60,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">HTTP セキュリティ（SSL）を有効にし、パラメータがURLに表示されるのを暗号化する</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">システム内の活動を監査し、情報にアクセスしようとするユーザーを見つけ出す</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">画面遷移時に NAVIGATE の代わりに SUBMIT を使う。POST でパラメータがURLに表示されないから</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">機密情報は、画面の入力パラメータの代わりにセッション変数を使って隠す</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">URLやフォームの隠し項目に置いた値は、クライアント側で改ざん可能です。機密情報は画面の入力パラメータとして持ち回るのではなく、サーバー側のセッション変数に保持することで、クライアントからの改ざんを防げます。<br></p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">URLパラメータやフォームの隠しデータに置いた値は、クライアント側で自由に改ざんできます。機密情報は画面の入力パラメータとして受け渡すのではなく、サーバー側で管理される Session Variable に保持することで改ざんを防げます。SSLは通信経路の暗号化であり、ユーザー自身による値の改ざんは防げません。</p></div>
 </article><div class="pager"><a href="q42.html">← 前の問題</a><a href="q44.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

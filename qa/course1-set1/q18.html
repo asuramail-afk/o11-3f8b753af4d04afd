@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer">
     <p class="ans-line"><b>正解：B</b></p>
-    <p class="expl">バッチ単位で処理し、各バッチ後にタイマーを再起動してタイムアウトを管理・再活性化するのがスケーラブルで確実な方法です。</p>
+    <p class="expl">全件を一度に処理するとタイムアウトするため、Timer でバッチ単位に取得・処理し、各バッチの完了後にタイムアウトを管理しながら Timer を再起動（再ウェイク）して続きを処理するのがスケーラブルで確実な方法です。</p>
   </div>
 </article><div class="pager"><a href="q17.html">← 前の問題</a><a href="q19.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}

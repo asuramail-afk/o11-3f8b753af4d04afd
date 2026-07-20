@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer">
     <p class="ans-line"><b>正解：A</b></p>
-    <p class="expl">軽い DB 取得は画面Aggregate（並列取得・非同期描画）に、複数システムからの重いAggregateはデータアクションに分けると、性能と UX の両立ができます。</p>
+    <p class="expl">軽いデータベース取得（口座情報・最新取引）は画面の Aggregate として定義すれば並列取得と非同期描画の恩恵を受けられ、複数の外部システムから集約する重いグラフ計算は Data Action に分けます。この組み合わせが性能と UX の両立に最適です。</p>
   </div>
 </article><div class="pager"><a href="q32.html">← 前の問題</a><a href="q34.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}

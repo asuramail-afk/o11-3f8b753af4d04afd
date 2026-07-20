@@ -56,7 +56,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <p class="qtext">高トラフィックの Logs テーブル（週100万件増）で、1年以上前のレコードを Logs_Archive に移動後に削除するアーカイブ戦略。最善は？</p>
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">外部ツールが全データを取得し削除命令を送る API を公開する。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">『Create』イベントで BPT を起動し、作成後1年待って移動する。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">単一 SQL の INSERT INTO ... SELECT の後に DELETE を実行する Timer を作る。</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">毎日実行する Timer で古いレコードを限定バッチ（例1000件）ずつ Logs_Archive に挿入・Logs から削除し、各バッチ後にコミットする。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">大量データはタイマー内のバッチ処理が最適。バッチ単位でコミットすることで、タイムアウトやトランザクションログの圧迫・DB ロックを避けつつ安全に移動・削除できます。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">大量データのアーカイブは、Timer による限定バッチ処理（例：1000件ずつ）が最適です。バッチごとにコミットすることで、トランザクションのタイムアウトやログの肥大化、長時間の DB ロックを避けながら安全に移動・削除できます。単一 SQL での一括処理はタイムアウトやロックのリスクが高くなります。</p></div>
 </article><div class="pager"><a href="q2.html">← 前の問題</a><a href="q4.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

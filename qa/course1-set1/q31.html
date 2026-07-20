@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer">
     <p class="ans-line"><b>正解：A</b></p>
-    <p class="expl">Container は Visible=False でも要素自体は HTML に出力され CSS で非表示になるだけ。If は False 分岐だと要素自体が HTML に生成されません。</p>
+    <p class="expl">Container の Visible = False は CSS で非表示にするだけなので、ボタンは生成 HTML には含まれたまま画面に表示されません。一方 If は条件が False の分岐の要素を HTML 自体に生成しません。したがって両方とも表示されないが、Container 側だけ HTML に残る A が正解です。</p>
   </div>
 </article><div class="pager"><a href="q30.html">← 前の問題</a><a href="q32.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}

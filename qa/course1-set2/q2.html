@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice correct"><span class="lbl">A</span><span class="ctxt">LastUpdatedOn（最終更新日時）</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">IsArchived</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">IsActive</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">IsDraft</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">タイムスタンプ方式のアーカイブでは、最終更新日時（LastUpdatedOn）列を基準に、一定期間更新のないレコードをアーカイブ対象と判定します。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">タイムスタンプ方式のアーカイブでは、Entity に LastUpdatedOn（最終更新日時）列を追加し、この値を基準に一定期間更新のないレコードをアーカイブ対象として判定します。</p></div>
 </article><div class="pager"><a href="q1.html">← 前の問題</a><a href="q3.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

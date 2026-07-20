@@ -60,7 +60,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">不必要にインデックス作成が速くなる</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">プライマリカタログの肥大化・遅延を引き起こす</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">アーカイブされたデータにアクセスできなくなる</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">データのアーカイブを妨げる</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">アーカイブの頻度が低すぎたり不適切だと、不要な古いデータがプライマリ（メイン）カタログに残り続け、テーブルが肥大化します。その結果、アクティブなデータへのクエリが遅くなり、パフォーマンスが低下します。<br></p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">アーカイブの周期が不適切（頻度が低すぎるなど）だと、古い不要データがプライマリカタログに残り続けてテーブルが肥大化します。その結果、アクティブデータへのクエリが遅くなり、パフォーマンスが低下します。</p></div>
 </article><div class="pager"><a class="disabled">←</a><a href="q2.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

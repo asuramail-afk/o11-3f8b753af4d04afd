@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer">
     <p class="ans-line"><b>正解：D</b></p>
-    <p class="expl">アーカイブ用エンティティへ移動して主テーブルを小さく保つのが最も高性能。監査時は両方を参照する画面を用意します。</p>
+    <p class="expl">未使用レコードを定期的にアーカイブ用の Entity へ移動する Timer を用意し、メインの Entity を小さく保つのが最も高性能です。すべての記録は保持されるため法的・監査要件も満たせ、必要時には両方の Entity を参照する画面で全データにアクセスできます。</p>
   </div>
 </article><div class="pager"><a href="q4.html">← 前の問題</a><a href="q6.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}

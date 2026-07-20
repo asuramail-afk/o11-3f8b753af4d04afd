@@ -56,7 +56,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <p class="qtext">古いレコードをアーカイブする夜間バッチが必要で、完了に約2時間かかります。最も適した仕組みは？</p>
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">外部スケジューラーから呼ばれる REST API を公開する。</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">スケジュール設定され、コミット/タイムアウトを処理するロジックを持つタイマー。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">ホームページの JavaScript『setInterval』でトリガーされる画面アクション。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">『Wait』アクティビティを含む BPT プロセス。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">Timer は定期バックグラウンドバッチの標準ツール。2時間の長時間実行でも、途中で CommitTransaction 等のチェックポイントを入れて実行タイムアウトを避ければ実現できます。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">定期実行のバックグラウンドバッチには Timer が標準の仕組みです。約2時間かかる処理でも、途中で CommitTransaction などのチェックポイントを入れてバッチ処理すれば、タイムアウトを避けながら完了できます。画面アクションや BPT の Wait はこの用途には適しません。</p></div>
 </article><div class="pager"><a href="q17.html">← 前の問題</a><a href="q19.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

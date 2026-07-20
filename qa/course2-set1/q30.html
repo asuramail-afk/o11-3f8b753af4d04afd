@@ -60,7 +60,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">実行時間を制御し、タイムアウト前に停止させる</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">バッチ処理を行い各バッチをコミットする。各バッチ後に経過時間を監視し、タイムアウト直前になったらタイマーを再起動する</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">毎回固定数のレコードだけを処理する</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">For-Eachループで削除し明示的にコミットして、タイムアウト時に全変更がDBに反映されていることを保証する</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">大量データはバッチ単位で処理・コミットし、各バッチ後に経過時間を監視するのが定石です。タイムアウト直前になったらタイマー自身を「Wake」で再起動し、続きを次回実行に引き継ぐことで、タイムアウトを回避しつつ全件を確実に処理できます。<br></p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">大量データの処理は、バッチ単位で処理してバッチごとにコミットし、各バッチ後に経過時間を監視するのが定石です。タイムアウトが近づいたら Timer 自身を Wake で再起動して続きを次回実行に引き継ぐことで、タイムアウトを回避しつつ全件を確実に処理できます。</p></div>
 </article><div class="pager"><a href="q29.html">← 前の問題</a><a href="q31.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

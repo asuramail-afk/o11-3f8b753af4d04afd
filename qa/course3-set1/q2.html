@@ -56,7 +56,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <p class="qtext">外部 REST API 呼び出しで『Circuit Breaker（サーキットブレーカー）』エラーが出ました。何を意味しますか？</p>
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">リクエストのペイロードサイズが最大許容限界を超えた。</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">外部 API が繰り返し失敗し、OutSystems がリソース枯渇を防ぐため一時的にリクエスト送信を停止した。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">外部 API が 401 Unauthorized を返した。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">外部 API の SSL 証明書が期限切れになった。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">サーキットブレーカーは自動保護機構。タイムアウト等の失敗が閾値を超えると回路を『open』にし、以降の呼び出しを外部に送らず即失敗を返して、リソース枯渇やスレッドブロックを防ぎます。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">Circuit Breaker はプラットフォームの自動保護機構です。外部 API へのタイムアウトなどの失敗が閾値を超えると回路が open になり、以降の呼び出しを外部へ送らず即座に失敗を返すことで、リソース枯渇やスレッドのブロックを防ぎます。</p></div>
 </article><div class="pager"><a href="q1.html">← 前の問題</a><a href="q3.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

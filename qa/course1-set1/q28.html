@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer">
     <p class="ans-line"><b>正解：D</b></p>
-    <p class="expl">一時テーブル＋タイムアウト管理付きタイマーで非同期処理し、繰り返し使うAggregateは別アクションに切り出してキャッシュするのが最も効率的です。</p>
+    <p class="expl">一時テーブルに取り込んでからタイムアウト管理付きの Timer で非同期処理し、繰り返し呼ばれる GetProduct / GetWarehouse の Aggregate は別の Server Action に切り出して結果をキャッシュするのが最も効率的です。ユーザーを待たせず、重複クエリも排除できます。</p>
   </div>
 </article><div class="pager"><a href="q27.html">← 前の問題</a><a href="q29.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}

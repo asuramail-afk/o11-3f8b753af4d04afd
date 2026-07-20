@@ -61,7 +61,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice correct"><span class="lbl">A</span><span class="ctxt">サービスアクション（Service Action）を作成する</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">タイマーを作成する</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">いずれの選択肢でもない</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">サーバーアクションとエンティティを作成し、消費者向けのロジックを生成する</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">サービスアクション（Service Action）を公開すると、消費者との間に弱い依存（Weak Reference）が確立されます。REST ベースの疎結合になり、プロデューサー側の変更が消費者に強く波及しません。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">Service Action を公開すると、コンシューマーとの間に弱い依存（Weak Reference）が確立されます。実行時に REST ベースで呼び出される疎結合の仕組みのため、プロデューサー側の内部変更がコンシューマーへ強く波及しません。Server Action や Entity の公開は強い依存（Strong Reference）を生みます。</p></div>
 </article><article class="card" id="q2">
   <header class="qhead"><span class="qnum">Q2</span></header>
   <p class="qtext">特定のブロックにアクセスする権限があるかを確認するため、OnInitialize イベントで JavaScript ノードを使ってロール（Role）を確認することは可能ですか？</p>
@@ -69,7 +69,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">いいえ。そのブロックが使われている画面でのみチェックボックスを使う。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">いいえ。対象ブロックが使われる画面だけでチェックボックスを使う。</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">はい。OutSystems は JavaScript ノード内で Check&lt;Role&gt; 関数を使用できるため。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">はい。ただし OnReady イベントでのみ（OnInitialize 時点ではデータがないため）。</span></li><li class="choice"><span class="lbl">E</span><span class="ctxt">いいえ。実現できない。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">OutSystems では JavaScript ノード内でも Check&lt;Role&gt;() 関数を呼べるため、OnInitialize でロールを確認できます。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">OutSystems では JavaScript ノード内でも Check&lt;Role&gt; 関数を呼び出せるため、Web Block の OnInitialize イベントでロールを確認できます。OnReady まで待つ必要はありません。</p></div>
 </article><article class="card" id="q3">
   <header class="qhead"><span class="qnum">Q3</span><span class="imgbadge">🖼 画像あり</span></header>
   <p class="qtext">次のフローで、UpdateCustomerDB アクションでエラーが発生した場合、トランザクションはどうなりますか？</p>
@@ -77,7 +77,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">UpdateCustomerExternal の変更はロールバックされるが、UpdateCustomerDB の変更は確定される。</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">UpdateCustomerDB の変更はロールバックされるが、UpdateCustomerExternal の変更はロールバックされない。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">両方の変更が確定される。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">両方の変更がロールバックされる。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">UpdateCustomerExternal は外部システムへの REST 呼び出し（CustomerExternal.UpdateCustomer）で、DBトランザクションの外にあります。よって DB 変更（UpdateCustomerDB）はロールバックされますが、既に実行済みの外部呼び出しは自動では取り消せません（補償処理が別途必要）。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">UpdateCustomerExternal は外部システムへの REST 呼び出しであり、データベーストランザクションの管理外です。そのためエラー発生時、UpdateCustomerDB による DB 変更はロールバックされますが、既に実行された外部呼び出しは自動では取り消されません（取り消すには別途補償処理が必要です）。</p></div>
 </article><article class="card" id="q4">
   <header class="qhead"><span class="qnum">Q4</span></header>
   <p class="qtext">API を利用しているときに、ログがない、または情報が少ないのはなぜですか？</p>
@@ -85,7 +85,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">ログレベルをトラブルシューティング用に設定する必要がある。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">ログレベルはトラブルシューティングに設定されているべきだから。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">どちらの選択肢も正しくない。</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">ログレベルを Full（完全）に変更する必要がある。</span></li><li class="choice"><span class="lbl">E</span><span class="ctxt">エンドポイントが間違っている。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">既定ではリクエスト/レスポンスの詳細は記録されません。ログレベルを Full にすると、API の要求・応答を含む全情報が記録されます。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">既定のログレベルではリクエストやレスポンスの詳細は記録されません。ログレベルを Full に変更すると、API の要求・応答を含む全情報が記録されるようになり、トラブルシューティングに必要な情報を確認できます。</p></div>
 </article><article class="card" id="q5">
   <header class="qhead"><span class="qnum">Q5</span></header>
   <p class="qtext">公開アクションの代わりにローカル Web サービスを使用することは…</p>
@@ -93,7 +93,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">決して許容されない（アクションを消費する方が効率的だから）。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">推奨される（緩い結合を促進するから）。</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">強い結合を避け、依存関係を簡素化するために許容される。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">外部システムに対応する必要がある場合のみ許容される。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">ローカル Web サービス（弱い依存）は、強い結合を避け依存関係を簡素化する目的で許容されます。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">公開アクションの参照は強い依存を生むため、強い結合を避けて依存関係を簡素化する目的であれば、ローカル Web サービス（弱い依存）の利用は許容されます。外部システム連携の場合に限られるわけではありません。</p></div>
 </article><article class="card" id="q6">
   <header class="qhead"><span class="qnum">Q6</span></header>
   <p class="qtext">OutSystems アプリのデータベースの健全性を保つために、保守計画（Maintenance Plan）が重要な理由は？</p>
@@ -101,7 +101,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">データベース内のエンティティ数を減らす。</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">統計情報の更新やインデックスの定期的な再構築などのルーチンを確実に行う。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">アプリの UI を簡素化する。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">ユーザーが古いデータにアクセスできなくなるのを防ぐ。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">保守計画は統計情報の更新やインデックス再構成などの定期ルーチンを保証し、DB のパフォーマンスと健全性を維持します。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">保守計画（Maintenance Plan）は、統計情報の更新やインデックスの定期的な再構築といったルーチン作業の実施を保証し、データベースのパフォーマンスと健全性を維持するために重要です。</p></div>
 </article><article class="card" id="q7">
   <header class="qhead"><span class="qnum">Q7</span></header>
   <p class="qtext">サイトプロパティ（Site Property）について正しい選択肢は？</p>
@@ -109,7 +109,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">エンティティレコードを保存して高速アクセスできる。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">値はユーザーがログアウトするとリセットされる。</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">値を変更するとアプリケーションのキャッシュが無効になる。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">値を変更するとアプリの再公開が必要になる。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">サイトプロパティの値を変更すると、それに依存するキャッシュが無効化されます（頻繁に変更するとキャッシュが頻繁に飛ぶため非効率）。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">Site Property の値を変更すると、それに依存するアプリケーションのキャッシュが無効化されます。このため頻繁に変更する値の保存には不向きです。なお、値の変更に再公開は不要で、ログアウトでリセットされることもありません。</p></div>
 </article><article class="card" id="q8">
   <header class="qhead"><span class="qnum">Q8</span></header>
   <p class="qtext">縦向きスマホなら3列、そうでなければ6列の画面を作りたい。どうすればよいですか？</p>
@@ -117,7 +117,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">6列パターン1つを使う（自動で適応する）。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">6列と3列のパターンを Switch ウィジェットで切り替える。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">ギャラリーパターンで ItemsInPhone を3に設定（他は既定6）。</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">Column 6 パターンを使い、PhoneBehavior プロパティを Entities.BreakColumns.Middle に設定する。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">Column N パターンの PhoneBehavior プロパティで、スマホ表示時のカラム分割（BreakColumns）を制御します。Middle に設定すると 6 列が縦向きスマホで 3 列に分割されます。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">Column 6 パターンの PhoneBehavior プロパティを Entities.BreakColumns.Middle に設定すると、縦向きスマホでは 6 列が中央で分割されて 3 列表示になります。パターンを 2 つ用意して切り替える必要はありません。</p></div>
 </article><article class="card" id="q9">
   <header class="qhead"><span class="qnum">Q9</span><span class="imgbadge">🖼 画像あり</span></header>
   <p class="qtext">次のスクリーンショットのシナリオで、[Merge and Publish（マージして公開）] を選択するとどうなりますか？</p>
@@ -125,7 +125,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">両バージョンから選択した要素と、公開済みバージョンの競合変更がマージされ、公開される。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">選択した要素がマージされ、両バージョンの競合変更は破棄され、公開される。</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">Service Studio から競合解決のメッセージが表示され、競合が解消されるまでマージは実行できない。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">選択した要素とローカルバージョンの競合変更がマージされ、公開される。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">同一要素の競合は自動マージできません。競合が残っている状態では、まず手動で競合を解決するよう求められ、解消するまで公開（マージ）は完了しません。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">同一要素に対する競合は自動ではマージできません。競合が残っている状態で Merge and Publish を選ぶと、Service Studio が競合解決を求めるメッセージを表示し、競合を手動で解消するまでマージ（公開）は実行されません。</p></div>
 </article><article class="card" id="q10">
   <header class="qhead"><span class="qnum">Q10</span></header>
   <p class="qtext">OutSystems アプリのパフォーマンス最適化で、データベースクエリのベストプラクティスは？</p>
@@ -133,7 +133,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice correct"><span class="lbl">A</span><span class="ctxt">必要な列だけを選択してクエリを最適化する。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">インデックスを使わない（パフォーマンスに影響し得るため）。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">全データを取得してクライアント側でフィルタリングする。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">複数の結合を含むクエリで効率化する。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">必要な列（属性）だけを取得することで、転送量とDB負荷を抑えられます。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">必要な列（属性）だけを選択するようクエリを最適化すれば、データ転送量とデータベース負荷を抑えられます。全データを取得してクライアント側で絞り込む方法や、インデックスを使わない方針はパフォーマンスを悪化させます。</p></div>
 </article><article class="card" id="q11">
   <header class="qhead"><span class="qnum">Q11</span><span class="imgbadge">🖼 画像あり</span></header>
   <p class="qtext">CreateInterest サービスアクションのロジックが変更され、Service Center に Interest 作成を記録するようになりました。DB に Interest が作成された際の記録を開始するため、コンシューマーモジュールの更新は必要ですか？</p>
@@ -141,7 +141,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">はい。入力/出力を伴うサービスアクションの変更は常にコンシューマーの更新が必要。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">いいえ。サービスアクションの変更はコンシューマーの更新を必要としない。</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">いいえ。サービスアクションのロジックの変更はコンシューマーの更新を必要としない。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">はい。サービスアクションの変更は常にコンシューマーの更新が必要。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">サービスアクションは弱い依存のため、シグネチャ（入出力）を変えない内部ロジックの変更は、コンシューマー側の参照更新なしに反映されます。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">Service Action は弱い依存のため、入力・出力のシグネチャを変えない内部ロジックの変更であれば、コンシューマーモジュール側の参照更新なしで新しい動作が反映されます。更新が必要になるのはシグネチャが変わった場合です。</p></div>
 </article><article class="card" id="q12">
   <header class="qhead"><span class="qnum">Q12</span></header>
   <p class="qtext">従業員の年間ボーナス情報（数千件）を監査のため5年保存し、期間経過後は不要になります。この不要レコードを毎月まとめて処理（削除）する最良の方法は？</p>
@@ -149,7 +149,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice correct"><span class="lbl">A</span><span class="ctxt">スケジュールタイマーを作り、Advanced SQL 要素で一括削除する。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">スケジュールタイマーを作り、不要レコードを検索してループで1件ずつ削除する。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">IsActive 属性を追加し、タイマーで Advanced SQL の一括更新で False にする。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">新規 Archive エンティティを作り、タイマーで Advanced SQL の一括挿入を行う。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">大量レコードの定期削除は、タイマー＋単一の Advanced SQL による一括 DELETE が最も高性能です（ループ削除は非効率）。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">数千件規模の定期削除では、スケジュールされた Timer から Advanced SQL の一括 DELETE を 1 回実行するのが最も高性能です。ループで 1 件ずつ削除する方法は非効率で、要件上不要なレコードを残す論理削除やアーカイブも適切ではありません。</p></div>
 </article><article class="card" id="q13">
   <header class="qhead"><span class="qnum">Q13</span><span class="imgbadge">🖼 画像あり</span></header>
   <p class="qtext">ダッシュボードで日次エネルギー消費量（EnergyDailyConsumption の Day / ConsumptionKWh）をグラフ表示し、この計算は他所でも再利用予定です。推奨ベストプラクティスに従っているのはどの実装案ですか？</p>
@@ -157,7 +157,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">Solution A</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">Solution B</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">Solution C</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">すべての案がベストプラクティスに従っている。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">Solution C は、必要な属性だけの専用 Structure（DailyConsumption: Day, ConsumptionKWh）を定義して返し、再利用可能なサーバーアクションに切り出しています。巨大なエンティティ全体ではなく必要データだけを扱う点でベストプラクティスに沿います。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">Solution C は、必要な属性（Day と ConsumptionKWh）だけを持つ専用の Structure を定義して返し、その計算を再利用可能な Server Action として切り出しています。Entity 全体を返さず必要なデータだけを扱う点で、ベストプラクティスに沿った実装です。</p></div>
 </article><article class="card" id="q14">
   <header class="qhead"><span class="qnum">Q14</span><span class="imgbadge">🖼 画像あり</span></header>
   <p class="qtext">SyncExtSystemUsers タイマーで大量ユーザーを外部システムと同期します。OutSystems のベストプラクティスに沿ったバッチ処理として不足しているものは？</p>
@@ -165,7 +165,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice correct"><span class="lbl">A</span><span class="ctxt">ローカル変数でタイムアウトを制御し、時間リミットに達したらタイマーを再起動するロジックを持つべき。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">CommitTransaction を頻繁に呼びすぎ。WakeSyncExtSystemUsers の直前に呼ぶべき。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">Timeout in Minutes をより大きな値に設定し、1回で全レコードを処理すべき。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">何も不足していない。既にベストプラクティスに従っている。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">長時間タイマーは、経過時間を監視し、タイムアウトに達する前に自分自身を再起動（Wake Timer）して続きを処理すべきです。Timeout を延ばす対処は根本解決になりません。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">長時間かかる Timer では、Local Variable などで経過時間を監視し、タイムアウトに達する前に自分自身を再起動（Wake）して残りを次回実行で処理するロジックが必要です。Timeout in Minutes を延ばして 1 回で全件処理するのは根本的な解決になりません。</p></div>
 </article><article class="card" id="q15">
   <header class="qhead"><span class="qnum">Q15</span></header>
   <p class="qtext">Service Center のログについて正しいものは？</p>
@@ -173,7 +173,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">Service Center は現在の週と過去9週間のログを、種類ごとに表示する。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">REST API のエラーログは、API リクエストのエラーのみ Integration logs に表示される。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">既定のログレベルで、消費/公開した REST API の全リクエストとレスポンスが記録される。</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">LogMessage サーバーアクションで作成したカスタムログは General logs にのみ表示される。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">LogMessage で出力したカスタムログは General logs に記録されます。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">LogMessage サーバーアクションで作成したカスタムログは General logs にのみ表示されます。なお、既定のログレベルでは REST API の全リクエスト・レスポンスは記録されず、Service Center のログ保持期間は過去 9 週間ではありません。</p></div>
 </article><article class="card" id="q16">
   <header class="qhead"><span class="qnum">Q16</span><span class="imgbadge">🖼 画像あり</span></header>
   <p class="qtext">画面アクションから起動されたタイマーが、一時エンティティの空港 transit データから Traveler レコードを作成します。処理後は一時レコードを削除する必要があり、乗客数が多くタイムアウトしがちです。タイムアウトを避け、作業を繰り返さず全データを処理する方法は？</p>
@@ -181,7 +181,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">各イテレーションで Traveler 作成を確認し、使用した Transit データを即座に削除する。</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">設定可能なバッチで読み込み・処理・コミットし、作業が続く限りバッチを続け、タイムアウトが近づいたらタイマーを起こして終了する。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">タイマーの実行時間を制御し、タイムアウトが近づいたらイテレーションを停止する。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">実行ごとに1000件だけ取得し、タイマー終了時にそれらを削除する。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">バッチ処理＋各バッチ後のコミット、タイムアウトが近づいたら自分を Wake して続きを処理（Wake Timer パターン）が、タイムアウト回避と再処理防止を両立します。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">設定可能なバッチ単位で読み込み・処理し、各バッチ後にコミットして進捗を確定させ、タイムアウトが近づいたら自分自身を Wake して終了する（Wake Timer パターン）方法が最適です。これによりタイムアウトを避けつつ、処理済み分をやり直すことなく全データを処理できます。</p></div>
 </article><article class="card" id="q17">
   <header class="qhead"><span class="qnum">Q17</span></header>
   <p class="qtext">「サイトプロパティは、型が単純な場合に限り、頻繁に変更されるグローバルパラメーターの保存に適している」— 正しい？</p>
@@ -189,7 +189,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice correct"><span class="lbl">A</span><span class="ctxt">いいえ。サイトプロパティの変更には eSpace のキャッシュ無効化が必要で効率的でない。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">はい。値変更はキャッシュだけで行われ非常に高速。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">いいえ。サイトプロパティは単純にも複雑にも使える。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">はい。頻繁に変わる値に設定テーブルを使わないため。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">サイトプロパティの変更はキャッシュ無効化を伴い、頻繁な変更には不向き（非効率）です。よって「頻繁に変更される値の保存に適している」は誤り。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">誤りです。Site Property の値を変更すると eSpace のキャッシュ無効化が発生するため、頻繁に変更されるグローバルパラメーターの保存には非効率で不向きです。Site Property は稀にしか変わらない設定値の保存に適しています。</p></div>
 </article><article class="card" id="q18">
   <header class="qhead"><span class="qnum">Q18</span></header>
   <p class="qtext">プロセスフローの設計において、自動アクティビティ（Automatic Activity）は何によって定義されますか？</p>
@@ -197,7 +197,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">実行完了を待つ必要のない非同期アクション。</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">これらの定義はいずれも正しくない。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">出力パラメータを持たないアクションフロー。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">ユーザーが割り当てられていないヒューマンアクティビティ。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">提示された定義はいずれも正確ではありません。自動アクティビティはサーバーロジック（アクション）を実行するプロセス要素で、非同期・出力なし・ヒューマン未割当といった定義では正しく説明できません。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">提示された定義はいずれも正確ではありません。Automatic Activity はプロセスフロー内でサーバーロジックを実行するアクティビティであり、「非同期アクション」「出力パラメータを持たないフロー」「ユーザー未割り当てのヒューマンアクティビティ」といった説明では正しく定義できません。</p></div>
 </article><article class="card" id="q19">
   <header class="qhead"><span class="qnum">Q19</span></header>
   <p class="qtext">エンティティを静的エンティティ（Static Entity）に変換するとどうなりますか？</p>
@@ -205,7 +205,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">属性を維持し、さらに Order・Label・Is_Active 属性を追加する。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">静的エンティティはインデックスを保持しない。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">Service Studio で全データを埋めた静的エンティティを得られる。</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">Service Studio でエンティティのすべてのデータレコードを取得できる。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">静的エンティティに変換すると、そのレコードはデザイン時に確定し、Service Studio 上で全レコードを取得・参照できるようになります。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">Entity を Static Entity に変換すると、レコードはデザイン時のデータとして扱われ、Service Studio 上でエンティティのすべてのデータレコードを取得・参照できるようになります。既存の属性やインデックスが失われるわけではありません。</p></div>
 </article><article class="card" id="q20">
   <header class="qhead"><span class="qnum">Q20</span></header>
   <p class="qtext">SQL（高度な）クエリを作成する際、パフォーマンス問題を避けるために考慮すべきことは？</p>
@@ -213,7 +213,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">プラットフォームが自動最適化するので選択部分の最適化は不要。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">どの選択肢も該当しない。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">必要なフィールドだけを返す DB ビューを作成してクエリする。</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">返されるフィールドだけを含む特定の出力 Structureを作成する。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">Advanced SQL は自動最適化されないため、返す属性だけを含む出力 Structureを定義し、その列だけを SELECT します。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">Advanced SQL はプラットフォームによる自動最適化の対象外のため、返すフィールドだけを含む専用の出力 Structure を定義し、その列だけを SELECT するのがベストプラクティスです。これにより不要なデータの取得と転送を防げます。</p></div>
 </article><article class="card" id="q21">
   <header class="qhead"><span class="qnum">Q21</span></header>
   <p class="qtext">実行コンテキストに応じて異なる振る舞いをするプロセスがあります。その振る舞いに影響を与えるには？</p>
@@ -221,7 +221,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">最終ユーザーがコンテキストを与えられるよう、プロセスにヒューマンアクティビティを追加する。</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">アクションのように、プロセスに入力パラメータを追加してコンテキストを与える。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">エンティティにデータを保存し、後でアクティビティで取得してコンテキストを与える。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">セッション変数でコンテキストを与える（各プロセスは別セッションのクローンで実行される）。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">BPT プロセスにも入力パラメータを定義でき、起動時にコンテキストを渡して振る舞いを制御できます。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">プロセスにもアクションと同様に入力パラメータを定義でき、起動時にコンテキストを渡して振る舞いを制御できます。プロセスは非同期に実行されるため、Session Variable でコンテキストを渡す方法は機能しません。</p></div>
 </article><article class="card" id="q22">
   <header class="qhead"><span class="qnum">Q22</span></header>
   <p class="qtext">Order を管理するアプリで、各 Order の Description は 2000 文字を超えることもあるテキストです。最適なデータモデルは？</p>
@@ -229,7 +229,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <p class="note">※原資料（O11.txt）はこの設問の正解が欠落（本文が選択肢の直後で終了）しています。上記の正解Dは OutSystems のデータモデリング・ベストプラクティス（大きなテキスト/バイナリは専用エンティティに分離）からの推定です。原文の正解が判明すれば差し替えます。</p>
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">Description を Order エンティティ内に Text 属性として含める。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">Description を外部エンティティに置き、Order と1対多、Binary Data 属性で格納する。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">Description を Order エンティティ内に Binary Data 属性として含める。</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">Description を外部エンティティに置き、Order と1対1、Text 属性で格納する。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">2000 文字超のテキストは本体エンティティを重くするため、別エンティティに 1 対 1 で分離し、Text 属性として保持するのがベストプラクティスです（バイナリ化は不要）。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">2000 文字を超える長いテキストを Order エンティティ本体に含めると、Order を扱うすべてのクエリが重くなります。Description を別エンティティに 1 対 1 で分離し、Text 属性として保持するのがベストプラクティスです。テキストなので Binary Data にする必要はありません。</p></div>
 </article><article class="card" id="q23">
   <header class="qhead"><span class="qnum">Q23</span><span class="imgbadge">🖼 画像あり</span></header>
   <p class="qtext">【シナリオ】外部データベースの顧客情報を更新する POST REST API メソッドについて。インテグレーションチームから「PhoneNumber 属性は null にできません」というエラーの解決を依頼されました。API が Name と生年月日を正しく受け取っていることは確認済みで、PhoneNumber（電話番号）はエンドユーザーが必ず入力する必須フィールドではありません。このエラーをより良く解決する方法は？</p>
@@ -237,7 +237,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">「PhoneNumber」入力パラメータの「Is Mandatory（必須）」プロパティを「Yes」に設定する。</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">REST API の「Send Default Value（デフォルト値を送信）」プロパティを「Yes」に設定する。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">「PhoneNumber」入力パラメータの「Default Value（デフォルト値）」を、何も渡されなかったときに使う標準の電話番号に設定する。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">「OnBeforeRequest」コールバックを使い、何も渡されなかったときに「PhoneNumber」へ標準の電話番号を設定する。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">PhoneNumber は任意入力のため、値が渡されないと API に null が送られ「null にできません」エラーになります。REST API 呼び出しの「Send Default Value」を Yes にすると、値が渡されなかった場合に入力パラメータの既定値が送信され、null の送信を回避できます。任意項目を Is Mandatory=Yes にするのは要件に反するため不適切です。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">PhoneNumber は任意入力のため、値が渡されないと API に null が送信され「null にできません」エラーになります。REST API の Send Default Value プロパティを Yes に設定すると、値が渡されなかった場合に入力パラメータの既定値が送信され、null の送信を回避できます。任意項目を Is Mandatory=Yes にするのは要件に反します。</p></div>
 </article>
 <footer>OutSystems O11（Reactive）試験対策 — セット3 ／ 選択肢をクリックすると自己採点できます。（原資料の重複問題は統合済み）</footer>
 </div>

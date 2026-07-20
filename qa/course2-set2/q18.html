@@ -65,7 +65,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">ClaimBackup に Claim/ClaimDocument の全属性をコピーし、4か月以上前のクローズ済み請求を定期的に移動し、アクセス用の別画面を作る。</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">Claim/ClaimDocument の定義を ClaimBackup/ClaimDocumentBackup に複製し、タイマーで4か月以上前の請求を移動し、アクセス用の別画面を作る。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">検索属性と両エンティティの属性の組み合わせにインデックスを設定し、保存ロジックにタイマーを追加して非同期に保存する。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">Claim/ClaimDocument の全検索属性と組み合わせにインデックスを設定して検索効率を改善する。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">アクティブな主テーブルを小さく保つため、バックアップ用エンティティを複製し、タイマーで一定期間経過したクローズ済み請求を移動（アーカイブ）します。監査時は専用画面で参照します。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">Claim と ClaimDocument の定義をバックアップ用 Entity に複製し、SLA の4か月を過ぎたクローズ済み請求を Timer で定期的に移動することで、アクティブなテーブルを小さく保ち性能を回復できます。監査などでの参照はバックアップ側にアクセスする専用画面で行います。インデックス追加だけではテーブル肥大化の根本対策になりません。</p></div>
 </article><div class="pager"><a href="q17.html">← 前の問題</a><a href="q19.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

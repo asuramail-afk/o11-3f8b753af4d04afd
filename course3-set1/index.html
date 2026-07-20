@@ -53,121 +53,121 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <p class="qtext">稼働中の本番環境でデバッグモードが無効の状態で、フローの特定ポイントの変数値を確認したい。再デプロイせずに行う最も効果的な方法は？</p>
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">ブラウザのデベロッパーツールでサーバー側の変数を直接確認する。</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">Service Center の『一般』または『エラー』ログを確認する（コードに LogMessage を実装している場合）。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">本番から部分的な OML をダウンロードし、ローカル開発環境でデバッグする。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">本番の Service Center でデバッグモードを有効にしデバッガをアタッチする。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">本番ではデバッガをアタッチできません。事前に LogMessage で重要な変数を記録し、Service Center のログで確認するのが定石です。ブラウザツールはサーバー側変数を見られません。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">本番環境ではデバッガをアタッチできないため、あらかじめコードに LogMessage を実装して重要な変数値を記録し、Service Center のログで確認するのが定石です。ブラウザのデベロッパーツールではサーバー側の変数は見えず、デバッグモードの有効化や OML のダウンロードは再デプロイや環境変更を伴うため不適切です。</p></div>
 </article><article class="card" id="q2">
   <header class="qhead"><span class="qnum">Q2</span></header>
   <p class="qtext">外部 REST API 呼び出しで『Circuit Breaker（サーキットブレーカー）』エラーが出ました。何を意味しますか？</p>
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">リクエストのペイロードサイズが最大許容限界を超えた。</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">外部 API が繰り返し失敗し、OutSystems がリソース枯渇を防ぐため一時的にリクエスト送信を停止した。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">外部 API が 401 Unauthorized を返した。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">外部 API の SSL 証明書が期限切れになった。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">サーキットブレーカーは自動保護機構。タイムアウト等の失敗が閾値を超えると回路を『open』にし、以降の呼び出しを外部に送らず即失敗を返して、リソース枯渇やスレッドブロックを防ぎます。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">Circuit Breaker はプラットフォームの自動保護機構です。外部 API へのタイムアウトなどの失敗が閾値を超えると回路が open になり、以降の呼び出しを外部へ送らず即座に失敗を返すことで、リソース枯渇やスレッドのブロックを防ぎます。</p></div>
 </article><article class="card" id="q3">
   <header class="qhead"><span class="qnum">Q3</span></header>
   <p class="qtext">高トラフィックの Logs テーブル（週100万件増）で、1年以上前のレコードを Logs_Archive に移動後に削除するアーカイブ戦略。最善は？</p>
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">外部ツールが全データを取得し削除命令を送る API を公開する。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">『Create』イベントで BPT を起動し、作成後1年待って移動する。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">単一 SQL の INSERT INTO ... SELECT の後に DELETE を実行する Timer を作る。</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">毎日実行する Timer で古いレコードを限定バッチ（例1000件）ずつ Logs_Archive に挿入・Logs から削除し、各バッチ後にコミットする。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">大量データはタイマー内のバッチ処理が最適。バッチ単位でコミットすることで、タイムアウトやトランザクションログの圧迫・DB ロックを避けつつ安全に移動・削除できます。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">大量データのアーカイブは、Timer による限定バッチ処理（例：1000件ずつ）が最適です。バッチごとにコミットすることで、トランザクションのタイムアウトやログの肥大化、長時間の DB ロックを避けながら安全に移動・削除できます。単一 SQL での一括処理はタイムアウトやロックのリスクが高くなります。</p></div>
 </article><article class="card" id="q4">
   <header class="qhead"><span class="qnum">Q4</span></header>
   <p class="qtext">タイマーで 50,000 件のレコードを処理します。トランザクションのタイムアウトエラーを避ける最適な方法は？</p>
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">タイマーの Timeout プロパティを環境の最大値に設定する。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">UI の画面アクションを作り、REST API 経由でタイマーから呼ぶ。</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">小さなバッチに分けて処理し、各バッチ後に明示的に CommitTransaction を呼んでタイムアウトをリセットするループを実装する。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">全 50,000 件を1つのサーバーアクションの For Each で処理し、コミットしない。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">バッチに分けて各バッチ後に CommitTransaction すると、リソースを解放しトランザクションのタイムアウトをリセットできます。Timeout 延長は一時しのぎで、データ増加で結局超過します。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">小さなバッチに分けて処理し、各バッチ後に CommitTransaction を呼ぶことで、リソースが解放されトランザクションのタイムアウトがリセットされます。Timeout プロパティの延長は一時しのぎに過ぎず、データが増えればいずれ上限を超えてしまいます。</p></div>
 </article><article class="card" id="q5">
   <header class="qhead"><span class="qnum">Q5</span></header>
   <p class="qtext">次のうち、サービスアクション（Service Action）を使う正当なケースは？</p>
   <ul class="choices"><li class="choice correct"><span class="lbl">A</span><span class="ctxt">2つのアプリ間でロジックを共有しつつ、緩やかな結合と独立した展開ライフサイクルを維持したい場合。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">SAP などの外部システムにロジックを公開したい場合。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">ロジックを消費モジュールの DB トランザクション内で実行したい場合。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">数学的計算で可能な限り最高の実行速度が必要な場合。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">サービスアクションは内部的に REST ベースで動作する弱い依存。疎結合と独立展開を実現します。外部公開は公開 REST/SOAP、トランザクション参加や高速計算はサーバーアクション（インプロセス）が適します。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">Service Action は内部的に REST ベースで動作する弱い依存関係を作るため、アプリ間でロジックを共有しながら疎結合と独立したデプロイライフサイクルを維持できます。外部システムへの公開には公開 REST/SOAP API を、呼び出し元のトランザクションへの参加や最高速の計算にはインプロセスで動く Server Action を使います。</p></div>
 </article><article class="card" id="q6">
   <header class="qhead"><span class="qnum">Q6</span></header>
   <p class="qtext">複数画面で使うブロック『ProductDetail』がAggregate『GetProduct』でデータを取得。『Load Details』ボタンが押されるまで GetProduct を自動実行しないようにするには？</p>
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">Aggregateの Fetch を『At start』に設定する。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">Aggregateを『If』ウィジェットの中に置く。</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">Aggregateの Fetch を『Only on demand』に設定する。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">Aggregateを削除して『Data Action』を使う。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">Fetch=『Only on demand』にすると自動実行されず、明示的に RefreshAggregate を呼んだとき（例：ボタンクリック）だけ実行されます。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">Aggregate の Fetch を Only on demand に設定すると自動実行されなくなり、ボタンクリックなどで明示的に Refresh Data（RefreshAggregate）を呼んだときにだけデータを取得します。</p></div>
 </article><article class="card" id="q7">
   <header class="qhead"><span class="qnum">Q7</span></header>
   <p class="qtext">開発環境でタイマーのロジックにブレークポイントを設定しました。ブレークポイントをトリガーするには？</p>
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">scheduled 時間を待てば自動的にデバッガが開く。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">スケジューラーがトリガーするタイマー実行は直接デバッグできない。テスト画面のボタン等のフローを作り、その中でタイマーのアクションを明示的に呼ぶ。</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">Service Center の『Run Now』ボタンを使う。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">『Deployment Controller』サービスにデバッガをアタッチする。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">タイマーのアクションにブレークポイントを設定し、Service Studio でモジュールのデバッガを有効化した状態で、Service Center（Monitoring > Timers）の『Run Now』でタイマーを実行するとブレークポイントで停止します（C）。テスト画面から呼ぶ方法（B）は回避策に過ぎません。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">Timer のアクションにブレークポイントを設定し、Service Studio でデバッガを開始した状態で、Service Center（Monitoring &gt; Timers）の Run Now で Timer を実行すればブレークポイントで停止できます。テスト画面からアクションを呼ぶ方法は回避策に過ぎず、スケジュール時刻を待っても自動的にデバッガは起動しません。</p></div>
 </article><article class="card" id="q8">
   <header class="qhead"><span class="qnum">Q8</span></header>
   <p class="qtext">パフォーマンスのため属性『CustomerName』にインデックスを追加します。この変更は Create/Update 操作にどう影響しますか？</p>
   <ul class="choices"><li class="choice correct"><span class="lbl">A</span><span class="ctxt">Create/Update がわずかに遅くなる可能性がある。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">テーブルが大きい場合、公開プロセス中にタイムアウトが発生する。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">Create/Update に影響しない。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">Create/Update が高速化される。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">インデックスは読み取り（SELECT）を高速化する一方、書き込み（INSERT/UPDATE/DELETE）ではインデックス構造の更新が必要なため、わずかに遅くなります（トレードオフ）。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">インデックスは読み取り（SELECT）を高速化する一方、Create/Update/Delete ではインデックス構造の更新が追加で必要になるため、書き込みはわずかに遅くなります。読み取り性能と書き込みコストのトレードオフです。</p></div>
 </article><article class="card" id="q9">
   <header class="qhead"><span class="qnum">Q9</span></header>
   <p class="qtext">Service Center の『Error』ログに『Request Transaction Aborted』が表示されました。最も一般的な原因は？</p>
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">ユーザーがリクエスト処理中にブラウザを閉じた。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">リクエスト処理に10秒以上かかった。</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">ユーザー例外または特定の DB 例外が発生し、適切に処理されずトランザクションがロールバックされた。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">データベースサーバーがオフライン。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">キャッチされない例外がトップレベルに達すると、プラットフォームはデータ整合性のためトランザクションを中断し、『Request Transaction Aborted』を記録します。タイムアウトは別の『Request Timed Out』エラーです。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">適切に処理されなかった例外（ユーザー例外や特定の DB 例外）がトップレベルまで到達すると、プラットフォームはデータ整合性を守るためトランザクションをロールバックし、Request Transaction Aborted としてログに記録します。処理時間の超過は別の Request Timed Out エラーになります。</p></div>
 </article><article class="card" id="q10">
   <header class="qhead"><span class="qnum">Q10</span></header>
   <p class="qtext">モバイルアプリで、DOM が完全に読み込まれウィジェットが操作可能になったときだけロジックを実行したい。使うべきイベントは？</p>
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">OnRender</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">OnParametersChanged</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">OnReady</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">OnInitialize</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">OnReady は画面/ブロックの DOM が準備完了し、全ウィジェットがレンダリングされ JavaScript からアクセス可能になったときに呼ばれます。OnInitialize は DOM レンダリング前です。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">OnReady は画面やブロックの DOM の準備が完了し、すべてのウィジェットがレンダリングされて JavaScript からアクセス可能になった時点で呼ばれます。OnInitialize は DOM のレンダリング前に実行されるため、ウィジェット操作には使えません。</p></div>
 </article><article class="card" id="q11">
   <header class="qhead"><span class="qnum">Q11</span></header>
   <p class="qtext">プロフィール画像を保存前に 200x200 にリサイズします。サーバー負荷を最小にするため、リサイズロジックはどこに実装すべき？</p>
   <ul class="choices"><li class="choice correct"><span class="lbl">A</span><span class="ctxt">Extension を使用したサーバーアクションにリサイズロジックを実装する（標準解）。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">『Image』ウィジェットの Width/Height プロパティで保存前にリサイズする。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">画像をそのまま保存し、表示時にだけリサイズする。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">JavaScript のクライアントアクションで、サーバー送信前にバイナリをリサイズする。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">OutSystems の標準機能に画像リサイズはなく、通常は Extension（Integration Studio の C# コード）や Forge コンポーネントでサーバー側処理します。Image ウィジェットのプロパティは表示のみに影響し、バイナリは変わりません。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">OutSystems の標準機能には画像リサイズがないため、Integration Studio で作成した Extension（C# コード）や Forge コンポーネントを使い、Server Action 内でサーバー側リサイズを行うのが標準的な方法です。Image ウィジェットの Width/Height は表示サイズを変えるだけで、保存されるバイナリは変わりません。</p></div>
 </article><article class="card" id="q12">
   <header class="qhead"><span class="qnum">Q12</span></header>
   <p class="qtext">公開する REST API のセキュリティのベストプラクティスは？</p>
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">API キーを認証のためロジック内にハードコードする。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">全メソッドに『匿名（Anonymous）』ロールを使い統合を容易にする。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">『Internal Access Only』を『No』に設定してセキュリティを確保する。</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">認証（Basic Auth やカスタム OAuth 等）を適用し、SSL/TLS（HTTPS）で全公開エンドポイントを保護する。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">公開 API には適切な認証と HTTPS による通信暗号化が必須。API キーはハードコードせずサイトプロパティ/暗号化エンティティに保存し、Anonymous は機密操作に不適切です。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">公開 REST API には、Basic Auth やカスタム OAuth などの認証と、SSL/TLS（HTTPS）による通信の暗号化が必須です。API キーのハードコードは避けて Site Property や暗号化した Entity に保存し、機密操作に Anonymous ロールを使うのは不適切です。</p></div>
 </article><article class="card" id="q13">
   <header class="qhead"><span class="qnum">Q13</span></header>
   <p class="qtext">結果を10分キャッシュするサーバーアクション（Cache in Minutes = 10）をタイマーの中で呼び出すと何が起こりますか？</p>
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">キャッシュ期間が自動的に倍になりバックグラウンド処理に適用される。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">タイマーは失敗する（キャッシュされたアクションはバックグラウンドで非対応のため）。</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">キャッシングは無視され、そのロジックが毎回実行される。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">アクションは最後のユーザーセッションのキャッシュ値を返す。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">タイマーは実行ごとに独立したシステムセッションで動くため、ユーザーセッションと共有されるキャッシュは跨って再利用されず、実質的にロジックが毎回実行されます。跨る再利用が必要なら分散キャッシュを使います。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">Timer は実行ごとに独立したシステムコンテキストで動作するため、ユーザーリクエスト間で共有されるキャッシュは Timer 実行をまたいで再利用されず、実質的にキャッシングは無視されてロジックが毎回実行されます。実行をまたいだ再利用が必要な場合は分散キャッシュなど別の仕組みを使います。</p></div>
 </article><article class="card" id="q14">
   <header class="qhead"><span class="qnum">Q14</span></header>
   <p class="qtext">リアクティブ Web アプリの Data Action で、『Employees』と『Departments』の2つのリストを返す必要があります。どう実現しますか？</p>
   <ul class="choices"><li class="choice correct"><span class="lbl">A</span><span class="ctxt">Data Action に2つの出力パラメータ（Employees リストと Departments リスト）を追加し、フロー内で割り当てる。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">1つの Data Action は1リストしか返せないため、2つの別々の Data Action を作る。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">両リストを含むStructureを作り、それを唯一の出力パラメータにする。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">Data Action はリストを返せず基本型のみ。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">Aggregateと異なり、Data Action は複数の出力パラメータを持て、各パラメータは任意のデータ型（リスト含む）にできます。Structureで1出力にするのも可能ですが、複数出力の方が直接的です。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">Aggregate と異なり、Data Action は複数の出力パラメータを持つことができ、それぞれをリストを含む任意のデータ型にできます。したがって Employees と Departments の2つのリスト型出力パラメータを追加し、フロー内で Assign すれば十分です。Structure にまとめて1出力にすることも可能ですが、複数出力の方が直接的です。</p></div>
 </article><article class="card" id="q15">
   <header class="qhead"><span class="qnum">Q15</span></header>
   <p class="qtext">エンティティ『Order』と『OrderLine』。Order を削除したとき関連する全 OrderLine も自動削除し孤児を残さないようにするには、OrderLine.OrderId の Delete Rule をどう設定？</p>
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">Nullify（null に設定）</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">Protect（保護）</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">Delete（削除）</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">Ignore（無視）</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">Delete ルールは親（Order）削除時に子（OrderLine）も自動削除するカスケード削除を作り、孤児レコードを防ぎます。Protect は関連子があると親削除を禁止、Nullify は FK を NULL 化します。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">Delete Rule を Delete に設定すると、親の Order を削除したときに関連する OrderLine も自動的に削除されるカスケード削除となり、孤児レコードを防げます。Protect は子レコードが存在する間は親の削除を禁止し、Nullify は外部キーを NULL にするだけで子レコードは残ります。</p></div>
 </article><article class="card" id="q16">
   <header class="qhead"><span class="qnum">Q16</span></header>
   <p class="qtext">サードパーティ REST API 利用時、各リクエストにカスタム認証トークンを HTTP ヘッダーに含めたい。どのコールバックを使う？</p>
   <ul class="choices"><li class="choice correct"><span class="lbl">A</span><span class="ctxt">OnBeforeRequest</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">OnRequestHeader</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">OnAfterResponse</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">OnAuthentication</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">OnBeforeRequest は、リクエストを外部に送信する前に Request オブジェクト（ヘッダー・URL・ボディ）を操作できるため、ここで認証トークンを追加します。OnAfterResponse は受信後なので遅すぎます。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">OnBeforeRequest コールバックは、リクエストが外部に送信される前に Request オブジェクト（ヘッダー・URL・ボディ）を変更できるため、ここで認証トークンをヘッダーに追加します。OnAfterResponse はレスポンス受信後に呼ばれるため、リクエストの改変には使えません。</p></div>
 </article><article class="card" id="q17">
   <header class="qhead"><span class="qnum">Q17</span></header>
   <p class="qtext">リアクティブ Web アプリの画面で Aggregate を使ってデータ取得。データが取得され利用可能になった直後に特定のクライアントアクションを実行したい。どうする？</p>
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">『OnReady』で Aggregate リストが空でないか確認する。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">画面の『OnRender』でクライアントアクションを呼ぶ。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">『OnInitialize』の最後でクライアントアクションを呼ぶ。</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">Aggregate の『On After Fetch』プロパティに目的のクライアントアクションを設定する。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">Aggregate は非同期に動作します。取得完了と連携するには、その Aggregate の『On After Fetch』イベントハンドラを使うのが最適。OnReady/OnInitialize は取得前に走る可能性があります。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">Aggregate のデータ取得は非同期で行われるため、取得完了の直後に処理を実行するには、その Aggregate の On After Fetch イベントにクライアントアクションを設定するのが正解です。OnReady や OnInitialize は取得完了前に実行される可能性があります。</p></div>
 </article><article class="card" id="q18">
   <header class="qhead"><span class="qnum">Q18</span></header>
   <p class="qtext">古いレコードをアーカイブする夜間バッチが必要で、完了に約2時間かかります。最も適した仕組みは？</p>
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">外部スケジューラーから呼ばれる REST API を公開する。</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">スケジュール設定され、コミット/タイムアウトを処理するロジックを持つタイマー。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">ホームページの JavaScript『setInterval』でトリガーされる画面アクション。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">『Wait』アクティビティを含む BPT プロセス。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">Timer は定期バックグラウンドバッチの標準ツール。2時間の長時間実行でも、途中で CommitTransaction 等のチェックポイントを入れて実行タイムアウトを避ければ実現できます。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">定期実行のバックグラウンドバッチには Timer が標準の仕組みです。約2時間かかる処理でも、途中で CommitTransaction などのチェックポイントを入れてバッチ処理すれば、タイムアウトを避けながら完了できます。画面アクションや BPT の Wait はこの用途には適しません。</p></div>
 </article><article class="card" id="q19">
   <header class="qhead"><span class="qnum">Q19</span></header>
   <p class="qtext">リアクティブ Web アプリのブロックに入力パラメータ『EntityId』があります。親画面が EntityId を更新するたびに DB から新データを取得したい。どのライフサイクルイベント？</p>
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">OnReady</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">OnRender</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">OnInitialize</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">OnParametersChanged</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">OnParametersChanged は入力パラメータの値が変わったときにのみ呼ばれるため、親から新しい EntityId が渡されたときのデータ再取得に最適です。OnReady/OnInitialize は初回一度きりです。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">OnParametersChanged は、Web Block の入力パラメータの値が変化したときにだけ呼ばれるイベントです。親画面から新しい EntityId が渡されるたびにデータを再取得する用途に最適で、OnInitialize や OnReady は初回表示時に一度しか実行されません。</p></div>
 </article><article class="card" id="q20">
   <header class="qhead"><span class="qnum">Q20</span></header>
   <p class="qtext">REST API メソッドが JSON ペイロードを受け取ります。クライアントが特定の無効値を送った場合に、400 Bad Request とカスタムエラーメッセージを返すには？</p>
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">標準の DB 例外をスローすると自動的に 400 Bad Request に翻訳される。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">公開 REST API のステータスコードはカスタマイズできない。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">『Assign』で出力パラメータの Status を 400 に設定しフローを終了する。</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">API フロー内で入力を検証し、不正なら HTTPRequestHandler 拡張の SetStatusCode で 400 を設定し、カスタムメッセージとともに User Exception をスローする。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">入力を検証し、不正時は HTTPRequestHandler の SetStatusCode でステータスを 400 にしてから User Exception をスローすると、カスタムエラーメッセージ付きで 400 を返せます。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">API フロー内で入力を検証し、不正な値の場合は HTTPRequestHandler 拡張の SetStatusCode でステータスコードを 400 に設定してから User Exception をスローすると、カスタムエラーメッセージ付きの 400 Bad Request を返せます。公開 REST API のステータスコードはこの方法でカスタマイズ可能です。</p></div>
 </article>
 <footer>OutSystems O11（Reactive）試験対策 — コース3 セット1 ／ 選択肢クリックで自己採点。（重複問題は統合・全問公式裏どり済み）</footer>
 </div>

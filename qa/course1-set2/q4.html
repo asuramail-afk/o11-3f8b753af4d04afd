@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">テーマの定義</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">プロセスフローでユースケースを調整（ワークフロー定義）</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">ダッシュボード付きのホームページ</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">ビジネスログ</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">テーマ/UI/ダッシュボードはEnd-User層、ビジネスログのような業務データ・サービスはCore（コアビジネス）層に属します。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">テーマ、ダッシュボード付きホームページ、ワークフローの UI 調整はエンドユーザー層に属します。ビジネスログのような業務データ・サービスは Core Business 層に置くべき要素です。</p></div>
 </article><div class="pager"><a href="q3.html">← 前の問題</a><a href="q5.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

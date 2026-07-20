@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">6列パターン1つを使う（自動で適応する）。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">6列と3列のパターンを Switch ウィジェットで切り替える。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">ギャラリーパターンで ItemsInPhone を3に設定（他は既定6）。</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">Column 6 パターンを使い、PhoneBehavior プロパティを Entities.BreakColumns.Middle に設定する。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">Column N パターンの PhoneBehavior プロパティで、スマホ表示時のカラム分割（BreakColumns）を制御します。Middle に設定すると 6 列が縦向きスマホで 3 列に分割されます。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">Column 6 パターンの PhoneBehavior プロパティを Entities.BreakColumns.Middle に設定すると、縦向きスマホでは 6 列が中央で分割されて 3 列表示になります。パターンを 2 つ用意して切り替える必要はありません。</p></div>
 </article><div class="pager"><a href="q7.html">← 前の問題</a><a href="q9.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

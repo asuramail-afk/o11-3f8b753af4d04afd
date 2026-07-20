@@ -61,7 +61,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">各実行で最大1000件だけ取得し、終了時にその1000件を削除する。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">既存 transit データから全 Traveler を作成し、都度コミットして使用データを即削除する。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">実行時間を制御し、タイムアウトが近づいたらループを停止する。</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">読み取り可能なバッチを読み込み・処理・コミットし、作業が残る間バッチを続け、タイムアウトが近づいたらタイマーを起こして終了する。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">バッチ処理＋各バッチ後のコミット、タイムアウトが近づいたら自分を Wake して続きを処理（Wake Timer パターン）が、タイムアウト回避と再処理防止を両立します。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">処理可能なサイズのバッチを読み込み・処理し、各バッチ後にコミットしてから、タイムアウトが近づいたら自分自身を Wake して終了する（WakeTimer パターン）のが正解です。これによりタイムアウトを回避しつつ、コミット済みの作業をやり直すことなく全データを処理できます。</p></div>
 </article><article class="card" id="q2">
   <header class="qhead"><span class="qnum">Q2</span></header>
   <p class="qtext">数千件の KPI を含む Excel を処理し、従業員の年次ボーナスを計算します。最良の方法は？</p>
@@ -69,7 +69,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">タイマーを作成し、ロジックはバッチのレコードを取得してから処理する。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">タイマーを作成し、設計時に Timeout を増やし、優先度を Low にする。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">2000件を読み込んでタイマーに送り、Last_Run 属性で次の2000件を呼ぶタイミングを管理する。</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">タイマーを作成し、実行時間を制御して Timeout 前に停止、5分ごとにスケジュールする。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">タイマーで全件処理する際は、実行経過時間を制御し Timeout 前に安全停止して再スケジュールする（soft timeout パターン）のが最良です。単にバッチ取得して処理するだけ（A）ではタイムアウト対策になりません。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">Timer で大量データを処理する際は、実行経過時間を自分で監視して Timeout 前に安全に停止し、再スケジュール（5分ごとなど）で続きを処理するのがベストプラクティスです。単にバッチで取得して処理するだけの A や、設計時の Timeout を延ばす B ではタイムアウトの根本対策になりません。</p></div>
 </article><article class="card" id="q3">
   <header class="qhead"><span class="qnum">Q3</span><span class="imgbadge">🖼 画像あり</span></header>
   <p class="qtext">図のアクションはタイマーでトリガーされます。ロジックを10分間実行し続け、その後に新しいタイマーインスタンスを起動したい。Timeout の Assign と条件は？</p>
@@ -77,7 +77,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">Assign Timeout = AddMinutes(CurrDateTime(),10) / 条件 Timeout &lt; CurrDateTime()</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">Assign Timeout += 10 / 条件 Timeout &lt; CurrDateTime()</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">Assign Timeout += 10 / 条件 CurrDateTime() = Timeout</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">Assign Timeout = AddMinutes(CurrDateTime(),10) / 条件 CurrDateTime() &gt;= Timeout</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">開始時に Timeout = 現在時刻+10分を設定し、ループ内で CurrDateTime() &gt;= Timeout になったら（=10分経過）タイマーを再起動します。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">開始時に Assign で Timeout = AddMinutes(CurrDateTime(), 10) を設定し、ループ内の条件 CurrDateTime() &gt;= Timeout が真になった時点（10分経過）で Timer を再起動して終了します。境界を含む &gt;= 比較なので、ちょうど10分経過した瞬間も確実に検出できます。</p></div>
 </article><article class="card" id="q4">
   <header class="qhead"><span class="qnum">Q4</span><span class="imgbadge">🖼 画像あり</span></header>
   <p class="qtext">旅行代理店アプリで、場所に画像を関連付け、複数の事前定義言語に翻訳された説明を持たせます。最適なデータモデルは？</p>
@@ -85,7 +85,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">シナリオ1：ロケールはテキストコード、場所ごとに画像は1つ、翻訳は複数可。</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">シナリオ3：バイナリ（画像）を分離し、翻訳は静的エンティティの Id でインデックスする。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">シナリオ2と3：プラットフォームが高度なクエリを最適化し未使用時はバイナリを取得しない。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">シナリオ2：翻訳は静的エンティティで強い型付けの恩恵を受ける。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">バイナリ（画像）を別エンティティに分離し（クエリ性能向上）、翻訳は静的エンティティの Id でインデックスするシナリオ3が最適です。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">画像などのバイナリは別 Entity に分離することで本体テーブルのクエリ性能が向上し、事前定義された言語は Static Entity にしてその Id で翻訳をインデックスするのが最適です。この両方を満たすシナリオ3が正解です。</p></div>
 </article><article class="card" id="q5">
   <header class="qhead"><span class="qnum">Q5</span><span class="imgbadge">🖼 画像あり</span></header>
   <p class="qtext">2つのフロントエンド（Mod A・Mod B）と再利用サービスのコア（Mod C）。Mod A が Mod B のロジックを再利用し、両方が Mod C の概念を使う。問題点と改善案は？</p>
@@ -93,7 +93,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">Mod B のロジックを Mod C に移動すべき（A・B が参照でき循環を避けられる）。</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">Mod A が使う Mod B のロジックを新しいコアモジュール（Mod AB）へ移動すべき（A・B が参照し、側面参照を避けられる）。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">問題はない（エンドユーザ層や下位層で側面/下向き依存があるだけ）。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">問題はない（循環依存は存在しない）。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">Mod A→Mod B はフロントエンド間の側面参照（lateral reference）でアンチパターン。共有ロジックを新しいコアモジュール（Mod AB）に切り出し、A・B の双方がそれを参照します。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">Mod A から Mod B への参照はフロントエンドモジュール間の側面参照（lateral reference）で、アーキテクチャ上のアンチパターンです。Mod A が使う Mod B のロジックを新しいコアモジュール（Mod AB）へ切り出し、A・B の両方がそれを参照する形にすれば側面参照を解消できます。B のロジックをすべて Mod C に移す A 案とは異なり、必要な共有部分だけを適切な層に配置できます。</p></div>
 </article><article class="card" id="q6">
   <header class="qhead"><span class="qnum">Q6</span><span class="imgbadge">🖼 画像あり</span></header>
   <p class="qtext">図のアクションはスーパーマーケットの請求書 Excel を処理し Invoice/InvoiceDetails に挿入しますが非効率でタイムアウトします。効率化しタイムアウトを防ぐ代替策は？</p>
@@ -101,7 +101,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">GetProduct/GetWarehouse のAggregateをキャッシュしてリクエストのタイムアウトを避ける。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">タイマーで請求書を非同期挿入し、Aggregateを1つのキャッシュ可能なクエリに変換する。</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">Excel データを一時テーブルに保存し、タイムアウト管理付きタイマーで非同期処理。GetProduct/GetWarehouse Aggregateは別アクションに分離し結果をキャッシュする。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">Excel データを一時テーブルに保存し、タイマーで非同期処理、各反復末尾で CommitTransaction を呼ぶ。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">一時テーブル＋タイムアウト管理付きタイマーで非同期処理し、繰り返し使うAggregateは別アクションに切り出してキャッシュするのが最も効率的です。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">Excel データをまず一時テーブルに保存し、タイムアウト管理付きの Timer で非同期に処理します。さらに、繰り返し実行される GetProduct/GetWarehouse の Aggregate は別の Server Action に分離して結果をキャッシュすることで、反復ごとのクエリ実行を削減できます。この組み合わせが最も効率的でタイムアウトも防げます。</p></div>
 </article><article class="card" id="q7">
   <header class="qhead"><span class="qnum">Q7</span><span class="imgbadge">🖼 画像あり</span></header>
   <p class="qtext">データモデルで Description は1500文字、HighlightedPicture は binary です。Description の部分一致検索のクエリ性能を上げる変更は？</p>
@@ -109,7 +109,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">Property を2分割（一方に基本詳細、もう一方に残り）する。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">HasParking/HasGarage を int 属性に置き換える。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">Description 属性にインデックスを作成する。</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">HighlightedPicture と HighlightedLabel を持つ新しい拡張エンティティを作成する。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">巨大な binary（HighlightedPicture）を別の拡張エンティティに分離すると、本体テーブルが軽くなり部分一致検索のクエリ性能が向上します。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">サイズの大きい binary 属性（HighlightedPicture）を別の拡張 Entity に分離すると、本体テーブルの行が軽くなり、Description の部分一致検索のクエリ性能が向上します。なお部分一致（LIKE）検索ではインデックス作成（C）は効果がありません。</p></div>
 </article><article class="card" id="q8">
   <header class="qhead"><span class="qnum">Q8</span><span class="imgbadge">🖼 画像あり</span></header>
   <p class="qtext">ユーザーが Manager ロールを持たない場合、状況を正しく表す選択肢は？（左=Container、右=If）</p>
@@ -117,7 +117,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">両方のボタンが実行時に表示され、生成 HTML の一部である。</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">どちらも実行時に表示されないが、左（Container）ではボタンは生成 HTML の一部である。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">どちらも実行時に表示されないが、右（If）ではボタンは生成 HTML の一部である。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">どちらも実行時に表示されず、生成 HTML の一部でもない。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">Container は Visible=False でも要素自体は HTML に出力され CSS で非表示になるだけ。If は False 分岐だと要素自体が HTML に生成されません。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">Container の Visible が False の場合、要素自体は HTML に生成され CSS で非表示になるだけです。一方 If は条件が False の分岐の要素を HTML にまったく生成しません。したがって、どちらも画面には表示されないが、Container 側のボタンだけは生成 HTML に含まれる B が正解です。</p></div>
 </article><article class="card" id="q9">
   <header class="qhead"><span class="qnum">Q9</span><span class="imgbadge">🖼 画像あり</span></header>
   <p class="qtext">図のデータモデルと関係について正しい記述は？</p>
@@ -125,7 +125,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice correct"><span class="lbl">A</span><span class="ctxt">患者レコードは、対応する Visit と Disease を先に削除しないと削除できない。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">医師レコードを削除するには、まず対応する Visit を削除する必要がある。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">Visit レコードを削除しても参照整合性は保証され続ける。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">Visit レコードを削除すると、対応する医師レコードも削除される。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">Patient→Visit、Patient→Disease が protect（保護）ルールのため、Patient を消すには先に関連する Visit と Disease を削除する必要があります。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">Patient への外部キーの Delete Rule が Protect のため、関連する Visit と Disease のレコードが存在する限り Patient レコードは削除できません。先にそれらを削除する必要があるという A が正しい記述です。</p></div>
 </article><article class="card" id="q10">
   <header class="qhead"><span class="qnum">Q10</span></header>
   <p class="qtext">Jane がモジュール公開時に「競合があるため公開できません」と表示されました。「マージして公開」を選ぶとどうなりますか？</p>
@@ -133,7 +133,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">非競合の変更がマージされ、競合要素は Jane の版が保存され古い版は破棄され、公開される。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">非競合の変更がマージされ、競合要素は古い版が保持され Jane の版は破棄される。</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">比較とマージのウィンドウが開き、Jane が公開前に競合を解決する。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">Service Studio がエラーを出しダイアログが閉じる。Jane はログを分析して修正後に公開する。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">「マージして公開」で Compare and Merge ウィンドウが開き、要素ごとにどちらの版を残すか選んで競合を解決します。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">「マージして公開」を選ぶと Compare and Merge ウィンドウが開き、Jane は競合している要素ごとにどちらのバージョンを残すかを選択して競合を解決したうえで公開できます。自動的に一方の版が破棄されるわけではありません。</p></div>
 </article><article class="card" id="q11">
   <header class="qhead"><span class="qnum">Q11</span><span class="imgbadge">🖼 画像あり</span></header>
   <p class="qtext">図示されたアクションのパフォーマンスに良い影響を与えるベストプラクティスは？</p>
@@ -141,7 +141,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">出力をキャッシュできるため、可能な限り Aggregates を使うべき。</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">複数のクエリを使う代わりに、可能な限り1つの複雑なクエリにまとめるべき（多少複雑でも）。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">Aggregates を再利用可能な独立したクライアントアクションにリファクタすべき。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">最適化できるため、常に Aggregates の代わりに Advanced SQL を使うべき。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">ループ内で毎回クエリ/サーバーアクションを呼ぶと性能が悪化します。複数クエリはできるだけ1つのクエリにまとめてラウンドトリップを減らすのが有利です。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">ループ内で毎回クエリを実行するとデータベースへのラウンドトリップが増えて性能が悪化します。多少複雑になっても複数のクエリを1つのクエリにまとめて実行回数を減らすのがベストプラクティスです。なおデータベースアクセスは Client Action にはできず（C）、Advanced SQL を常用すべきという D も誤りです。</p></div>
 </article><article class="card" id="q12">
   <header class="qhead"><span class="qnum">Q12</span><span class="imgbadge">🖼 画像あり</span></header>
   <p class="qtext">オンライン食事注文アプリ（顧客・レストラン・外部配達 Web サービス連携、将来は自社配達モバイル、全ユーザー共通の見た目）。適切なアーキテクチャは？</p>
@@ -149,7 +149,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">オプション3</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">オプション1</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">オプション2</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">どの選択肢も正しくない</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">End User / Core / Foundation のレイヤー分割（再利用可能な Core サービスと共通 Theme を Foundation に）が適切なオプション2が正解です。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">End User 層（顧客用・レストラン用の画面）、Core 層（再利用可能なビジネスロジックと外部配達サービス連携）、Foundation 層（全ユーザー共通の Theme など）に正しく分割したオプション2が、推奨アーキテクチャ（Architecture Canvas）に沿った適切な構成です。</p></div>
 </article><article class="card" id="q13">
   <header class="qhead"><span class="qnum">Q13</span><span class="imgbadge">🖼 画像あり</span></header>
   <p class="qtext">Home 画面にインスタンス化された SimpleBlock 内のボタンについて、図の CSS 定義に基づくとどう表示されますか？</p>
@@ -157,7 +157,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice correct"><span class="lbl">A</span><span class="ctxt">オプション1</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">オプション3</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">オプション4</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">オプション2</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">SimpleBlock 側の .Button に !important 付き定義があるため、テーマの他定義より優先され、オプション1で表示されます。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">SimpleBlock 側の CSS にある .Button の定義には !important が付いているため、詳細度や読み込み順に関わらずテーマ側の定義より優先されます。その結果、ボタンはオプション1の見た目で表示されます。</p></div>
 </article><article class="card" id="q14">
   <header class="qhead"><span class="qnum">Q14</span></header>
   <p class="qtext">医療情報フォームの送信で、クライアントアクションが SendForm（サーバーアクション）を呼び、さらに第三者 REST API を呼んで保存します。最も高性能で、かつデータ紛失を防ぐには？</p>
@@ -165,7 +165,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <p class="note">※この設問はコース1セット1 Q6（同一シナリオ）では④『エラーハンドリング＋成功まで再試行』が正解とされ、正解が割れています。単一の確定的な公式定義がない設計判断問題で、実務では②（一時エンティティ＋非同期）も堅牢です。試験の版により正解が異なる点に注意してください。</p>
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">REST API に OnAfterResponse ハンドラを作り、送信されたか利用者に通知する。</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">まず一時エンティティに保存し、タイマーで非同期・小バッチに REST API へ送信する。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">フォームのバリデーションが適切なら SendForm を呼ぶだけで追加対応は不要。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">SendForm にエラーハンドリングフローを設け、エラー時は確実に保存されるまで再試行する。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">（コース1セット1 Q6 と同じ論点）外部REST連携は一時エンティティへ即時保存＋Timer 非同期送信で、高性能とデータ損失防止を両立します。OnAfterResponse 通知（A）は損失防止になりません。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">フォームデータをまず一時 Entity に保存し、Timer で非同期・小バッチに REST API へ送信する方法なら、ユーザーの応答性（高性能）と外部 API 障害時のデータ損失防止を両立できます。OnAfterResponse で通知する A は損失防止にならず、同期的に再試行する D は性能を犠牲にします。</p></div>
 </article><article class="card" id="q15">
   <header class="qhead"><span class="qnum">Q15</span><span class="imgbadge">🖼 画像あり</span></header>
   <p class="qtext">次の Compare and Merge ダイアログについて正しい記述は？</p>
@@ -173,7 +173,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">Company UI フローに Company_Show 画面だけがある。</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">あなたのバージョンは、相手がもう一方のバージョンを公開した後に更新されたので、マージが必要である。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">[マージ]をクリックすると your 版が CheckSuperUserRole を失い、RefreshCaseTable の版が保持され、Company_Show は後でマージが必要。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">Company_Show の両方のチェックボックスを選ぶと、Service Studio が2バージョンをサイドバイサイドで比較表示する。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">競合ダイアログが出るのは、相手が新しい版を公開した後に自分の版を変更したため。両者の変更を突き合わせるためにマージが必要になります。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">Compare and Merge ダイアログが表示されるのは、相手がもう一方のバージョンを公開した後に自分のバージョンを変更したためです。両者の変更が競合している可能性があるため、公開前にマージが必要になります。</p></div>
 </article><article class="card" id="q16">
   <header class="qhead"><span class="qnum">Q16</span><span class="imgbadge">🖼 画像あり</span></header>
   <p class="qtext">図のコードスニペットは Excel ファイルのインポートと処理ロジックを実装しています。正しいものは？</p>
@@ -181,7 +181,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">ImportInvoicesExcel ノードが Excel を ImportedInvoices にマッピングし、Upload Invoices 押下で完了前に Invoice_Process が実行される。</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">ImportedInvoice_Create（CreateImportedInvoices エンティティアクションを呼ぶ）は画面と同じモジュールに定義されておらず、Invoice_Process は別のサーバーリクエストで実行される。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">Invoice_Process はオンデマンド実行できず、ImportedInvoices は読み取り専用である。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">Invoice_Process はボタン押下後に別リクエストで実行され、かつ毎日01:00に実行される。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">エンティティアクションは別モジュール（StockManagementCore）のもので画面と同一モジュールではなく、Invoice_Process はタイマーのため別のサーバーリクエストで非同期実行されます。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">ImportedInvoice_Create が呼び出す CreateImportedInvoices は別モジュール（コアモジュール）で定義された Entity アクションであり、画面と同じモジュールにはありません。また Invoice_Process は Timer によって実行されるため、ボタン押下の画面リクエストとは別のサーバーリクエストで非同期に実行されます。</p></div>
 </article><article class="card" id="q17">
   <header class="qhead"><span class="qnum">Q17</span></header>
   <p class="qtext">API キーとアプリ識別子の2つのキーで認証する REST API を公開します。このシナリオで「正しくない」選択肢は？</p>
@@ -189,7 +189,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">API キーとアプリ識別子のペアを保持するエンティティを作り、認証に使う。</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">REST API 呼び出しのたびに OnRequest コールバックで API キーとアプリ識別子を読み取るロジックを定義する。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">公開する REST API の認証プロパティを Custom に設定する。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">OnAuthentication コールバックで認証キーを検証する。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">認証は OnAuthentication コールバックで実装すべきで、OnRequest で認証を行う案は正しくありません（OnRequest は認証用ではない）。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">公開 REST API のカスタム認証では、認証プロパティを Custom に設定し、OnAuthentication コールバックでキーを検証するのが正しい方法です。OnRequest コールバックはリクエスト内容の加工・検査用であり、認証をそこで行う B の方法は正しくありません。</p></div>
 </article><article class="card" id="q18">
   <header class="qhead"><span class="qnum">Q18</span><span class="imgbadge">🖼 画像あり</span></header>
   <p class="qtext">複数アプリを管理する企業がデプロイに苦労。一部は共通プロデューサーの機能を消費。左＝元、右＝新しい解決策。正しい選択肢は？</p>
@@ -197,7 +197,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice correct"><span class="lbl">A</span><span class="ctxt">元は Customer アプリの公開 Server Actions を消費して密結合でデプロイ困難だった。新解決策は同機能を Service Actions で公開し疎結合化するが、複数リクエスト/トランザクション処理の追加ロジックが必要でコストが増える。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">違いは、元が Server Actions を公開、新が Web サービスを公開する点。Web サービスで独立リリースでき、Customer 変更時にコンシューマ更新が不要になる。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">元は Customer のスクリーンを公開して密結合だった。新は External URLs で公開し疎結合化。この変更に欠点はなく独立リリースでき価値が向上する。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">すべての選択肢が正しい。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">元は Server Actions（強い依存）で密結合。Service Actions（弱い依存）に変えると疎結合・独立リリースが可能になりますが、Service Actions は別トランザクション/リクエストのため失敗時のロールバック等を扱う追加ロジックが必要でコストが増えます。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">元の構成は Customer アプリの公開 Server Actions を消費する強い依存で、密結合となりデプロイが困難でした。Service Actions に変更すると弱い依存となり疎結合化・独立リリースが可能になります。ただし Service Actions は呼び出し元とは別のリクエスト/トランザクションで実行されるため、失敗時の整合性処理など追加ロジックが必要になりコストが増える、という A の記述が正確です。</p></div>
 </article><article class="card" id="q19">
   <header class="qhead"><span class="qnum">Q19</span></header>
   <p class="qtext">消費した Web サービスのログは確認できるが、リクエスト/レスポンスの値が見えません。考えられる原因は？</p>
@@ -205,7 +205,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">Web サービスがエラーをスローしている。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">Service Center のログにはその情報が表示されない。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">Service Studio でリクエスト/レスポンスの値を確認している。</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">問題の Web サービスのログレベルが正しく設定されていない。</span></li><li class="choice"><span class="lbl">E</span><span class="ctxt">Web サービスは環境内のどのアプリも使用していない。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">リクエスト/レスポンスの本文を記録するには適切なログレベル設定が必要です。設定されていないため値が表示されません。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">消費した Web サービスのリクエスト/レスポンスの内容をログに記録するには、Service Center でその Web サービスのログレベルを適切に設定する必要があります。ログレベルが正しく設定されていないため、ログ自体は見えても値が表示されていないと考えられます。</p></div>
 </article><article class="card" id="q20">
   <header class="qhead"><span class="qnum">Q20</span><span class="imgbadge">🖼 画像あり</span></header>
   <p class="qtext">CreateInterest サービスアクションのロジックを変更し、Service Center に Interest レコードの作成を記録するようにしました。DB に Interest が作成された際の記録を開始するため、コンシューマーモジュールの更新は必要ですか？</p>

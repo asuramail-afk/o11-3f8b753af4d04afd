@@ -60,7 +60,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice correct"><span class="lbl">A</span><span class="ctxt">データベースの負荷を軽減するため</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">ユーザーアクセスを簡素化するため</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">インデックスのパフォーマンスを向上させるため</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">システムのダウンタイムを減らすため</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">アーカイブ処理は大量のレコード移動・削除を伴うため負荷が高いです。ユーザー利用の少ないピーク時間外に実行することで、本番アプリへの影響を最小化します。<br></p></div>
+  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">アーカイブ処理は大量のレコードの移動・削除を伴い、データベースに高い負荷をかけます。ユーザー利用の少ないピーク時間外に Timer を実行することで、データベースの負荷を軽減し本番アプリへの影響を最小化できます。</p></div>
 </article><div class="pager"><a href="q8.html">← 前の問題</a><a href="q10.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

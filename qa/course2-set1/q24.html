@@ -60,7 +60,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">必要な属性だけを返すビューを作成してクエリする</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">返される属性だけを含む特定の出力 Structure（Output Structure）を作成する</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">実行時エラーを避けるため SELECT {Entity}.* を使い、パフォーマンスを上げる</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">プラットフォームが自動でSQLを最適化し、使用属性だけをフェッチするので最適化は不要</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">SQLクエリでは、必要な列だけを返す専用の出力 Structureを定義するのがベストです。`.*` で全列を取得すると不要なデータまで転送され、パフォーマンスが低下します。また、Advanced Query はAggregateと異なり自動で属性最適化されません。<br></p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">SQLクエリ（Advanced Query）は Aggregate と違い属性の自動最適化が行われないため、必要な属性だけを含む専用の Output Structure を作成するのがベストプラクティスです。SELECT {Entity}.* で全列を取得すると不要なデータまで転送され、パフォーマンスが低下します。</p></div>
 </article><div class="pager"><a href="q23.html">← 前の問題</a><a href="q25.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

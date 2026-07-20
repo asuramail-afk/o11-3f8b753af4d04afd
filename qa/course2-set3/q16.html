@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">ImportInvoicesExcel ノードが Excel を ImportedInvoices にマッピングし、Upload Invoices 押下で完了前に Invoice_Process が実行される。</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">ImportedInvoice_Create（CreateImportedInvoices エンティティアクションを呼ぶ）は画面と同じモジュールに定義されておらず、Invoice_Process は別のサーバーリクエストで実行される。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">Invoice_Process はオンデマンド実行できず、ImportedInvoices は読み取り専用である。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">Invoice_Process はボタン押下後に別リクエストで実行され、かつ毎日01:00に実行される。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">エンティティアクションは別モジュール（StockManagementCore）のもので画面と同一モジュールではなく、Invoice_Process はタイマーのため別のサーバーリクエストで非同期実行されます。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">ImportedInvoice_Create が呼び出す CreateImportedInvoices は別モジュール（コアモジュール）で定義された Entity アクションであり、画面と同じモジュールにはありません。また Invoice_Process は Timer によって実行されるため、ボタン押下の画面リクエストとは別のサーバーリクエストで非同期に実行されます。</p></div>
 </article><div class="pager"><a href="q15.html">← 前の問題</a><a href="q17.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

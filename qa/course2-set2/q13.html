@@ -65,7 +65,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">Aggregateを Data Action から削除して画面に直接配置し、OnAfterFetch で計算する。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">MaxRecords プロパティを小さくして高速化する。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">計算を非同期で実行し、タイマーで結果をサイトプロパティに保存する。</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">Aggregateの Cache in Minutes を、データがアクセスされる平均時間に設定する。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">頻繁に読まれ結果が概ね一定のAggregateには Cache in Minutes を設定すると、DB負荷を抑え同時アクセス時の性能低下を防げます。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">データが頻繁に変わらないため、Aggregate の Cache in Minutes を適切な時間に設定すれば、キャッシュされた結果が再利用され、数千人の同時アクセスでもデータベースへの問い合わせを大幅に減らせます。MaxRecords の削減や Site Property への保存は適切な解決策ではありません。</p></div>
 </article><div class="pager"><a href="q12.html">← 前の問題</a><a href="q14.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

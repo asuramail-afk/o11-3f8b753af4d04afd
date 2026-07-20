@@ -60,7 +60,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice correct"><span class="lbl">A</span><span class="ctxt">外部データベースまたは OutSystems データベース</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">オンプレミスのサーバーのみ</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">API のみ</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">JSON ファイルのみ</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">OutSystems Cloud では、アーカイブ先として外部データベース、または OutSystems 管理下のデータベースのいずれかを選べます。<br></p></div>
+  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">OutSystems Cloud では、アーカイブデータの保存先として外部データベース、または OutSystems のデータベースのいずれかを選択できます。オンプレミス限定やJSONファイル限定ではありません。</p></div>
 </article><div class="pager"><a href="q17.html">← 前の問題</a><a href="q19.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

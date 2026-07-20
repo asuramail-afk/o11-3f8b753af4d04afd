@@ -65,7 +65,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <p class="note">※【訂正済み】原資料は③『Solution 公開で無限ループ』を正解としていましたが、公式ドキュメント上、モジュールの循環参照は Outdated 警告であり無限ループは発生しません（無限ループはデータソースの自己参照＝Aggregateの問題）。公式準拠の正解は②で、コース1セット1の同一問題とも一致します。</p>
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">A の新バージョンを公開しても B の再公開は不要（A から何も参照しないため）。</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">ソリューションはすべてのモジュールを公開する唯一の方法（『期限切れ』警告は表示されない）。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">ソリューションを生成すると無限ループが発生する。これは循環依存の主な問題である。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">循環依存はない（プロデューサーがコンシューマーを消費していないため）。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">A→B→E→A の循環参照があります。モジュールの循環参照は『Outdated（最新でない）』警告の原因になりますが、Solution でまとめて公開することで警告なく全モジュールを公開できます（②）。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">A→B→E→A という循環参照があるため、どれか1つを個別に公開すると他のモジュールに Outdated（最新でない）警告が発生します。Solution を使えば循環参照するモジュール群を警告なしにまとめて公開できるため、これが唯一の方法です。</p></div>
 </article><div class="pager"><a href="q8.html">← 前の問題</a><a href="q10.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

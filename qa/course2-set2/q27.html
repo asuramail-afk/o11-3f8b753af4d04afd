@@ -65,7 +65,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice correct"><span class="lbl">A</span><span class="ctxt">OrderProductsCreate が失敗した場合、OrderCreate サービスアクションの変更をロールバックする追加ロジックが必要。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">OrderCreate サービスアクションが失敗すると自動でロールバックされ、AddStock は続行しない。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">両アクションはトランザクション処理不要。AddStock は成功するまでリトライする。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">OrderProductsCreate が失敗すると、フロー内の両アクションが自動でロールバックされる。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">サービスアクション（OrderCreate）は独自トランザクションでコミット済みのため、後続の OrderProductsCreate が失敗しても自動では戻りません。補償（ロールバック）ロジックが必要です。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">Service Action は呼び出しごとに独自のトランザクションで実行・コミットされるため、後続の OrderProductsCreate が失敗しても OrderCreate の変更は自動ではロールバックされません。したがって、失敗時に OrderCreate の変更を取り消す補償ロジックを追加で実装する必要があります。</p></div>
 </article><div class="pager"><a href="q26.html">← 前の問題</a><a href="q28.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

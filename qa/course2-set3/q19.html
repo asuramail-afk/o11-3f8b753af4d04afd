@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">Web サービスがエラーをスローしている。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">Service Center のログにはその情報が表示されない。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">Service Studio でリクエスト/レスポンスの値を確認している。</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">問題の Web サービスのログレベルが正しく設定されていない。</span></li><li class="choice"><span class="lbl">E</span><span class="ctxt">Web サービスは環境内のどのアプリも使用していない。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">リクエスト/レスポンスの本文を記録するには適切なログレベル設定が必要です。設定されていないため値が表示されません。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">消費した Web サービスのリクエスト/レスポンスの内容をログに記録するには、Service Center でその Web サービスのログレベルを適切に設定する必要があります。ログレベルが正しく設定されていないため、ログ自体は見えても値が表示されていないと考えられます。</p></div>
 </article><div class="pager"><a href="q18.html">← 前の問題</a><a href="q20.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer">
     <p class="ans-line"><b>正解：A</b></p>
-    <p class="expl">認証は OnAuthentication コールバックで実装すべきで、OnRequest で認証を行う案は無効です。</p>
+    <p class="expl">公開 REST API の認証ロジックは OnAuthentication コールバックで実装するのが正しい方法です。OnRequest はリクエスト内容の加工などに使うコールバックであり、そこで毎回 API キーとアプリ識別子を検証する A の案は無効です。</p>
   </div>
 </article><div class="pager"><a href="q26.html">← 前の問題</a><a href="q28.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}

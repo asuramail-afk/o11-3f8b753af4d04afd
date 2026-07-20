@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice correct"><span class="lbl">A</span><span class="ctxt">ローカル変数でタイムアウトを制御し、時間リミットに達したらタイマーを再起動するロジックを持つべき。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">CommitTransaction を頻繁に呼びすぎ。WakeSyncExtSystemUsers の直前に呼ぶべき。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">Timeout in Minutes をより大きな値に設定し、1回で全レコードを処理すべき。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">何も不足していない。既にベストプラクティスに従っている。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">長時間タイマーは、経過時間を監視し、タイムアウトに達する前に自分自身を再起動（Wake Timer）して続きを処理すべきです。Timeout を延ばす対処は根本解決になりません。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">長時間かかる Timer では、Local Variable などで経過時間を監視し、タイムアウトに達する前に自分自身を再起動（Wake）して残りを次回実行で処理するロジックが必要です。Timeout in Minutes を延ばして 1 回で全件処理するのは根本的な解決になりません。</p></div>
 </article><div class="pager"><a href="q13.html">← 前の問題</a><a href="q15.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

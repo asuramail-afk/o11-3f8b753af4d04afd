@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer">
     <p class="ans-line"><b>正解：B</b></p>
-    <p class="expl">サイトプロパティは基本型（Text/Integer/Boolean など）に限定され、Structure や Record List などの複雑な型は保存できません。よって主張は不正確です。</p>
+    <p class="expl">Site Property に使える型は Text や Integer などの基本型に限定されており、Structure や Record List のような複合型は保存できません。したがって「Structure の保存に良い選択肢」という主張自体が誤りです。</p>
   </div>
 </article><div class="pager"><a href="q6.html">← 前の問題</a><a href="q8.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}

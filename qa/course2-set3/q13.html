@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice correct"><span class="lbl">A</span><span class="ctxt">オプション1</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">オプション3</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">オプション4</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">オプション2</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">SimpleBlock 側の .Button に !important 付き定義があるため、テーマの他定義より優先され、オプション1で表示されます。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">SimpleBlock 側の CSS にある .Button の定義には !important が付いているため、詳細度や読み込み順に関わらずテーマ側の定義より優先されます。その結果、ボタンはオプション1の見た目で表示されます。</p></div>
 </article><div class="pager"><a href="q12.html">← 前の問題</a><a href="q14.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer">
     <p class="ans-line"><b>正解：A</b></p>
-    <p class="expl">タイムアウトするとそのタイマーのトランザクションはロールバックされます。2 番目のタイマー起動（WakeTimer）も同一トランザクション内なので取り消され、実行されません。</p>
+    <p class="expl">Timer がタイムアウトすると、その実行中のトランザクション全体がロールバックされます。アクションによるデータ変更に加え、同一トランザクション内で行われた 2 番目の Timer の起動（WakeTimer）も取り消されるため、2 番目の Timer は実行されません。</p>
   </div>
 </article><div class="pager"><a href="q23.html">← 前の問題</a><a href="q25.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}

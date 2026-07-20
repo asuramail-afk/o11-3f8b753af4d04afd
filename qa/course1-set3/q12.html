@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice correct"><span class="lbl">A</span><span class="ctxt">スケジュールタイマーを作り、Advanced SQL 要素で一括削除する。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">スケジュールタイマーを作り、不要レコードを検索してループで1件ずつ削除する。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">IsActive 属性を追加し、タイマーで Advanced SQL の一括更新で False にする。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">新規 Archive エンティティを作り、タイマーで Advanced SQL の一括挿入を行う。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">大量レコードの定期削除は、タイマー＋単一の Advanced SQL による一括 DELETE が最も高性能です（ループ削除は非効率）。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">数千件規模の定期削除では、スケジュールされた Timer から Advanced SQL の一括 DELETE を 1 回実行するのが最も高性能です。ループで 1 件ずつ削除する方法は非効率で、要件上不要なレコードを残す論理削除やアーカイブも適切ではありません。</p></div>
 </article><div class="pager"><a href="q11.html">← 前の問題</a><a href="q13.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

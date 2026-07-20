@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer">
     <p class="ans-line"><b>正解：C</b></p>
-    <p class="expl">「NULL 値を維持する」= 外部 DB 側は NULL のまま保存され、OutSystems エンティティ上では Integration Builder の既定値で表現されます。</p>
+    <p class="expl">「データベースの NULL 値を維持する」を選ぶと、外部データベース側では値が NULL のまま保存され、OutSystems の Entity 上では Integration Builder のデフォルト値として表現されます。つまり保存時に NULL がデフォルト値へ書き換えられることはありません。</p>
   </div>
 </article><div class="pager"><a href="q1.html">← 前の問題</a><a href="q3.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}

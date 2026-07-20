@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice correct"><span class="lbl">A</span><span class="ctxt">自動化アクティビティは自動的にスケジュールできない。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">自動化アクティビティにはコールバックアクションがない。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">自動化アクティビティは成功条件では実行されない。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">BPT のコールバックアクション（On Ready/On Start/On Close など）は Conditional Start・Human Activity・Wait にのみ適用され、Automatic Activity には元々ありません（＝B は正しい記述）。Automatic Activity はフロー到達時にプロセスエンジンが自動実行するため、A『自動的にスケジュールできない』が誤った記述で、これが正解です。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">Automatic Activity はプロセスフローが到達した時点でプロセスエンジンが自動的にスケジュール・実行するため、A の「自動的にスケジュールできない」が誤った記述であり、これが正解です。なお、コールバックアクション（On Ready や On Close など）を持たないという B は正しい記述です。</p></div>
 </article><div class="pager"><a href="q2.html">← 前の問題</a><a href="q4.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

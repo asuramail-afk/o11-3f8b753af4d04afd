@@ -56,7 +56,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <p class="qtext">次のうち、サービスアクション（Service Action）を使う正当なケースは？</p>
   <ul class="choices"><li class="choice correct"><span class="lbl">A</span><span class="ctxt">2つのアプリ間でロジックを共有しつつ、緩やかな結合と独立した展開ライフサイクルを維持したい場合。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">SAP などの外部システムにロジックを公開したい場合。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">ロジックを消費モジュールの DB トランザクション内で実行したい場合。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">数学的計算で可能な限り最高の実行速度が必要な場合。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">サービスアクションは内部的に REST ベースで動作する弱い依存。疎結合と独立展開を実現します。外部公開は公開 REST/SOAP、トランザクション参加や高速計算はサーバーアクション（インプロセス）が適します。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">Service Action は内部的に REST ベースで動作する弱い依存関係を作るため、アプリ間でロジックを共有しながら疎結合と独立したデプロイライフサイクルを維持できます。外部システムへの公開には公開 REST/SOAP API を、呼び出し元のトランザクションへの参加や最高速の計算にはインプロセスで動く Server Action を使います。</p></div>
 </article><div class="pager"><a href="q4.html">← 前の問題</a><a href="q6.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

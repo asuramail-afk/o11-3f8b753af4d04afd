@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">最終ユーザーがコンテキストを与えられるよう、プロセスにヒューマンアクティビティを追加する。</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">アクションのように、プロセスに入力パラメータを追加してコンテキストを与える。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">エンティティにデータを保存し、後でアクティビティで取得してコンテキストを与える。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">セッション変数でコンテキストを与える（各プロセスは別セッションのクローンで実行される）。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">BPT プロセスにも入力パラメータを定義でき、起動時にコンテキストを渡して振る舞いを制御できます。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">プロセスにもアクションと同様に入力パラメータを定義でき、起動時にコンテキストを渡して振る舞いを制御できます。プロセスは非同期に実行されるため、Session Variable でコンテキストを渡す方法は機能しません。</p></div>
 </article><div class="pager"><a href="q20.html">← 前の問題</a><a href="q22.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

@@ -56,7 +56,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <p class="qtext">プロフィール画像を保存前に 200x200 にリサイズします。サーバー負荷を最小にするため、リサイズロジックはどこに実装すべき？</p>
   <ul class="choices"><li class="choice correct"><span class="lbl">A</span><span class="ctxt">Extension を使用したサーバーアクションにリサイズロジックを実装する（標準解）。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">『Image』ウィジェットの Width/Height プロパティで保存前にリサイズする。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">画像をそのまま保存し、表示時にだけリサイズする。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">JavaScript のクライアントアクションで、サーバー送信前にバイナリをリサイズする。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">OutSystems の標準機能に画像リサイズはなく、通常は Extension（Integration Studio の C# コード）や Forge コンポーネントでサーバー側処理します。Image ウィジェットのプロパティは表示のみに影響し、バイナリは変わりません。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">OutSystems の標準機能には画像リサイズがないため、Integration Studio で作成した Extension（C# コード）や Forge コンポーネントを使い、Server Action 内でサーバー側リサイズを行うのが標準的な方法です。Image ウィジェットの Width/Height は表示サイズを変えるだけで、保存されるバイナリは変わりません。</p></div>
 </article><div class="pager"><a href="q10.html">← 前の問題</a><a href="q12.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

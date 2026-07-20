@@ -56,7 +56,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <p class="qtext">リアクティブ Web アプリのブロックに入力パラメータ『EntityId』があります。親画面が EntityId を更新するたびに DB から新データを取得したい。どのライフサイクルイベント？</p>
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">OnReady</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">OnRender</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">OnInitialize</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">OnParametersChanged</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">OnParametersChanged は入力パラメータの値が変わったときにのみ呼ばれるため、親から新しい EntityId が渡されたときのデータ再取得に最適です。OnReady/OnInitialize は初回一度きりです。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">OnParametersChanged は、Web Block の入力パラメータの値が変化したときにだけ呼ばれるイベントです。親画面から新しい EntityId が渡されるたびにデータを再取得する用途に最適で、OnInitialize や OnReady は初回表示時に一度しか実行されません。</p></div>
 </article><div class="pager"><a href="q18.html">← 前の問題</a><a href="q20.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

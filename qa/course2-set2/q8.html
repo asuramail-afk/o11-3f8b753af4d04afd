@@ -65,7 +65,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">BPT_API の ActivityOpen で、タスクボックス内の Human Activity インスタンスを明示的に開く。</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">BPT_API の ActivitySetGroup で、特定グループのエンドユーザーだけに表示・取り扱いを制限する。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">プラットフォームは表示定義を変更できるが、上記の回答は正しくない。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">BPT で定義後は、プラットフォームは表示定義を変更できない。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">ActivitySetGroup を使うと、Human Activity を特定グループのユーザーに割り当て・制限できます。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">BPT_API の ActivitySetGroup を使うと、Human Activity を特定グループに割り当て、そのグループのエンドユーザーだけがタスクボックスで表示・処理できるように制限できます。これが Human Activity の取り扱いを変更する正しい方法です。</p></div>
 </article><div class="pager"><a href="q7.html">← 前の問題</a><a href="q9.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

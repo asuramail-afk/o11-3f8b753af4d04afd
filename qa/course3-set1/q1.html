@@ -56,7 +56,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <p class="qtext">稼働中の本番環境でデバッグモードが無効の状態で、フローの特定ポイントの変数値を確認したい。再デプロイせずに行う最も効果的な方法は？</p>
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">ブラウザのデベロッパーツールでサーバー側の変数を直接確認する。</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">Service Center の『一般』または『エラー』ログを確認する（コードに LogMessage を実装している場合）。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">本番から部分的な OML をダウンロードし、ローカル開発環境でデバッグする。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">本番の Service Center でデバッグモードを有効にしデバッガをアタッチする。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">本番ではデバッガをアタッチできません。事前に LogMessage で重要な変数を記録し、Service Center のログで確認するのが定石です。ブラウザツールはサーバー側変数を見られません。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">本番環境ではデバッガをアタッチできないため、あらかじめコードに LogMessage を実装して重要な変数値を記録し、Service Center のログで確認するのが定石です。ブラウザのデベロッパーツールではサーバー側の変数は見えず、デバッグモードの有効化や OML のダウンロードは再デプロイや環境変更を伴うため不適切です。</p></div>
 </article><div class="pager"><a class="disabled">←</a><a href="q2.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">オプション3</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">オプション1</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">オプション2</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">どの選択肢も正しくない</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">End User / Core / Foundation のレイヤー分割（再利用可能な Core サービスと共通 Theme を Foundation に）が適切なオプション2が正解です。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">End User 層（顧客用・レストラン用の画面）、Core 層（再利用可能なビジネスロジックと外部配達サービス連携）、Foundation 層（全ユーザー共通の Theme など）に正しく分割したオプション2が、推奨アーキテクチャ（Architecture Canvas）に沿った適切な構成です。</p></div>
 </article><div class="pager"><a href="q11.html">← 前の問題</a><a href="q13.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer">
     <p class="ans-line"><b>正解：B</b></p>
-    <p class="expl">開始時に Timeout = 現在時刻+10分 を設定し、ループ内で CurrDateTime() &gt;= Timeout になったら（=10分経過）タイマーを再起動します。</p>
+    <p class="expl">開始時の Assign で Timeout = AddMinutes(CurrDateTime(), 10) と終了予定時刻を設定し、ループ内の条件で CurrDateTime() &gt;= Timeout を判定します。現在時刻が Timeout に達したら 10 分経過とみなしてループを抜け、次の Timer インスタンスを起動します。</p>
   </div>
 </article><div class="pager"><a href="q13.html">← 前の問題</a><a href="q15.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}

@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">Assign Timeout = AddMinutes(CurrDateTime(),10) / 条件 Timeout &lt; CurrDateTime()</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">Assign Timeout += 10 / 条件 Timeout &lt; CurrDateTime()</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">Assign Timeout += 10 / 条件 CurrDateTime() = Timeout</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">Assign Timeout = AddMinutes(CurrDateTime(),10) / 条件 CurrDateTime() &gt;= Timeout</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">開始時に Timeout = 現在時刻+10分を設定し、ループ内で CurrDateTime() &gt;= Timeout になったら（=10分経過）タイマーを再起動します。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">開始時に Assign で Timeout = AddMinutes(CurrDateTime(), 10) を設定し、ループ内の条件 CurrDateTime() &gt;= Timeout が真になった時点（10分経過）で Timer を再起動して終了します。境界を含む &gt;= 比較なので、ちょうど10分経過した瞬間も確実に検出できます。</p></div>
 </article><div class="pager"><a href="q2.html">← 前の問題</a><a href="q4.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

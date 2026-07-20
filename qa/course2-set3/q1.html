@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">各実行で最大1000件だけ取得し、終了時にその1000件を削除する。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">既存 transit データから全 Traveler を作成し、都度コミットして使用データを即削除する。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">実行時間を制御し、タイムアウトが近づいたらループを停止する。</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">読み取り可能なバッチを読み込み・処理・コミットし、作業が残る間バッチを続け、タイムアウトが近づいたらタイマーを起こして終了する。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">バッチ処理＋各バッチ後のコミット、タイムアウトが近づいたら自分を Wake して続きを処理（Wake Timer パターン）が、タイムアウト回避と再処理防止を両立します。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">処理可能なサイズのバッチを読み込み・処理し、各バッチ後にコミットしてから、タイムアウトが近づいたら自分自身を Wake して終了する（WakeTimer パターン）のが正解です。これによりタイムアウトを回避しつつ、コミット済みの作業をやり直すことなく全データを処理できます。</p></div>
 </article><div class="pager"><a class="disabled">←</a><a href="q2.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

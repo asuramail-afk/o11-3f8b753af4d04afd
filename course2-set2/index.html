@@ -62,7 +62,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">決して起きない（ブロックは OnDestroy をトリガーしない）。</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">親画面の OnDestroy がトリガーされた後、かつブロックが DOM から削除される前。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">親画面の OnDestroy がトリガーされる前、かつブロックが DOM から削除される前。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">ブロックと画面の両方が DOM から削除された後。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">OnDestroy はトップダウン（まず画面、次にブロック）でトリガーされ、ブロックの OnDestroy は親画面の OnDestroy の後、かつブロックが DOM から削除される前に発生します。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">OnDestroy はトップダウンで発火するため、Web Block の OnDestroy は親画面の OnDestroy の後、かつその Web Block が DOM から削除される前にトリガーされます。DOM 削除後ではない点に注意してください。</p></div>
 </article><article class="card" id="q2">
   <header class="qhead"><span class="qnum">Q2</span></header>
   <p class="qtext">Service Center の一般ログ（General Logs）には次のうちどれが記録されますか？</p>
@@ -70,7 +70,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">データベース例外と画面アクセスによって作られたログ</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">LogMessage アクションで作られたログと遅いクエリ</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">遅いクエリとタイマー実行の持続時間</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">画面アクセスとユーザーログイン</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">General Logs には LogMessage アクションの出力と遅いクエリ（Slow Queries）が記録されます。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">Service Center の General Logs に記録されるのは、LogMessage アクションで出力したログと Slow Queries（遅いクエリ）です。データベース例外や画面アクセスは別のログ（Error Logs や Screen Requests など）に記録されます。</p></div>
 </article><article class="card" id="q3">
   <header class="qhead"><span class="qnum">Q3</span></header>
   <p class="qtext">アプリが複数の異なる外部システムから情報を収集する必要がある場合、どうしますか？</p>
@@ -78,7 +78,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">すべての外部システムが共通の Web サービス API を提供し、アプリが動的に呼び出す。</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">各システムに個別の統合があり正規化データを提供。別タイマーが正規化データをコアエンティティに同期する。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">すべての外部システムをプラットフォーム外で相互統合してからアプリに統合する。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">各外部システムが情報を格納する別々のコアエンティティを持つ。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">システムごとに個別統合を用意して正規化（標準化）データに変換し、タイマーでコアエンティティへ同期するのが疎結合で堅牢です。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">外部システムごとに個別の統合を用意してデータを正規化し、別の Timer で正規化済みデータをコアの Entity に同期するのが最適です。統合とコアデータを分離することで疎結合になり、外部システムの変更や障害の影響を局所化できます。</p></div>
 </article><article class="card" id="q4">
   <header class="qhead"><span class="qnum">Q4</span></header>
   <p class="qtext">デバッグ中、プロデューサーモジュールのエンティティ一覧にコンシューマーモジュールが表示されない正当な理由は？</p>
@@ -86,7 +86,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">プロデューサーモジュールで依存関係を更新する必要がある。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">コンシューマーモジュールにブレークポイントが設定されていない。</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">コンシューマーモジュールで依存関係を更新する必要がある。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">コンシューマーモジュールが UI モジュールでない/ホームに設定されていない。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">参照（依存関係）はコンシューマー側で更新（Refresh）する必要があります。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">Reference（依存関係）の更新はコンシューマー側で行うものです。コンシューマーモジュールで依存関係を Refresh していないと、デバッガーのエンティティ一覧に正しく表示されません。プロデューサー側の更新やブレークポイントの有無は関係ありません。</p></div>
 </article><article class="card" id="q5">
   <header class="qhead"><span class="qnum">Q5</span></header>
   <p class="qtext">統合ビルダーの NULL 処理で「keep database NULLs（NULL を保持）」は何を意味しますか？</p>
@@ -94,7 +94,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">NULL は外部DBから NULL として取得され、統合ビルダーの既定値とともに保存される。</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">NULL は外部DBから取得され NULL として保存されるが、OutSystems エンティティでは統合ビルダーの既定値で表される。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">NULL はそのまま NULL として保存され、ランタイムで保持され既定値に変換されない。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">NULL は外部DBから取得され、統合ビルダーの既定値として保存される。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">DB 側は NULL のまま保持され、OutSystems エンティティ上では統合ビルダーの既定値で表現されます。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">keep database NULLs では、値は外部データベースに NULL のまま保存・保持されますが、OutSystems の Entity 上では NULL を扱えないため Integration Builder が定めた既定値として表現されます。DB 側の NULL が既定値に書き換えられるわけではありません。</p></div>
 </article><article class="card" id="q6">
   <header class="qhead"><span class="qnum">Q6</span></header>
   <p class="qtext">強い結合を避け、依存関係を簡素化するには？</p>
@@ -102,7 +102,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">モジュールの変更を監視して反応するタイマーを使う。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">更新時に暗黙的に開始し変更に反応する BPT を作る。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">2つのモジュールを1つにマージする。</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">パブリックアクションの代わりにローカル Web サービスを使う。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">ローカル Web サービス（弱い依存）を使うと、強い結合を避け依存を簡素化できます。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">パブリックアクションの直接参照は強い結合（コンパイル時依存）を生みますが、ローカル Web サービス経由の呼び出しなら弱い依存となり、モジュール間の結合を避けて依存関係を簡素化できます。Timer や BPT で変更を監視する方法は結合の解消にはなりません。</p></div>
 </article><article class="card" id="q7">
   <header class="qhead"><span class="qnum">Q7</span></header>
   <p class="qtext">統合ビルダーで外部 SQL Server DB と連携し、その外部エンティティで「できない」操作はどれですか？</p>
@@ -110,7 +110,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">エンティティ作成/削除アクションで外部エンティティのレコードを作成・削除する。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">画面で外部エンティティを源とするAggregateを作り、テーブルウィジェットのソースにする。</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">外部エンティティとアプリ内で定義したエンティティを結合（Join）する。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">高度なSQL要素の出力エンティティ/Structureとして外部エンティティを使う。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">外部エンティティと（別カタログ/スキーマの）プラットフォームエンティティを直接結合することはできません。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">Integration Builder 経由の外部 Entity は別データベース（カタログ/スキーマ）にあるため、アプリ内で定義した Entity と Aggregate で直接 Join することはできません。レコードの作成・削除、Aggregate のソースとしての利用、Advanced SQL の出力としての利用はいずれも可能です。</p></div>
 </article><article class="card" id="q8">
   <header class="qhead"><span class="qnum">Q8</span></header>
   <p class="qtext">Human Activity の表示・取り扱いを変更したい。どうすればよいですか？</p>
@@ -118,7 +118,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">BPT_API の ActivityOpen で、タスクボックス内の Human Activity インスタンスを明示的に開く。</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">BPT_API の ActivitySetGroup で、特定グループのエンドユーザーだけに表示・取り扱いを制限する。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">プラットフォームは表示定義を変更できるが、上記の回答は正しくない。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">BPT で定義後は、プラットフォームは表示定義を変更できない。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">ActivitySetGroup を使うと、Human Activity を特定グループのユーザーに割り当て・制限できます。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">BPT_API の ActivitySetGroup を使うと、Human Activity を特定グループに割り当て、そのグループのエンドユーザーだけがタスクボックスで表示・処理できるように制限できます。これが Human Activity の取り扱いを変更する正しい方法です。</p></div>
 </article><article class="card" id="q9">
   <header class="qhead"><span class="qnum">Q9</span><span class="imgbadge">🖼 画像あり</span></header>
   <p class="qtext">モジュール B・E・A：B は E の2エンティティを参照、A は B の Web ブロックを参照、E は A のアクション・Structureを参照。正しい記述は？</p>
@@ -126,7 +126,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <p class="note">※【訂正済み】原資料は③『Solution 公開で無限ループ』を正解としていましたが、公式ドキュメント上、モジュールの循環参照は Outdated 警告であり無限ループは発生しません（無限ループはデータソースの自己参照＝Aggregateの問題）。公式準拠の正解は②で、コース1セット1の同一問題とも一致します。</p>
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">A の新バージョンを公開しても B の再公開は不要（A から何も参照しないため）。</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">ソリューションはすべてのモジュールを公開する唯一の方法（『期限切れ』警告は表示されない）。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">ソリューションを生成すると無限ループが発生する。これは循環依存の主な問題である。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">循環依存はない（プロデューサーがコンシューマーを消費していないため）。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">A→B→E→A の循環参照があります。モジュールの循環参照は『Outdated（最新でない）』警告の原因になりますが、Solution でまとめて公開することで警告なく全モジュールを公開できます（②）。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">A→B→E→A という循環参照があるため、どれか1つを個別に公開すると他のモジュールに Outdated（最新でない）警告が発生します。Solution を使えば循環参照するモジュール群を警告なしにまとめて公開できるため、これが唯一の方法です。</p></div>
 </article><article class="card" id="q10">
   <header class="qhead"><span class="qnum">Q10</span><span class="multibadge">複数選択</span></header>
   <p class="qtext">バッチ処理に使うタイマーに必要な特性を説明しているのはどれですか？（複数選択）</p>
@@ -134,7 +134,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">毎日短い間隔でスケジュールされ、作業を繰り返さない。</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">タイムアウト制限に達することがなく、最終的に全作業が完了することを保証する。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">スケジュール未定義で、実行時に動的にタイムアウトを調整し一回で全作業を完了する。</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">変更データの整合性を保証し、全作業を完了させるためのタイムアウトを持つ。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B・D</b></p><p class="expl">バッチ用タイマーは、タイムアウトに達しないよう自己再起動（Wake）して全作業完了を保証し（②）、各バッチをコミットしてデータ整合性を保ちます（④）。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B・D</b></p><p class="expl">バッチ処理用の Timer は、タイムアウトに達する前に自らを再起動（Wake）することで最終的に全作業が完了することを保証し（B）、バッチごとにコミットしてタイムアウト時もデータ整合性を保てるようタイムアウトを前提に設計します（D）。スケジュールなしで一回で全件処理する設計はタイムアウトのリスクがあり不適切です。</p></div>
 </article><article class="card" id="q11">
   <header class="qhead"><span class="qnum">Q11</span></header>
   <p class="qtext">ホームバンキングのダッシュボード：基本口座情報、最新50件の取引、複数の独立システムから集約する残高チャート。最も高性能で UX の良い方法は？</p>
@@ -142,7 +142,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">口座情報と最新取引を1つの画面Aggregateで定義し、残高チャート計算用の Data アクションを作る。</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">口座情報用と最新取引用の2つの画面Aggregateを定義し、残高チャート計算用の Data アクションを作る。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">OnInitialize で3つのサーバーアクション（口座情報・最新取引・残高計算）を呼ぶ。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">口座情報・最新取引・残高チャート計算をすべて1つの Data アクションで定義する。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">軽いDB取得は画面Aggregate（並列取得）に、複数システムからの重いAggregateは Data アクションに分けると、性能とUXを両立できます。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">口座情報と最新取引は軽い DB 取得なので、2つの画面 Aggregate に分けて定義すれば並列に取得され、それぞれが揃い次第表示できます。複数の外部システムを集約する重い残高チャート計算は Data Action に分離することで、画面表示をブロックせず性能と UX を両立できます。</p></div>
 </article><article class="card" id="q12">
   <header class="qhead"><span class="qnum">Q12</span><span class="imgbadge">🖼 画像あり</span></header>
   <p class="qtext">画像のクライアントアクションは顧客の場所（国・市）を取得します。エラー/警告表示は削除済み。正しい記述は？</p>
@@ -150,7 +150,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">getCitiesByCountry の呼び出しのキャッシュ（Minutes）を、ループ終了まで値を保持できる値に設定すべき。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">Service Studio は、ロジックフロー内のループでサーバーアクションを呼べないためエラーを表示する。</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">同じクライアントアクションのフロー内で複数のサーバーアクションを呼ぶこと（特にループ内）は避けるべき。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">getCustomerCountries を Aggregate/Advanced SQL の直接クエリに置き換えるべき。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">ループの各反復でサーバーアクションを呼ぶとサーバーラウンドトリップが多発し性能が悪化します。ループ内でのサーバーアクション呼び出しは避けるべきです。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">ループの反復ごとに Server Action を呼ぶと、その都度サーバーへのラウンドトリップが発生し、性能が大きく悪化します。Client Action のフロー内で複数の Server Action を呼ぶこと、特にループ内での呼び出しは避け、1回のサーバー呼び出しにまとめるべきです。</p></div>
 </article><article class="card" id="q13">
   <header class="qhead"><span class="qnum">Q13</span><span class="imgbadge">🖼 画像あり</span></header>
   <p class="qtext">Data Action の出力が GetOrders Aggregateのデータを使って計算します。データは頻繁に変わらず問題は出ていませんが、次回更新で何千人もが同時にこの画面にアクセスします。DBの性能低下を避ける最良の方法は？</p>
@@ -158,7 +158,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">Aggregateを Data Action から削除して画面に直接配置し、OnAfterFetch で計算する。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">MaxRecords プロパティを小さくして高速化する。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">計算を非同期で実行し、タイマーで結果をサイトプロパティに保存する。</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">Aggregateの Cache in Minutes を、データがアクセスされる平均時間に設定する。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">頻繁に読まれ結果が概ね一定のAggregateには Cache in Minutes を設定すると、DB負荷を抑え同時アクセス時の性能低下を防げます。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">データが頻繁に変わらないため、Aggregate の Cache in Minutes を適切な時間に設定すれば、キャッシュされた結果が再利用され、数千人の同時アクセスでもデータベースへの問い合わせを大幅に減らせます。MaxRecords の削減や Site Property への保存は適切な解決策ではありません。</p></div>
 </article><article class="card" id="q14">
   <header class="qhead"><span class="qnum">Q14</span></header>
   <p class="qtext">携帯キャリアの顧客サポート：監査目的で過去5年の全通信を保存しつつ、直近3か月のアクティブ顧客の通信のみ利用。性能低下を避ける最良の方法は？</p>
@@ -166,7 +166,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">テーブルが肥大化/低速化した場合に手動実行するストアドプロシージャで古いレコードを削除する。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">通信エンティティの全クエリをキャッシュする。</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">3か月以上非アクティブの通信を定期的に別エンティティにアーカイブするタイマーを設け、監査用に両方を結合表示する画面を作る。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">最も一般的なクエリ条件（例：最終更新日）にインデックスを作る。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">アクティブなデータ量を小さく保つため、古い通信を別エンティティにアーカイブし、監査時のみ両方を結合する画面を用意します。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">3か月以上非アクティブな通信を Timer で定期的に別のアーカイブ用 Entity へ移動すれば、日常的にクエリされるテーブルを小さく保ち性能を維持できます。監査時には両方の Entity を結合して表示する専用画面を使えば、5年分の保存要件も満たせます。</p></div>
 </article><article class="card" id="q15">
   <header class="qhead"><span class="qnum">Q15</span></header>
   <p class="qtext">独自テーマを持つ Web アプリのモバイル版をサポートしたい。何をすべきですか？</p>
@@ -174,7 +174,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">独自テーマの新モバイルアプリを作り、Web アプリの画面を消費する。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">上記のいずれでもよい（すべて有効）。</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">独自テーマの新モバイルアプリを作り、Web アプリのパブリックアクションとエンティティを利用する。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">既存アプリに新しい Web フローを作ってモバイル版をサポートする。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">モバイルは別アプリとして作成し、Web アプリの公開アクション・エンティティを再利用します（画面は共有できません）。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">モバイル版は独自テーマの新しいモバイルアプリとして作成し、既存 Web アプリのパブリックな Server Action と Entity を再利用するのが正解です。画面は Web とモバイルで共有できないため、UI は作り直す必要があります。</p></div>
 </article><article class="card" id="q16">
   <header class="qhead"><span class="qnum">Q16</span></header>
   <p class="qtext">開発者が別モジュールのパブリックサーバーアクションをデバッグしたい。誤っている記述はどれですか？</p>
@@ -182,7 +182,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice correct"><span class="lbl">A</span><span class="ctxt">アクションを実行するトリガーはスクリーンから来る必要がある。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">サーバーアクションはコンシューマーモジュールから参照されている必要がある。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">コンシューマーモジュールを公開する権限が必要。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">プロデューサーモジュールへの参照は最新である必要がある。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">デバッグのトリガーはスクリーンである必要はありません（タイマー・サービス等でも可）。よってこれが誤りです。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">誤りは A です。デバッグを開始するトリガーは画面からである必要はなく、Timer やサービスなど任意の実行経路で構いません。一方、対象の Server Action がコンシューマーから参照されていること、Reference が最新であること、コンシューマーモジュールの公開権限があることはいずれも必要です。</p></div>
 </article><article class="card" id="q17">
   <header class="qhead"><span class="qnum">Q17</span><span class="imgbadge">🖼 画像あり</span></header>
   <p class="qtext">GetAllApplications アクションはアプリ一覧を返し他アクションからも使われます。GetAllApplications を呼ぶ代わりに GetApplications Aggregateを直接使う良い理由は？</p>
@@ -190,7 +190,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <p class="note">※コース1セット1の同一問題と正解は一致します。Aggregate を Server Action に包まず直接使うと、プラットフォームが呼び出し先ごとに実際に使用する属性だけを取得するようクエリを最適化できます（Server Action に隔離すると全カラムを取得）。これが公式が示す主要な理由で、B が正解です。C の「キャッシュは Aggregate にのみ可能」は誤り、D の「独立性」は設計上妥当ではあるが公式が示す主要理由ではありません。</p>
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">置き換える理由はない。</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">Aggregateを直接呼ぶと、プラットフォームが呼び出す全アクションに基づきAggregateと出力を最適化できる。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">Aggregateを直接呼ぶと、アクションは結果をキャッシュできる（キャッシュはAggregateにのみ可能）。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">Aggregateを直接呼ぶと、それを使うアクション間の独立性が促進され、個別に進化させやすくなる。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">正解は B（最適化）。Aggregate を直接使うと、プラットフォームは各呼び出し先で実際に使う属性だけを取得するようクエリを最適化します。Server Action に隔離すると全カラムを取得してしまいます。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">Aggregate を直接使うと、プラットフォームが呼び出し元ごとに実際に使用される属性だけを取得するようクエリを自動最適化します。Server Action の中に隔離すると、出力に全カラムが含まれるためこの最適化が効かず、不要なデータまで取得してしまいます。</p></div>
 </article><article class="card" id="q18">
   <header class="qhead"><span class="qnum">Q18</span><span class="imgbadge">🖼 画像あり</span></header>
   <p class="qtext">大手保険会社の社内システム。SLAは4か月、クローズ済み請求の一部は6か月ごとに監査対象、記録は関係期間保存。データは Claim と ClaimDocument に保存。請求増加で性能低下。改善策は？</p>
@@ -198,7 +198,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">ClaimBackup に Claim/ClaimDocument の全属性をコピーし、4か月以上前のクローズ済み請求を定期的に移動し、アクセス用の別画面を作る。</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">Claim/ClaimDocument の定義を ClaimBackup/ClaimDocumentBackup に複製し、タイマーで4か月以上前の請求を移動し、アクセス用の別画面を作る。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">検索属性と両エンティティの属性の組み合わせにインデックスを設定し、保存ロジックにタイマーを追加して非同期に保存する。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">Claim/ClaimDocument の全検索属性と組み合わせにインデックスを設定して検索効率を改善する。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">アクティブな主テーブルを小さく保つため、バックアップ用エンティティを複製し、タイマーで一定期間経過したクローズ済み請求を移動（アーカイブ）します。監査時は専用画面で参照します。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">Claim と ClaimDocument の定義をバックアップ用 Entity に複製し、SLA の4か月を過ぎたクローズ済み請求を Timer で定期的に移動することで、アクティブなテーブルを小さく保ち性能を回復できます。監査などでの参照はバックアップ側にアクセスする専用画面で行います。インデックス追加だけではテーブル肥大化の根本対策になりません。</p></div>
 </article><article class="card" id="q19">
   <header class="qhead"><span class="qnum">Q19</span></header>
   <p class="qtext">従業員データモデル：複数アプリが Employee を頻繁に取得し、一部は作成/更新も行う。ただし作成/更新は誰でもは不可で、全アプリ共通のビジネスルールに従う必要がある。どう定義すべき？</p>
@@ -206,7 +206,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice correct"><span class="lbl">A</span><span class="ctxt">Public=Yes、Expose Read Only=Yes。作成/更新用ラッパーアクションを作りビジネスルールを定義して公開。アプリはAggregateで取得し、必要に応じラッパーで作成/更新する。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">Public=Yes、Read Only=No。Aggregateで取得し、作成/更新はエンティティアクションを呼ぶ。ビジネスルールは各アプリで直前に定義する。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">Public=Yes、Read Only=No。ラッパーアクションを作りビジネスルールを定義して公開。アプリはAggregateで取得しラッパーを呼ぶ。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">Public=No。作成/更新/取得用のラッパーアクションを作りビジネスルールを定義して公開。アプリはこれらのラッパーで取得・更新する。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">Public=Yes かつ Read Only=Yes にして各アプリがAggregateで直接読めるようにしつつ、直接の書き込みを禁止。作成/更新は共通ビジネスルールを内包したラッパーアクション経由に限定します。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">Entity を Public=Yes かつ Expose Read Only=Yes にすれば、各アプリは Aggregate で自由に読み取れる一方、エンティティアクションによる直接の書き込みはできなくなります。作成・更新は共通のビジネスルールを実装した公開ラッパーアクション経由に限定することで、全アプリで一貫したルールを強制できます。</p></div>
 </article><article class="card" id="q20">
   <header class="qhead"><span class="qnum">Q20</span></header>
   <p class="qtext">ユーザー基本情報を DB に保存し、Web アプリや他コンポーネントで使いたい。これらがユーザーデータにアクセスできるよう、エンティティをどう設定すべき？</p>
@@ -214,7 +214,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">ユーザーデータを複数エンティティに分割し、それぞれにアクセス制御を設定する。</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">ユーザーデータを1エンティティにまとめ、Public=Yes、Read Only=Yes にし、必要なラッパーアクションを作って公開する。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">ユーザーデータをエンティティに保存し、全アクセスをプラットフォームから直接行う。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">ユーザーデータを別サービスに保存し、API でアクセスさせる。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">1つのエンティティにまとめ、Public=Yes/Read Only=Yes で読み取りを共有しつつ、書き込みはラッパーアクション経由に限定するのが定石です。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">ユーザーデータは1つの Entity にまとめ、Public=Yes かつ Read Only=Yes に設定して読み取りを共有しつつ、書き込みは公開したラッパーアクション経由に限定するのが定石です。これにより他アプリやコンポーネントから安全にアクセスでき、データの整合性も守れます。</p></div>
 </article><article class="card" id="q21">
   <header class="qhead"><span class="qnum">Q21</span></header>
   <p class="qtext">急成長するエンティティで、実際に頻繁に使われるのは一部。監査/法的理由で全レコードを保持する必要がある。性能低下を避ける最適なアプローチは？</p>
@@ -222,7 +222,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">boolean 属性 IsArchived を追加しインデックス＋一覧にフィルタ。未使用レコードをタイマーで True にする。</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">未使用レコードを定期的にアーカイブエンティティに移動するタイマーを設け、必要時に両方からアクセスできる画面を作る。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">作成日など一般的なアクセス基準にインデックスを作る。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">必要に応じ DB スクリプトで手動アーカイブする。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">未使用レコードを別のアーカイブエンティティへ移動して主テーブルを小さく保つのが最も高性能。必要時は両方を参照する画面を用意します。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">使われなくなったレコードを Timer で定期的にアーカイブ用 Entity へ移動すれば、頻繁にクエリされる主テーブルを小さく保てて最も高性能です。全レコードの保持要件は、必要なときに両方の Entity を参照できる画面を用意することで満たせます。IsArchived フラグ方式ではテーブル自体が肥大化し続けるため不十分です。</p></div>
 </article><article class="card" id="q22">
   <header class="qhead"><span class="qnum">Q22</span></header>
   <p class="qtext">Doctor アプリのユーザーを Appointments アプリの AppointmentList 画面へ、DoctorDetail 画面の『Check Appointment』ボタンからリダイレクトしたい。最善の方法は？</p>
@@ -230,7 +230,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice correct"><span class="lbl">A</span><span class="ctxt">Appointments アプリの画面を参照し、それをボタンの目的地に選ぶ。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">AppointmentList の URL を定義した iframe を使う。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">目的地を RedirectToURL にし、URL をサイトプロパティに保持して環境ごとに切り替える。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">目的地を RedirectToURL にし、AppointmentList の URL をハードコードする。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">他アプリの画面を参照（Reference）し、ボタンの Destination に直接選ぶのが正攻法です（強い型付けのリンク）。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">Appointments アプリの AppointmentList 画面を Reference として追加し、ボタンの Destination に直接指定するのが最善です。プラットフォームが管理する強い型付けのリンクとなり、URL のハードコードや Site Property での管理、iframe のような壊れやすい手法を避けられます。</p></div>
 </article><article class="card" id="q23">
   <header class="qhead"><span class="qnum">Q23</span></header>
   <p class="qtext">次のうち正しい記述はどれですか？</p>
@@ -238,7 +238,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">サイトプロパティは画面上の Expression ウィジェットの値として使用できる。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">クライアント変数の値は任意の基本データ型、エンティティの識別子やレコードの値にできる。</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">Service Center でサイトプロパティの実効値は変更できるが、既定値は変更できない。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">クライアント変数はユーザーがブラウザを閉じると既定値にリセットされる。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">サイトプロパティの実効値（Effective Value）は Service Center で変更できますが、設計時の既定値は Service Center からは変更できません。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">Site Property の実効値（Effective Value）は Service Center から変更できますが、Service Studio で設定した既定値は Service Center からは変更できません。なお、Site Property は画面の Expression で直接使えず、Client Variable は基本データ型のみでブラウザを閉じてもリセットされません。</p></div>
 </article><article class="card" id="q24">
   <header class="qhead"><span class="qnum">Q24</span><span class="imgbadge">🖼 画像あり</span></header>
   <p class="qtext">図のアクションを実行時に呼ぶと、ハイライトされた CreateAddress の呼び出しで例外が発生します。例外後のアクションの動作は？</p>
@@ -246,7 +246,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">新しい都市と監査レコードだけが追加される。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">何も新しいレコードは追加されない。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">都市・住所・監査のすべてが追加される。</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">監査レコードだけが追加される。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">例外ハンドラの Abort Transaction=Yes により、CreateCity と失敗した CreateAddress はロールバックされ、同時に新トランザクションが開始します。ハンドラ内の CreateAudit はこの新トランザクションでコミットされるため、監査レコードだけが残ります。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">Exception Handler の Abort Transaction=Yes により、例外発生時点でトランザクションがロールバックされ、CreateCity と失敗した CreateAddress の変更は取り消されます。同時に新しいトランザクションが開始されるため、ハンドラ内の CreateAudit はそこでコミットされ、監査レコードだけが残ります。</p></div>
 </article><article class="card" id="q25">
   <header class="qhead"><span class="qnum">Q25</span><span class="imgbadge">🖼 画像あり</span></header>
   <p class="qtext">次のエンティティ図で、国に未割当か住所に未参照の都市を定期的に削除します。最も高性能なアプローチは？</p>
@@ -254,7 +254,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">Aggregateで削除対象の都市IDリストを取得し、1つの DELETE を含む Advanced SQL に入力する。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">Aggregateで対象リストを取得し、ループで deleteCity エンティティアクションを使う。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">Advanced SQL で対象IDを選択し、ループで deleteCity エンティティアクションを使う。</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">単一の Advanced SQL 要素で DELETE 文を実行する。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">単一の Advanced SQL で一括 DELETE するのが最も高性能。Aggregate→ループ削除は行ごとのラウンドトリップが発生し非効率です。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">単一の Advanced SQL 要素で DELETE 文を実行し、削除対象の絞り込みも SQL 内で行うのが最も高性能です。Aggregate で ID を取得してループで Entity アクションを呼ぶ方法は、レコードごとにデータベースへのラウンドトリップが発生するため非効率です。</p></div>
 </article><article class="card" id="q26">
   <header class="qhead"><span class="qnum">Q26</span></header>
   <p class="qtext">外部エンティティ（数千レコード）とプラットフォームエンティティを結合したい。どうすべきですか？</p>
@@ -262,7 +262,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">エンティティにクエリし、各レコードを反復して結合データを選択する。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">外部エンティティとプラットフォームエンティティは直接結合できない。</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">小さいサブセットを格納する一時テーブルを作り、それとプラットフォームエンティティを結合する。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">パフォーマンス最適化のためインデックスを作る。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">外部エンティティは直接結合すると非効率なため、必要なサブセットを一時テーブルに格納してから結合します。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">外部 Entity とプラットフォームの Entity は別データベースにあるため直接の Join は非効率です。必要な小さいサブセットをプラットフォーム側の一時テーブル（Entity）に取り込み、それとプラットフォームの Entity を Join するのが正しいアプローチです。</p></div>
 </article><article class="card" id="q27">
   <header class="qhead"><span class="qnum">Q27</span><span class="imgbadge">🖼 画像あり</span></header>
   <p class="qtext">AddStock サーバーアクションのフローで、いずれかが失敗したら DB 変更をロールバックしたい。正しいものは？</p>
@@ -270,7 +270,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice correct"><span class="lbl">A</span><span class="ctxt">OrderProductsCreate が失敗した場合、OrderCreate サービスアクションの変更をロールバックする追加ロジックが必要。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">OrderCreate サービスアクションが失敗すると自動でロールバックされ、AddStock は続行しない。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">両アクションはトランザクション処理不要。AddStock は成功するまでリトライする。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">OrderProductsCreate が失敗すると、フロー内の両アクションが自動でロールバックされる。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">サービスアクション（OrderCreate）は独自トランザクションでコミット済みのため、後続の OrderProductsCreate が失敗しても自動では戻りません。補償（ロールバック）ロジックが必要です。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">Service Action は呼び出しごとに独自のトランザクションで実行・コミットされるため、後続の OrderProductsCreate が失敗しても OrderCreate の変更は自動ではロールバックされません。したがって、失敗時に OrderCreate の変更を取り消す補償ロジックを追加で実装する必要があります。</p></div>
 </article><article class="card" id="q28">
   <header class="qhead"><span class="qnum">Q28</span></header>
   <p class="qtext">年間ボーナス計算アクションが、頻繁に変わるパーセンテージをハードコードしています。ベストプラクティスに従う最良の方法は？</p>
@@ -278,7 +278,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">率ごとにサイトプロパティを作り、Service Center で変更、ロジックは直接使う。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">率ごとにレコードを持つ静的エンティティを作り、ロジックは直接使う。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">コメント要素を作り Reminder=Yes にして、ハードコード箇所を見つけやすくする。</span></li><li class="choice correct"><span class="lbl">D</span><span class="ctxt">率を保存するエンティティを作り、管理者が編集できる画面を用意。ロジックは DB から取得して使う。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">頻繁に変わる業務データはエンティティに保存し、管理者が UI から編集できるようにするのが適切です（サイトプロパティ/静的エンティティは頻繁な変更に不向き）。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：D</b></p><p class="expl">頻繁に変わる業務データはハードコードせず、Entity に保存して管理者が編集できる画面を用意し、ロジックはデータベースから取得して使うのがベストプラクティスです。Site Property や Static Entity の変更には開発者や管理者による操作・再公開が絡むため、頻繁に変わる値の管理には不向きです。</p></div>
 </article><article class="card" id="q29">
   <header class="qhead"><span class="qnum">Q29</span><span class="imgbadge">🖼 画像あり</span></header>
   <p class="qtext">ファイル経費処理タイマーの定義。タイマーのロジックが終了する前に別タイマーを起動し、抽出済み経費を処理・保存します。最初のタイマーがタイムアウトしたらどうなりますか？</p>
@@ -286,7 +286,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <p class="note">※【訂正済み】原資料は④『変更ロールバックだが2つ目は実行される』を正解としていましたが、公式ドキュメント上 WakeTimer はトランザクション内の操作で、ロールバック時に取り消されるため2つ目のタイマーは起動しません。公式準拠の正解は③で、コース1セット1 Q24・コース2セット1 問32とも一致します。</p>
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">変更は保存され、2つ目のタイマーは実行される。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">変更は保存されるが、2つ目のタイマーは実行されない。</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">変更はロールバックされ、2つ目のタイマーは実行されない。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">変更はロールバックされるが、2つ目のタイマーは引き続き実行される。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">Timer1 がタイムアウトするとトランザクションはロールバックされます。Timer2 を起動する WakeTimer も同一トランザクション内の DB 操作（対象タイマーの NextRun 更新）のため取り消され、Timer2 は起動しません。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">Timer がタイムアウトすると、その実行中のトランザクションはロールバックされます。WakeTimer による2つ目の Timer の起動も、同一トランザクション内のデータベース更新（対象 Timer の次回実行時刻の更新）で実現されているため一緒に取り消され、結果として変更は保存されず2つ目の Timer も実行されません。</p></div>
 </article>
 <footer>OutSystems O11（Reactive）試験対策 — コース2 セット2 ／ 選択肢クリックで自己採点。（原資料の重複問題は統合済み）</footer>
 </div>

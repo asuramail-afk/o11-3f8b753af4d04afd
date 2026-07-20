@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice correct"><span class="lbl">A</span><span class="ctxt">必要な列だけを選択してクエリを最適化する。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">インデックスを使わない（パフォーマンスに影響し得るため）。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">全データを取得してクライアント側でフィルタリングする。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">複数の結合を含むクエリで効率化する。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">必要な列（属性）だけを取得することで、転送量とDB負荷を抑えられます。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：A</b></p><p class="expl">必要な列（属性）だけを選択するようクエリを最適化すれば、データ転送量とデータベース負荷を抑えられます。全データを取得してクライアント側で絞り込む方法や、インデックスを使わない方針はパフォーマンスを悪化させます。</p></div>
 </article><div class="pager"><a href="q9.html">← 前の問題</a><a href="q11.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
   <div class="answer">
     <p class="ans-line"><b>正解：B</b></p>
-    <p class="expl">単一の Advanced SQL で一括 DELETE するのが最も高性能。Aggregate→ループ削除は行ごとのラウンドトリップが発生し非効率です。</p>
+    <p class="expl">単一の Advanced SQL で条件を指定して一括 DELETE するのが最も高性能です。データベース内で 1 回の命令として完結するためです。Aggregate で取得してループで DeleteCity を呼ぶ方法は、レコードごとにデータベースへのラウンドトリップが発生し非効率です。</p>
   </div>
 </article><div class="pager"><a href="q22.html">← 前の問題</a><a href="q24.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}

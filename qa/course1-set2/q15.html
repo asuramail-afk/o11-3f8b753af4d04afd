@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">循環依存はない（供給者が消費者を消費していないため）。</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">すべてのモジュールを参照警告なしで公開する唯一の方法は Solution である。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">Solution を公開すると無限ループが生成される。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">A の新バージョンを公開しても B には影響しない（B は A を参照しないため）。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">A→B→E→A の循環参照が存在します。Solution でまとめて公開することで「最新でない」警告なく全モジュールを公開できます（恒久対策は循環の解消）。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">A→B→E→A という循環参照が存在するため、個別に公開すると「参照が最新でない」という警告が必ず残ります。Solution としてまとめて公開すれば、警告なしに全 Module を公開できます（恒久的な対策は循環参照そのものの解消です）。</p></div>
 </article><div class="pager"><a href="q14.html">← 前の問題</a><a href="q16.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

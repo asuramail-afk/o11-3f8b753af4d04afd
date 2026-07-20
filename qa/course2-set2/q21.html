@@ -65,7 +65,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">boolean 属性 IsArchived を追加しインデックス＋一覧にフィルタ。未使用レコードをタイマーで True にする。</span></li><li class="choice correct"><span class="lbl">B</span><span class="ctxt">未使用レコードを定期的にアーカイブエンティティに移動するタイマーを設け、必要時に両方からアクセスできる画面を作る。</span></li><li class="choice"><span class="lbl">C</span><span class="ctxt">作成日など一般的なアクセス基準にインデックスを作る。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">必要に応じ DB スクリプトで手動アーカイブする。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">未使用レコードを別のアーカイブエンティティへ移動して主テーブルを小さく保つのが最も高性能。必要時は両方を参照する画面を用意します。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：B</b></p><p class="expl">使われなくなったレコードを Timer で定期的にアーカイブ用 Entity へ移動すれば、頻繁にクエリされる主テーブルを小さく保てて最も高性能です。全レコードの保持要件は、必要なときに両方の Entity を参照できる画面を用意することで満たせます。IsArchived フラグ方式ではテーブル自体が肥大化し続けるため不十分です。</p></div>
 </article><div class="pager"><a href="q20.html">← 前の問題</a><a href="q22.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});

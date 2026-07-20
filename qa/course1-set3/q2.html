@@ -64,7 +64,7 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
   
   <ul class="choices"><li class="choice"><span class="lbl">A</span><span class="ctxt">いいえ。そのブロックが使われている画面でのみチェックボックスを使う。</span></li><li class="choice"><span class="lbl">B</span><span class="ctxt">いいえ。対象ブロックが使われる画面だけでチェックボックスを使う。</span></li><li class="choice correct"><span class="lbl">C</span><span class="ctxt">はい。OutSystems は JavaScript ノード内で Check&lt;Role&gt; 関数を使用できるため。</span></li><li class="choice"><span class="lbl">D</span><span class="ctxt">はい。ただし OnReady イベントでのみ（OnInitialize 時点ではデータがないため）。</span></li><li class="choice"><span class="lbl">E</span><span class="ctxt">いいえ。実現できない。</span></li></ul>
   <button class="reveal" onclick="toggle(this)">解答を表示</button>
-  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">OutSystems では JavaScript ノード内でも Check&lt;Role&gt;() 関数を呼べるため、OnInitialize でロールを確認できます。</p></div>
+  <div class="answer"><p class="ans-line"><b>正解：C</b></p><p class="expl">OutSystems では JavaScript ノード内でも Check&lt;Role&gt; 関数を呼び出せるため、Web Block の OnInitialize イベントでロールを確認できます。OnReady まで待つ必要はありません。</p></div>
 </article><div class="pager"><a href="q1.html">← 前の問題</a><a href="q3.html">次の問題 →</a></div></div><script>
 function toggle(btn){const c=btn.closest('.card');const on=c.classList.toggle('revealed');btn.textContent=on?'解答を隠す':'解答を表示';}
 document.querySelectorAll('.choice').forEach(ch=>{ch.addEventListener('click',()=>{const card=ch.closest('.card');if(!card.classList.contains('revealed')){const b=card.querySelector('.reveal');if(b)b.click();}ch.classList.toggle('picked');});});
