@@ -33,6 +33,19 @@
   .card .label{font-weight:600; font-size:1.05rem;}
   .card .arrow{color:var(--accent); font-size:1.2rem;}
   footer{margin-top:36px; color:var(--muted); font-size:.8rem; text-align:center;}
+  .qa-sec{margin-top:32px;}
+  a.qa-card{
+    display:block; background:var(--card); border:1px solid var(--border);
+    border-left:4px solid var(--accent); border-radius:12px;
+    padding:16px 18px; text-decoration:none; color:var(--text);
+    transition:background .12s,border-color .12s,transform .06s;
+  }
+  a.qa-card:active{transform:scale(.99);}
+  a.qa-card:hover{background:var(--accent-soft);}
+  .qa-card .qa-title{font-weight:600; font-size:1.05rem; display:flex; justify-content:space-between; gap:10px;}
+  .qa-card .qa-title .arrow{color:var(--accent); font-size:1.2rem;}
+  .qa-card .qa-desc{color:var(--muted); font-size:.85rem; margin-top:4px;}
+
 </style>
 </head>
 <body>
@@ -88,6 +101,14 @@
     <a class="card" href="arch-set1/"><span class="label">セット1</span><span class="arrow">→</span></a>
     <a class="card" href="arch-set2/"><span class="label">セット2</span><span class="arrow">→</span></a>
   </div>
+</section>
+
+<section class="qa-sec">
+  <h2>相談用ページ</h2>
+  <a class="qa-card" href="qa/">
+    <span class="qa-title"><span>💬 1問=1ページ版</span><span class="arrow">→</span></span>
+    <span class="qa-desc">各問題の URL を Claude / Gemini に貼れば、その1問だけを対象に相談できます</span>
+  </a>
 </section>
 
 <footer>スマホでは「ホーム画面に追加」でアプリのように使えます</footer>
