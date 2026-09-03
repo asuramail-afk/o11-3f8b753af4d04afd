@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OutSystems O11 問題集 — Architecture / セット1</title>
+<style>
+:root{--bg:#f4f6f9;--card:#fff;--ink:#1f2733;--sub:#5b6675;--line:#e3e8ef;--pri:#0a7d6b;--pri2:#e6f4f1;--acc:#c4453a;--ok:#0a7d6b;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Segoe UI","Hiragino Kaku Gothic ProN","Yu Gothic UI",Meiryo,sans-serif;line-height:1.7}
+.wrap{max-width:900px;margin:0 auto;padding:24px 18px 80px}
+header.top{text-align:center;padding:26px 0 10px}
+header.top h1{margin:0 0 4px;font-size:1.5rem}
+header.top .sub{color:var(--sub);font-size:.92rem}
+.toolbar{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:16px 0 6px}
+.toolbar button{border:1px solid var(--line);background:#fff;color:var(--ink);padding:7px 14px;border-radius:999px;cursor:pointer;font-size:.9rem}
+.toolbar button:hover{background:var(--pri2);border-color:var(--pri)}
+.nav{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin:14px 0 24px}
+.nav a{width:34px;height:30px;display:flex;align-items:center;justify-content:center;font-size:.82rem;border:1px solid var(--line);border-radius:7px;background:#fff;color:var(--sub);text-decoration:none}
+.nav a:hover{background:var(--pri);color:#fff;border-color:var(--pri)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin:0 0 18px;box-shadow:0 1px 3px rgba(20,30,50,.05)}
+.qhead{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.qnum{background:var(--pri);color:#fff;font-weight:700;padding:3px 12px;border-radius:8px;font-size:.95rem}
+.imgbadge{font-size:.76rem;color:var(--pri);background:var(--pri2);padding:2px 9px;border-radius:999px}
+.qtext{margin:6px 0 14px;font-size:1.02rem}
+.figs{display:flex;flex-direction:column;gap:14px;margin:0 0 16px}
+.qfig{margin:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fbfcfe}
+.qfig img{display:block;width:100%;height:auto}
+.qfig figcaption{font-size:.8rem;color:var(--sub);padding:7px 12px;border-top:1px solid var(--line)}
+.choices{list-style:none;margin:0 0 16px;padding:0;display:flex;flex-direction:column;gap:8px}
+.choice{display:flex;gap:11px;align-items:flex-start;border:1px solid var(--line);border-radius:10px;padding:10px 13px;cursor:pointer;transition:.12s}
+.choice:hover{border-color:var(--pri);background:var(--pri2)}
+.choice .lbl{flex:none;width:24px;height:24px;border-radius:50%;background:#eef1f5;color:var(--sub);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem}
+.choice.picked{border-color:var(--sub)}
+.card.revealed .choice.correct{border-color:var(--ok);background:#e7f6f2}
+.card.revealed .choice.correct .lbl{background:var(--ok);color:#fff}
+.card.revealed .choice.picked:not(.correct){border-color:var(--acc);background:#fdeceb}
+.card.revealed .choice.picked:not(.correct) .lbl{background:var(--acc);color:#fff}
+.reveal{border:1px solid var(--pri);background:#fff;color:var(--pri);padding:8px 18px;border-radius:9px;cursor:pointer;font-size:.92rem;font-weight:600}
+.reveal:hover{background:var(--pri);color:#fff}
+.answer{display:none;margin-top:14px;padding:14px 16px;background:#f7faf9;border:1px solid #d5e7e2;border-left:4px solid var(--ok);border-radius:8px}
+.card.revealed .answer{display:block}
+.ans-line{margin:0 0 6px;color:var(--ok)}
+.expl{margin:0;font-size:.94rem;color:#33404f}
+footer{text-align:center;color:var(--sub);font-size:.82rem;margin-top:30px}
+@media(max-width:520px){.wrap{padding:16px 12px 60px}.card{padding:16px}}
+</style></head>
+<body><div class="wrap">
+<header class="top">
+  <h1>OutSystems O11 問題集</h1>
+  <div class="sub">Architecture / セット1 ・ 全 40 問</div>
+  <div class="toolbar">
+    <button onclick="allAns(true)">すべて解答表示</button>
+    <button onclick="allAns(false)">すべて隠す</button>
+  </div>
+</header>
+<nav class="nav"><a href="#q1">1</a><a href="#q2">2</a><a href="#q3">3</a><a href="#q4">4</a><a href="#q5">5</a><a href="#q6">6</a><a href="#q7">7</a><a href="#q8">8</a><a href="#q9">9</a><a href="#q10">10</a><a href="#q11">11</a><a href="#q12">12</a><a href="#q13">13</a><a href="#q14">14</a><a href="#q15">15</a><a href="#q16">16</a><a href="#q17">17</a><a href="#q18">18</a><a href="#q19">19</a><a href="#q20">20</a><a href="#q21">21</a><a href="#q22">22</a><a href="#q23">23</a><a href="#q24">24</a><a href="#q25">25</a><a href="#q26">26</a><a href="#q27">27</a><a href="#q28">28</a><a href="#q29">29</a><a href="#q30">30</a><a href="#q31">31</a><a href="#q32">32</a><a href="#q33">33</a><a href="#q34">34</a><a href="#q35">35</a><a href="#q36">36</a><a href="#q37">37</a><a href="#q38">38</a><a href="#q39">39</a><a href="#q40">40</a></nav>
+<article class="card" id="q1">
+  <header class="qhead"><span class="qnum">Q1</span></header>
+  <p class="qtext">誤った Application Composition（アプリケーション構成）がもたらす結果について、正しく「ない」ものはどれですか？</p>
+  <ul class="choices"><li class="choice" data-correct="0"><span class="lbl">A</span><span class="ctxt">アプリ同士が不必要に影響し合う。</span></li><li class="choice" data-correct="0"><span class="lbl">B</span><span class="ctxt">アプリが独立して進化できない。</span></li><li class="choice correct" data-correct="1"><span class="lbl">C</span><span class="ctxt">上記のいずれでもない。</span></li><li class="choice" data-correct="0"><span class="lbl">D</span><span class="ctxt">1 つのアプリをデプロイすると、他のすべてのアプリも一緒に本番へ持っていく必要が生じることがある。</span></li></ul>
+  <button class="reveal" onclick="toggle(this)">解答を表示</button>
+  <div class="answer">
+    <p class="ans-line"><b>正解：C</b></p>
+    <p class="expl">誤った Application Composition の結果として、①アプリが独立して進化できない（ライフサイクルが異なる）、②アプリ同士が不必要に影響し合う、③1 つのアプリのデプロイに他のアプリまで巻き込まれる、のいずれも起こり得ます。したがって「正しくない」ものは存在せず、正解は「上記のいずれでもない」です。</p>
+  </div>
+</article><article class="card" id="q2">
+  <header class="qhead"><span class="qnum">Q2</span></header>
+  <p class="qtext">OutSystems の Application Architecture 設計プロセスのステップを正しく表しているのはどれですか？</p>
+  <ul class="choices"><li class="choice" data-correct="0"><span class="lbl">A</span><span class="ctxt">Organise &gt;&gt; Disclose &gt;&gt; Gather</span></li><li class="choice correct" data-correct="1"><span class="lbl">B</span><span class="ctxt">Disclose &gt;&gt; Organise &gt;&gt; Assemble</span></li><li class="choice" data-correct="0"><span class="lbl">C</span><span class="ctxt">Organise &gt;&gt; Disclose &gt;&gt; Assemble</span></li><li class="choice" data-correct="0"><span class="lbl">D</span><span class="ctxt">Application Composition &gt;&gt; Organise &gt;&gt; Assemble</span></li></ul>
+  <button class="reveal" onclick="toggle(this)">解答を表示</button>
+  <div class="answer">
+    <p class="ans-line"><b>正解：B</b></p>
+    <p class="expl">Architecture 設計プロセスは 1. Disclose（開示）→ 2. Organise（整理）→ 3. Assemble（組み立て）の 3 ステップです。1-2-1、1-2-3-1 のように反復的に進めます。</p>
+  </div>
+</article><article class="card" id="q3">
+  <header class="qhead"><span class="qnum">Q3</span></header>
+  <p class="qtext">Architecture Canvas は、_____________________ の設計をシンプルにするための OutSystems のアーキテクチャツールです。</p>
+  <ul class="choices"><li class="choice" data-correct="0"><span class="lbl">A</span><span class="ctxt">Monolithic Architecture（モノリシック）</span></li><li class="choice" data-correct="0"><span class="lbl">B</span><span class="ctxt">Event-driven Architecture（イベント駆動）</span></li><li class="choice" data-correct="0"><span class="lbl">C</span><span class="ctxt">N-Layer Architecture（N 層）</span></li><li class="choice correct" data-correct="1"><span class="lbl">D</span><span class="ctxt">Service-Oriented Architecture（サービス指向）</span></li></ul>
+  <button class="reveal" onclick="toggle(this)">解答を表示</button>
+  <div class="answer">
+    <p class="ans-line"><b>正解：D</b></p>
+    <p class="expl">Architecture Canvas は SOA（Service-Oriented Architecture）の設計を簡単にするためのツールです。再利用可能な（マイクロ）サービスの正しい抽象化と、異なる機能モジュールの正しい分離を促進します。</p>
+  </div>
+</article><article class="card" id="q4">
+  <header class="qhead"><span class="qnum">Q4</span></header>
+  <p class="qtext">複数の異なるシステムからデータを収集し、収集したデータに対してビジネスロジックを実行して業務に必要なデータを生成する要件があります。最も適した統合パターンはどれですか？</p>
+  <ul class="choices"><li class="choice" data-correct="0"><span class="lbl">A</span><span class="ctxt">Integration Service</span></li><li class="choice" data-correct="0"><span class="lbl">B</span><span class="ctxt">Direct Integration</span></li><li class="choice" data-correct="0"><span class="lbl">C</span><span class="ctxt">Cold Cache Summary Data Integration + Lazy Load</span></li><li class="choice correct" data-correct="1"><span class="lbl">D</span><span class="ctxt">Cold Cache Summary Data Integration + Transparency Service</span></li></ul>
+  <button class="reveal" onclick="toggle(this)">解答を表示</button>
+  <div class="answer">
+    <p class="ans-line"><b>正解：D</b></p>
+    <p class="expl">同じ種類の情報に対して複数のソース（通常は形式も API も異なる）が存在する場合、同期処理は複雑になります。このケースでは、複数ソースを統一 API で抽象化する Transparency Service と組み合わせた Cold Cache Summary Data パターンが最適です。</p>
+  </div>
+</article><article class="card" id="q5">
+  <header class="qhead"><span class="qnum">Q5</span></header>
+  <p class="qtext">Discovery ツールで、各 End-user モジュールの下にモジュールがツリー状の階層を形成していることが分かりました。想定される違反はどれですか？</p>
+  <ul class="choices"><li class="choice" data-correct="0"><span class="lbl">A</span><span class="ctxt">Core 間の直接循環（Direct cycles between Cores）</span></li><li class="choice" data-correct="0"><span class="lbl">B</span><span class="ctxt">Core への上位参照違反（Upper violations to Cores）</span></li><li class="choice correct" data-correct="1"><span class="lbl">C</span><span class="ctxt">End-user への上位・横参照違反（Upper and side violations to End-users）</span></li><li class="choice" data-correct="0"><span class="lbl">D</span><span class="ctxt">Orchestrator への上位・横参照違反（Upper and side violations to Orchestrators）</span></li></ul>
+  <button class="reveal" onclick="toggle(this)">解答を表示</button>
+  <div class="answer">
+    <p class="ans-line"><b>正解：C</b></p>
+    <p class="expl">End-user モジュールが他の End-user モジュールから参照されると（横参照・上位参照）、各 End-user の下に健全なツリー状の階層を保てなくなります。これは「Upper and side violations to End-users」に該当します。</p>
+  </div>
+</article><article class="card" id="q6">
+  <header class="qhead"><span class="qnum">Q6</span></header>
+  <p class="qtext">Assemble ステップの原則について、正しく「ない」記述はどれですか？</p>
+  <ul class="choices"><li class="choice" data-correct="0"><span class="lbl">A</span><span class="ctxt">概念的に関連するものは結合する。</span></li><li class="choice" data-correct="0"><span class="lbl">B</span><span class="ctxt">ライフサイクルが異なるもの、または複雑すぎるものは結合しない。</span></li><li class="choice" data-correct="0"><span class="lbl">C</span><span class="ctxt">既知のデザインパターンを適用する。</span></li><li class="choice correct" data-correct="1"><span class="lbl">D</span><span class="ctxt">Foundation 層の概念（統合ニーズ・NFR）、Core ビジネス層の概念、End-user の概念を特定する。</span></li></ul>
+  <button class="reveal" onclick="toggle(this)">解答を表示</button>
+  <div class="answer">
+    <p class="ans-line"><b>正解：D</b></p>
+    <p class="expl">Assemble の原則は、①概念的に関連するものは結合する、②ライフサイクルが異なる／複雑すぎるものは結合しない、③既知のデザインパターンを適用する、④再利用ロジックを統合ロジックから分離する、です。「概念を特定する」のは Disclose ステップの活動です。</p>
+  </div>
+</article><article class="card" id="q7">
+  <header class="qhead"><span class="qnum">Q7</span></header>
+  <p class="qtext">命名規則の採用は Application Architecture 設計に利点をもたらします。次のうち、命名規則を採用する利点で「ない」ものはどれですか？</p>
+  <ul class="choices"><li class="choice" data-correct="0"><span class="lbl">A</span><span class="ctxt">リファレンスアーキテクチャを強制する。</span></li><li class="choice" data-correct="0"><span class="lbl">B</span><span class="ctxt">パターンを標準化する。</span></li><li class="choice correct" data-correct="1"><span class="lbl">C</span><span class="ctxt">エラーコードを回避する。</span></li><li class="choice" data-correct="0"><span class="lbl">D</span><span class="ctxt">各モジュールの性質を明らかにする。</span></li></ul>
+  <button class="reveal" onclick="toggle(this)">解答を表示</button>
+  <div class="answer">
+    <p class="ans-line"><b>正解：C</b></p>
+    <p class="expl">命名規則は各モジュールの目的を理解しやすくし、リファレンスアーキテクチャの強制やパターンの標準化に役立ちます。エラーコードの回避は命名規則の効果ではありません（例外処理の話です）。</p>
+  </div>
+</article><article class="card" id="q8">
+  <header class="qhead"><span class="qnum">Q8</span></header>
+  <p class="qtext">良いアーキテクチャの利点として正しいものはどれですか？</p>
+  <ul class="choices"><li class="choice" data-correct="0"><span class="lbl">A</span><span class="ctxt">管理不能な依存関係</span></li><li class="choice correct" data-correct="1"><span class="lbl">B</span><span class="ctxt">複雑さを管理できる</span></li><li class="choice" data-correct="0"><span class="lbl">C</span><span class="ctxt">貧弱なサービス抽象化</span></li><li class="choice" data-correct="0"><span class="lbl">D</span><span class="ctxt">動きの遅いレガシーシステム</span></li></ul>
+  <button class="reveal" onclick="toggle(this)">解答を表示</button>
+  <div class="answer">
+    <p class="ans-line"><b>正解：B</b></p>
+    <p class="expl">良いアーキテクチャは複雑さ（complexity）を管理可能にします。他の選択肢はいずれも、アーキテクチャが悪い場合に起こる問題です。</p>
+  </div>
+</article><article class="card" id="q9">
+  <header class="qhead"><span class="qnum">Q9</span></header>
+  <p class="qtext">Architecture 設計プロセスには 3 つのステップがあります。そのステップで「ない」ものはどれですか？</p>
+  <ul class="choices"><li class="choice" data-correct="0"><span class="lbl">A</span><span class="ctxt">Organise（整理）</span></li><li class="choice" data-correct="0"><span class="lbl">B</span><span class="ctxt">Disclose（開示）</span></li><li class="choice" data-correct="0"><span class="lbl">C</span><span class="ctxt">Assemble（組み立て）</span></li><li class="choice correct" data-correct="1"><span class="lbl">D</span><span class="ctxt">Plan（計画）</span></li></ul>
+  <button class="reveal" onclick="toggle(this)">解答を表示</button>
+  <div class="answer">
+    <p class="ans-line"><b>正解：D</b></p>
+    <p class="expl">3 ステップは 1. Disclose、2. Organise、3. Assemble です。Plan は含まれません。これらは 1-2-1、1-2-3-1 のように反復的に実施します。</p>
+  </div>
+</article><article class="card" id="q10">
+  <header class="qhead"><span class="qnum">Q10</span></header>
+  <p class="qtext">Architecture 設計プロセスにおいて、Disclose ステップの活動として「有効でない」ものはどれですか？</p>
+  <ul class="choices"><li class="choice" data-correct="0"><span class="lbl">A</span><span class="ctxt">情報アーキテクチャを定義する。</span></li><li class="choice correct" data-correct="1"><span class="lbl">B</span><span class="ctxt">既知のデザインパターンを適用する。</span></li><li class="choice" data-correct="0"><span class="lbl">C</span><span class="ctxt">統合技術を定義する。</span></li><li class="choice" data-correct="0"><span class="lbl">D</span><span class="ctxt">ユーザーストーリー、ペルソナ、ロールを定義する。</span></li></ul>
+  <button class="reveal" onclick="toggle(this)">解答を表示</button>
+  <div class="answer">
+    <p class="ans-line"><b>正解：B</b></p>
+    <p class="expl">「既知のデザインパターンを適用する」は Assemble ステップの活動です。Disclose ステップでは、ユーザーストーリー／ペルソナ／ロール、情報アーキテクチャ、統合ニーズと技術などを明らかにします。</p>
+  </div>
+</article><article class="card" id="q11">
+  <header class="qhead"><span class="qnum">Q11</span></header>
+  <p class="qtext">Calculation Engine（_Eng）モジュールを作成する正当な理由はどれですか？</p>
+  <ul class="choices"><li class="choice correct" data-correct="1"><span class="lbl">A</span><span class="ctxt">複雑な計算（例：複利計算、工学的な荷重圧力計算）をサポートするため。</span></li><li class="choice" data-correct="0"><span class="lbl">B</span><span class="ctxt">複数のビジネスロジックモジュールに実装された異なる複雑なロジックを抽象化するため。</span></li><li class="choice" data-correct="0"><span class="lbl">C</span><span class="ctxt">Core Widget モジュールから再利用可能なアクションを提供するため。</span></li><li class="choice" data-correct="0"><span class="lbl">D</span><span class="ctxt">Entity と CRUD 編集を持つ概念をサポートするため。</span></li></ul>
+  <button class="reveal" onclick="toggle(this)">解答を表示</button>
+  <div class="answer">
+    <p class="ans-line"><b>正解：A</b></p>
+    <p class="expl">_Eng（Calculation Engine）は、保険シミュレータのような複雑な計算ロジックを分離するためのモジュールです。Entity+CRUD は _CS、再利用 UI は _CW の役割です。</p>
+  </div>
+</article><article class="card" id="q12">
+  <header class="qhead"><span class="qnum">Q12</span></header>
+  <p class="qtext">Cold Cache Summary Data 統合パターンのバリエーションで「ない」ものはどれですか？</p>
+  <ul class="choices"><li class="choice" data-correct="0"><span class="lbl">A</span><span class="ctxt">Batch Sync</span></li><li class="choice" data-correct="0"><span class="lbl">B</span><span class="ctxt">Real-Time Sync</span></li><li class="choice" data-correct="0"><span class="lbl">C</span><span class="ctxt">Queued Real-Time Sync</span></li><li class="choice correct" data-correct="1"><span class="lbl">D</span><span class="ctxt">Direct Sync</span></li></ul>
+  <button class="reveal" onclick="toggle(this)">解答を表示</button>
+  <div class="answer">
+    <p class="ans-line"><b>正解：D</b></p>
+    <p class="expl">Cold Cache Summary Data のバリエーションは Batch Sync / Real-Time Sync / Queued Real-Time Sync / Ordered Real-Time Sync です。「Direct Sync」というものは存在しません。Direct Integration は Cold Cache とは別の統合パターンで、_IS 経由で外部システムから直接データを取得し、_CS に外部データを保持する Entity を持ちません。</p>
+  </div>
+</article><article class="card" id="q13">
+  <header class="qhead"><span class="qnum">Q13</span></header>
+  <p class="qtext">Assemble の原則（推奨パターンに合致するもの）はどれですか？</p>
+  <ul class="choices"><li class="choice correct" data-correct="1"><span class="lbl">A</span><span class="ctxt">ライフサイクルが異なる概念は分けておく。</span></li><li class="choice" data-correct="0"><span class="lbl">B</span><span class="ctxt">ビジネス概念と統合ニーズを開示する。</span></li><li class="choice" data-correct="0"><span class="lbl">C</span><span class="ctxt">すべての統合を 1 つのモジュールにまとめる。</span></li><li class="choice" data-correct="0"><span class="lbl">D</span><span class="ctxt">すべてのビジネス概念を分離する。</span></li></ul>
+  <button class="reveal" onclick="toggle(this)">解答を表示</button>
+  <div class="answer">
+    <p class="ans-line"><b>正解：A</b></p>
+    <p class="expl">Assemble の原則は「概念的に関連するものは結合する」「ライフサイクルが異なる／複雑すぎるものは結合しない」「既知のデザインパターンを適用する」「再利用ロジックを統合ロジックから分離する」です。「開示する」は Disclose ステップ、残り 2 つは原則に反します。</p>
+  </div>
+</article><article class="card" id="q14">
+  <header class="qhead"><span class="qnum">Q14</span></header>
+  <p class="qtext">次のうち、正しく「ない」記述はどれですか？</p>
+  <ul class="choices"><li class="choice correct" data-correct="1"><span class="lbl">A</span><span class="ctxt">Clone a Built-in Style Guide では、Base Theme の新バージョンの恩恵を受けられる。</span></li><li class="choice" data-correct="0"><span class="lbl">B</span><span class="ctxt">Custom Template は Base Template からクローンされる。</span></li><li class="choice" data-correct="0"><span class="lbl">C</span><span class="ctxt">Clone a Built-in Style Guide の利点は、余分な間接参照を避けることで得られる最高のパフォーマンスである。</span></li><li class="choice" data-correct="0"><span class="lbl">D</span><span class="ctxt">Base Theme と Base Template は OutSystems UI または他の Theme のいずれでもよい。</span></li></ul>
+  <button class="reveal" onclick="toggle(this)">解答を表示</button>
+  <div class="answer">
+    <p class="ans-line"><b>正解：A</b></p>
+    <p class="expl">Clone a Built-in Style Guide（既存 Theme に大幅な変更を加える場合に使用）では、Custom Theme が Base Theme をクローンします。利点は間接参照がなくパフォーマンスが最良であること、課題は Base Theme の新バージョンの恩恵を受けられないことです。</p>
+  </div>
+</article><article class="card" id="q15">
+  <header class="qhead"><span class="qnum">Q15</span></header>
+  <p class="qtext">Architecture Canvas を採用する利点を述べているのはどれですか？</p>
+  <ul class="choices"><li class="choice" data-correct="0"><span class="lbl">A</span><span class="ctxt">Canvas はアーキテクチャ原則に従い、修正する自動的な方法を提供する。</span></li><li class="choice" data-correct="0"><span class="lbl">B</span><span class="ctxt">Canvas は検証不要で、より速いアーキテクチャ設計を提供する。</span></li><li class="choice" data-correct="0"><span class="lbl">C</span><span class="ctxt">Canvas はビジネスユーザーの協力と理解を容易に促進する方法を提供する。</span></li><li class="choice correct" data-correct="1"><span class="lbl">D</span><span class="ctxt">Canvas は検証ツールに支えられた、アーキテクチャ設計への体系的なアプローチを提供する。</span></li></ul>
+  <button class="reveal" onclick="toggle(this)">解答を表示</button>
+  <div class="answer">
+    <p class="ans-line"><b>正解：D</b></p>
+    <p class="expl">Architecture Canvas は、検証ツール（Discovery / AI Mentor Studio）に支えられた体系的な設計アプローチを提供します。自動修正や検証不要というものではありません。</p>
+  </div>
+</article><article class="card" id="q16">
+  <header class="qhead"><span class="qnum">Q16</span></header>
+  <p class="qtext">Foundation 層について、正しく「ない」記述はどれですか？</p>
+  <ul class="choices"><li class="choice" data-correct="0"><span class="lbl">A</span><span class="ctxt">再利用性の低い要素が Foundation 層に定義される。</span></li><li class="choice" data-correct="0"><span class="lbl">B</span><span class="ctxt">Foundation 層では、外部ユーザー向けに Core Widget を定義できる。</span></li><li class="choice correct" data-correct="1"><span class="lbl">C</span><span class="ctxt">Foundation 層モジュールの典型的な要素は Data、Logic、Interface、Process である。</span></li><li class="choice" data-correct="0"><span class="lbl">D</span><span class="ctxt">Foundation 層モジュールの典型的な要素は Data、Logic、Interface である。</span></li></ul>
+  <button class="reveal" onclick="toggle(this)">解答を表示</button>
+  <div class="answer">
+    <p class="ans-line"><b>正解：C</b></p>
+    <p class="expl">Foundation 層には再利用性の高い要素が定義され、典型的な要素は Data（入出力 Structure、非コア Entity）、Logic（正規化 API、例外処理、SSO／セッション、共通ロール）、Interface（UI パターン、Theme／Layout／例外フロー）です。Process（BPT）は Core 層の要素で、Foundation には含まれません。※選択肢 A「再利用性の低い要素」も公式には誤り（Foundation は再利用性の高い要素）で、本問は不正確な選択肢が 2 つある設問です。出題の想定正解は C です。</p>
+  </div>
+</article><article class="card" id="q17">
+  <header class="qhead"><span class="qnum">Q17</span></header>
+  <p class="qtext">End-user モジュール 1 つ、Service モジュール 3 つ、Library モジュール 2 つで構成されるアプリケーションの種類は何ですか？</p>
+  <ul class="choices"><li class="choice" data-correct="0"><span class="lbl">A</span><span class="ctxt">Core Service Application</span></li><li class="choice correct" data-correct="1"><span class="lbl">B</span><span class="ctxt">End-user Application</span></li><li class="choice" data-correct="0"><span class="lbl">C</span><span class="ctxt">Library Application</span></li><li class="choice" data-correct="0"><span class="lbl">D</span><span class="ctxt">上記のいずれでもない</span></li></ul>
+  <button class="reveal" onclick="toggle(this)">解答を表示</button>
+  <div class="answer">
+    <p class="ans-line"><b>正解：B</b></p>
+    <p class="expl">End-user モジュールを 1 つでも含むアプリケーションは End-user Application に分類されます。Service モジュールと Library モジュールはそれをサポートする役割です。</p>
+  </div>
+</article><article class="card" id="q18">
+  <header class="qhead"><span class="qnum">Q18</span></header>
+  <p class="qtext">OutSystems のアーキテクチャを検証するために使うツールはどれですか？</p>
+  <ul class="choices"><li class="choice" data-correct="0"><span class="lbl">A</span><span class="ctxt">AI Mentor Studio</span></li><li class="choice" data-correct="0"><span class="lbl">B</span><span class="ctxt">Service Center</span></li><li class="choice correct" data-correct="1"><span class="lbl">C</span><span class="ctxt">Discovery</span></li><li class="choice" data-correct="0"><span class="lbl">D</span><span class="ctxt">Integration Studio</span></li></ul>
+  <button class="reveal" onclick="toggle(this)">解答を表示</button>
+  <div class="answer">
+    <p class="ans-line"><b>正解：C</b></p>
+    <p class="expl">Discovery は、アーキテクチャを分析・計測し、改善方法を理解するためのビジュアルツール（Forge コンポーネント）です。モジュール依存関係、アーキテクチャルール違反、各モジュール／アプリの要素数などを表示します。公式ドキュメント（Domain Driven Design ページ）でも「アーキテクチャを検証するには Forge の Discovery を使う」と記載があります。なお現在は AI Mentor Studio（旧 Architecture Dashboard）でも検証できるため、実務上は両方が正解になり得ます。</p>
+  </div>
+</article><article class="card" id="q19">
+  <header class="qhead"><span class="qnum">Q19</span></header>
+  <p class="qtext">OutSystems において、Core Application に含めることができるのは？</p>
+  <ul class="choices"><li class="choice correct" data-correct="1"><span class="lbl">A</span><span class="ctxt">Foundation モジュールと Core モジュール</span></li><li class="choice" data-correct="0"><span class="lbl">B</span><span class="ctxt">End-user モジュールと Core モジュール</span></li><li class="choice" data-correct="0"><span class="lbl">C</span><span class="ctxt">Foundation モジュールのみ</span></li><li class="choice" data-correct="0"><span class="lbl">D</span><span class="ctxt">End-user、Core、Foundation モジュール</span></li></ul>
+  <button class="reveal" onclick="toggle(this)">解答を表示</button>
+  <div class="answer">
+    <p class="ans-line"><b>正解：A</b></p>
+    <p class="expl">Core Application に含められるのは Foundation モジュールと Core モジュールのみです。End-user モジュールを含めると End-user Application になります。</p>
+  </div>
+</article><article class="card" id="q20">
+  <header class="qhead"><span class="qnum">Q20</span></header>
+  <p class="qtext">Application Architecture を定義するには概念の適切な粒度が重要です。粒度を左右する正しい基準はどれですか？</p>
+  <ul class="choices"><li class="choice" data-correct="0"><span class="lbl">A</span><span class="ctxt">User Process、Complexity、Service isolation</span></li><li class="choice" data-correct="0"><span class="lbl">B</span><span class="ctxt">Complexity、Independent life cycles</span></li><li class="choice correct" data-correct="1"><span class="lbl">C</span><span class="ctxt">Complexity、Independent life cycles、Service isolation</span></li><li class="choice" data-correct="0"><span class="lbl">D</span><span class="ctxt">Independent life cycles、Service isolation</span></li></ul>
+  <button class="reveal" onclick="toggle(this)">解答を表示</button>
+  <div class="answer">
+    <p class="ans-line"><b>正解：C</b></p>
+    <p class="expl">粒度を決める基準は Complexity（複雑さ）、Independent life cycles（独立したライフサイクル）、Service isolation（サービスの分離）の 3 つです。</p>
+  </div>
+</article><article class="card" id="q21">
+  <header class="qhead"><span class="qnum">Q21</span></header>
+  <p class="qtext">メニューやログインなどの要素は異なるアプリ間で共有できます。あるユースケースでは、メニューとログインの両方が Theme の中に定義されます。それはどのユースケースですか？</p>
+  <ul class="choices"><li class="choice" data-correct="0"><span class="lbl">A</span><span class="ctxt">Intranet</span></li><li class="choice correct" data-correct="1"><span class="lbl">B</span><span class="ctxt">Portal</span></li><li class="choice" data-correct="0"><span class="lbl">C</span><span class="ctxt">上記のいずれでもない</span></li><li class="choice" data-correct="0"><span class="lbl">D</span><span class="ctxt">Independent Apps</span></li></ul>
+  <button class="reveal" onclick="toggle(this)">解答を表示</button>
+  <div class="answer">
+    <p class="ans-line"><b>正解：B</b></p>
+    <p class="expl">すべてのアプリがメニューとログインフローを参照します。それらをどこに定義するかは Style Guide の目的次第で、Theme の中に置くと複数アプリで再利用できます。これは Portal ユースケースです。</p>
+  </div>
+</article><article class="card" id="q22">
+  <header class="qhead"><span class="qnum">Q22</span></header>
+  <p class="qtext">Specialize a Built-in Style Guide の最適なユースケースはどれですか？</p>
+  <ul class="choices"><li class="choice correct" data-correct="1"><span class="lbl">A</span><span class="ctxt">既存 Theme に「大幅でない」変更を加える場合</span></li><li class="choice" data-correct="0"><span class="lbl">B</span><span class="ctxt">上記のいずれでもない</span></li><li class="choice" data-correct="0"><span class="lbl">C</span><span class="ctxt">既存 Theme に大幅な変更を加える場合</span></li><li class="choice" data-correct="0"><span class="lbl">D</span><span class="ctxt">カスタム Style Guide が既存 Theme の恩恵をまったく受けられない場合</span></li></ul>
+  <button class="reveal" onclick="toggle(this)">解答を表示</button>
+  <div class="answer">
+    <p class="ans-line"><b>正解：A</b></p>
+    <p class="expl">Specialize a Built-in Style Guide は既存 Theme への小さな変更向けです。Custom Theme が Base Theme を参照するため、Base Theme の新しい変更を継承し続けられる一方、CSS 等の追加インポートによりパフォーマンスは劣ります。大幅な変更なら Clone を選びます。</p>
+  </div>
+</article><article class="card" id="q23">
+  <header class="qhead"><span class="qnum">Q23</span></header>
+  <p class="qtext">明確に定義された Application Architecture の利点で「ない」ものはどれですか？</p>
+  <ul class="choices"><li class="choice" data-correct="0"><span class="lbl">A</span><span class="ctxt">計画を支援する</span></li><li class="choice correct" data-correct="1"><span class="lbl">B</span><span class="ctxt">貧弱なサービス抽象化</span></li><li class="choice" data-correct="0"><span class="lbl">C</span><span class="ctxt">リスクを低減する</span></li><li class="choice" data-correct="0"><span class="lbl">D</span><span class="ctxt">コストを削減する</span></li></ul>
+  <button class="reveal" onclick="toggle(this)">解答を表示</button>
+  <div class="answer">
+    <p class="ans-line"><b>正解：B</b></p>
+    <p class="expl">良いアーキテクチャは計画の支援、リスク低減、コスト削減をもたらします。「貧弱なサービス抽象化」は利点ではなく、悪いアーキテクチャの症状です。</p>
+  </div>
+</article><article class="card" id="q24">
+  <header class="qhead"><span class="qnum">Q24</span></header>
+  <p class="qtext">アプリケーションで命名規則を採用することがなぜ重要なのですか？</p>
+  <ul class="choices"><li class="choice" data-correct="0"><span class="lbl">A</span><span class="ctxt">リファレンスアーキテクチャを強制するため。</span></li><li class="choice" data-correct="0"><span class="lbl">B</span><span class="ctxt">パターンを標準化するため。</span></li><li class="choice correct" data-correct="1"><span class="lbl">C</span><span class="ctxt">残りの選択肢はすべて正しい！</span></li><li class="choice" data-correct="0"><span class="lbl">D</span><span class="ctxt">各モジュールの性質を明らかにするため。</span></li></ul>
+  <button class="reveal" onclick="toggle(this)">解答を表示</button>
+  <div class="answer">
+    <p class="ans-line"><b>正解：C</b></p>
+    <p class="expl">命名規則の目的は、①各モジュールの性質を明らかにする、②リファレンスアーキテクチャを強制する、③パターンを標準化する、の 3 つです。したがって「残りの選択肢はすべて正しい」が正解です。</p>
+  </div>
+</article><article class="card" id="q25">
+  <header class="qhead"><span class="qnum">Q25</span></header>
+  <p class="qtext">次のうち、有効な統合パターンで「ない」ものはどれですか？</p>
+  <ul class="choices"><li class="choice" data-correct="0"><span class="lbl">A</span><span class="ctxt">Cold Cache Summary Data</span></li><li class="choice" data-correct="0"><span class="lbl">B</span><span class="ctxt">Direct Integration</span></li><li class="choice" data-correct="0"><span class="lbl">C</span><span class="ctxt">External Core Service Pattern</span></li><li class="choice correct" data-correct="1"><span class="lbl">D</span><span class="ctxt">3 Layer Pattern</span></li></ul>
+  <button class="reveal" onclick="toggle(this)">解答を表示</button>
+  <div class="answer">
+    <p class="ans-line"><b>正解：D</b></p>
+    <p class="expl">統合パターンは ①Direct Integration（別名 External Core Service Pattern）と ②Cold Cache Summary Data（Batch / Real-Time / Queued / Ordered Sync）です。「3 Layer Pattern」は統合パターンではありません。Direct Integration は常に最新データが得られる反面、外部システムへの負荷・遅延・Aggregate を活用できない・_IS 拡張の依存といった制約があります。</p>
+  </div>
+</article><article class="card" id="q26">
+  <header class="qhead"><span class="qnum">Q26</span></header>
+  <p class="qtext">Architecture Canvas は多層フレームワークです。このフレームワークを使う利点で「ない」ものはどれですか？</p>
+  <ul class="choices"><li class="choice correct" data-correct="1"><span class="lbl">A</span><span class="ctxt">パフォーマンスのボトルネックの候補を特定する。</span></li><li class="choice" data-correct="0"><span class="lbl">B</span><span class="ctxt">変更の影響を最小化する。</span></li><li class="choice" data-correct="0"><span class="lbl">C</span><span class="ctxt">ライフサイクルの独立性を最適化する。</span></li><li class="choice" data-correct="0"><span class="lbl">D</span><span class="ctxt">再利用可能なサービスの正しい抽象化を促進する。</span></li></ul>
+  <button class="reveal" onclick="toggle(this)">解答を表示</button>
+  <div class="answer">
+    <p class="ans-line"><b>正解：A</b></p>
+    <p class="expl">Architecture Canvas は実装の詳細には踏み込みません。パフォーマンス面で注意が必要なコンポーネントに気付くきっかけにはなり得ますが、それはアーキテクチャ設計そのものの範囲ではありません。</p>
+  </div>
+</article><article class="card" id="q27">
+  <header class="qhead"><span class="qnum">Q27</span></header>
+  <p class="qtext">OutSystems では、無関係な概念を同じモジュールにまとめることは推奨されますか？</p>
+  <ul class="choices"><li class="choice" data-correct="0"><span class="lbl">A</span><span class="ctxt">はい。循環参照を避け、生成コードのフットプリントを減らせるため。</span></li><li class="choice" data-correct="0"><span class="lbl">B</span><span class="ctxt">いいえ。両方の概念を必要とするコンシューマに不要な複雑さを加えるため。</span></li><li class="choice" data-correct="0"><span class="lbl">C</span><span class="ctxt">はい。参照数が減り、デプロイが簡単になるため。</span></li><li class="choice correct" data-correct="1"><span class="lbl">D</span><span class="ctxt">いいえ。概念のライフサイクルの独立性を妨げ、コンシューマに不要な影響を与えるため。</span></li></ul>
+  <button class="reveal" onclick="toggle(this)">解答を表示</button>
+  <div class="answer">
+    <p class="ans-line"><b>正解：D</b></p>
+    <p class="expl">無関係な概念を 1 つのモジュールにまとめると、それぞれのライフサイクルの独立性が失われ、片方だけを使うコンシューマにも不要な影響が及びます。</p>
+  </div>
+</article><article class="card" id="q28">
+  <header class="qhead"><span class="qnum">Q28</span></header>
+  <p class="qtext">正しい Application Composition のルールで「ない」ものはどれですか？</p>
+  <ul class="choices"><li class="choice" data-correct="0"><span class="lbl">A</span><span class="ctxt">アプリケーションを正しくレイヤー分けする</span></li><li class="choice correct" data-correct="1"><span class="lbl">B</span><span class="ctxt">End-user または Orchestration 間で横参照しない</span></li><li class="choice" data-correct="0"><span class="lbl">C</span><span class="ctxt">モジュールを正しくレイヤー分けする</span></li><li class="choice" data-correct="0"><span class="lbl">D</span><span class="ctxt">異なるオーナーを混在させない</span></li></ul>
+  <button class="reveal" onclick="toggle(this)">解答を表示</button>
+  <div class="answer">
+    <p class="ans-line"><b>正解：B</b></p>
+    <p class="expl">Application Composition の 4 ルールは、①モジュールを正しくレイヤー分けする、②アプリケーションを正しくレイヤー分けする、③異なるオーナーを混在させない、④異なるスポンサーを混在させない、です。「End-user 間の横参照禁止」はモジュール検証ルールであり、Application Composition のルールではありません。</p>
+  </div>
+</article><article class="card" id="q29">
+  <header class="qhead"><span class="qnum">Q29</span></header>
+  <p class="qtext">Integration Service は統合の複雑さを隠蔽し、再利用しやすいサービスとして抽象化します。Integration Wrapper Canvas の関心事で「ない」ものはどれですか？</p>
+  <ul class="choices"><li class="choice" data-correct="0"><span class="lbl">A</span><span class="ctxt">出力の正規化（Normalize Outputs）</span></li><li class="choice" data-correct="0"><span class="lbl">B</span><span class="ctxt">外部 API の呼び出しと監査（Call and Audit the external API）</span></li><li class="choice correct" data-correct="1"><span class="lbl">C</span><span class="ctxt">上記のいずれでもない</span></li><li class="choice" data-correct="0"><span class="lbl">D</span><span class="ctxt">認証ロジック（Authentication Logic）</span></li></ul>
+  <button class="reveal" onclick="toggle(this)">解答を表示</button>
+  <div class="answer">
+    <p class="ans-line"><b>正解：C</b></p>
+    <p class="expl">Integration Wrapper Canvas のステップは、検証／セキュリティロジック → 認証ロジック → 入力マッピング → 外部 API 呼び出しと監査 → エラー処理の正規化 → 出力の正規化 →（必要なら）例外処理、です。選択肢はすべて関心事に含まれるため「上記のいずれでもない」が正解です。</p>
+  </div>
+</article><article class="card" id="q30">
+  <header class="qhead"><span class="qnum">Q30</span></header>
+  <p class="qtext">Customer Management のユーザープロセスには、顧客ダッシュボード、顧客メッセージング、サービスリクエスト、顧客トランザクションなど、複数のサブプロセスがあります。この要件でモジュールを設計・定義する際、粒度を適切にするためにどの基準を選びますか？</p>
+  <ul class="choices"><li class="choice" data-correct="0"><span class="lbl">A</span><span class="ctxt">Canvas</span></li><li class="choice correct" data-correct="1"><span class="lbl">B</span><span class="ctxt">Complexity（複雑さ）</span></li><li class="choice" data-correct="0"><span class="lbl">C</span><span class="ctxt">Service isolation（サービスの分離）</span></li><li class="choice" data-correct="0"><span class="lbl">D</span><span class="ctxt">Independent life cycles（独立したライフサイクル）</span></li></ul>
+  <button class="reveal" onclick="toggle(this)">解答を表示</button>
+  <div class="answer">
+    <p class="ans-line"><b>正解：B</b></p>
+    <p class="expl">1 つの概念が大きすぎて単一モジュールに収まらない場合、各モジュールの複雑さを管理可能に保つために複数モジュールへ分割します。これは「Complexity」基準に基づく分割です。</p>
+  </div>
+</article><article class="card" id="q31">
+  <header class="qhead"><span class="qnum">Q31</span></header>
+  <p class="qtext">Application Architecture の粒度を正しく定義するのに影響するのはどれですか？</p>
+  <ul class="choices"><li class="choice" data-correct="0"><span class="lbl">A</span><span class="ctxt">Independent life cycles、Define Modules、No Upward References</span></li><li class="choice" data-correct="0"><span class="lbl">B</span><span class="ctxt">Complexity、Service isolation</span></li><li class="choice correct" data-correct="1"><span class="lbl">C</span><span class="ctxt">Complexity、Independent life cycles、Service isolation</span></li><li class="choice" data-correct="0"><span class="lbl">D</span><span class="ctxt">機能要件、非機能要件、統合ニーズ</span></li></ul>
+  <button class="reveal" onclick="toggle(this)">解答を表示</button>
+  <div class="answer">
+    <p class="ans-line"><b>正解：C</b></p>
+    <p class="expl">粒度は ①Complexity（大きすぎる概念は分割）、②Independent life cycles（独立して管理・並行開発・異なる進化速度）、③Service isolation（統合パターンに応じた技術コンポーネントの分割）の 3 基準で決まります。</p>
+  </div>
+</article><article class="card" id="q32">
+  <header class="qhead"><span class="qnum">Q32</span></header>
+  <p class="qtext">Cold Cache Summary Data 統合パターン（Batch Sync）の「欠点」とされるものはどれですか？</p>
+  <ul class="choices"><li class="choice correct" data-correct="1"><span class="lbl">A</span><span class="ctxt">データが古くなる可能性がある。</span></li><li class="choice" data-correct="0"><span class="lbl">B</span><span class="ctxt">アプリケーションの遅延が増える。</span></li><li class="choice" data-correct="0"><span class="lbl">C</span><span class="ctxt">外部システムへのアクセスが増える。</span></li><li class="choice" data-correct="0"><span class="lbl">D</span><span class="ctxt">データが常に最新である。</span></li></ul>
+  <button class="reveal" onclick="toggle(this)">解答を表示</button>
+  <div class="answer">
+    <p class="ans-line"><b>正解：A</b></p>
+    <p class="expl">Batch Sync の利点はシンプルな API、OutSystems 内でのデータマッシュアップ、ソースシステムへの影響が少ない、同期がコンシューマに影響しないこと。欠点は、次の同期までデータが古くなる可能性があることです。遅延増加やアクセス増加は Direct Integration の欠点です。</p>
+  </div>
+</article><article class="card" id="q33">
+  <header class="qhead"><span class="qnum">Q33</span></header>
+  <p class="qtext">Application Composition の検証ルールについて、正しい記述はどれですか？</p>
+  <ul class="choices"><li class="choice correct" data-correct="1"><span class="lbl">A</span><span class="ctxt">共通モジュールやサービスは、他のアプリから参照できる別アプリに分離すべきである。</span></li><li class="choice" data-correct="0"><span class="lbl">B</span><span class="ctxt">Foundation 層のアプリケーションは End-user 層のアプリケーションを参照できる。</span></li><li class="choice" data-correct="0"><span class="lbl">C</span><span class="ctxt">アプリのオーナーは混在させるべきでないが、スポンサーの混在はリリースに直接影響しない。</span></li><li class="choice" data-correct="0"><span class="lbl">D</span><span class="ctxt">モジュール検証ルールをすべて守れば、Application Composition は健全で保守・デプロイが容易になる。</span></li></ul>
+  <button class="reveal" onclick="toggle(this)">解答を表示</button>
+  <div class="answer">
+    <p class="ans-line"><b>正解：A</b></p>
+    <p class="expl">再利用性が鍵であり、共通モジュール／サービスを別アプリに分離することで参照の問題を避けられます。Foundation は End-user を参照できず、スポンサー混在も避けるべきで、モジュールルールだけではアプリ構成の健全性は保証されません。</p>
+  </div>
+</article><article class="card" id="q34">
+  <header class="qhead"><span class="qnum">Q34</span></header>
+  <p class="qtext">Foundation モジュールで使用「できない」命名規則はどれですか？</p>
+  <ul class="choices"><li class="choice" data-correct="0"><span class="lbl">A</span><span class="ctxt">_Lib</span></li><li class="choice correct" data-correct="1"><span class="lbl">B</span><span class="ctxt">_API</span></li><li class="choice" data-correct="0"><span class="lbl">C</span><span class="ctxt">_IS</span></li><li class="choice" data-correct="0"><span class="lbl">D</span><span class="ctxt">_Th</span></li></ul>
+  <button class="reveal" onclick="toggle(this)">解答を表示</button>
+  <div class="answer">
+    <p class="ans-line"><b>正解：B</b></p>
+    <p class="expl">_API は外部コンシューマへ API を公開する技術的ラッパーで、Core Service をシステム非依存に保ち複数バージョンをサポートします。_API は Core 層のモジュールであり、Foundation では使いません。_Lib（ライブラリ）、_IS（Integration Service）、_Th（Theme）は Foundation の命名規則です。</p>
+  </div>
+</article><article class="card" id="q35">
+  <header class="qhead"><span class="qnum">Q35</span></header>
+  <p class="qtext">2 種類の異なる Service モジュールで構成されるアプリケーションの種類は何ですか？</p>
+  <ul class="choices"><li class="choice" data-correct="0"><span class="lbl">A</span><span class="ctxt">上記のいずれでもない</span></li><li class="choice" data-correct="0"><span class="lbl">B</span><span class="ctxt">End-user Application</span></li><li class="choice" data-correct="0"><span class="lbl">C</span><span class="ctxt">Library Application</span></li><li class="choice correct" data-correct="1"><span class="lbl">D</span><span class="ctxt">Core Service Application</span></li></ul>
+  <button class="reveal" onclick="toggle(this)">解答を表示</button>
+  <div class="answer">
+    <p class="ans-line"><b>正解：D</b></p>
+    <p class="expl">Core Service Application では、すべてのモジュールが Service 型です。</p>
+  </div>
+</article><article class="card" id="q36">
+  <header class="qhead"><span class="qnum">Q36</span></header>
+  <p class="qtext">次のうち、正しく「ない」記述はどれですか？</p>
+  <ul class="choices"><li class="choice correct" data-correct="1"><span class="lbl">A</span><span class="ctxt">上記のいずれでもない</span></li><li class="choice" data-correct="0"><span class="lbl">B</span><span class="ctxt">Style Guide は、ブランドを伝える明確で一貫した独自のビジュアル形式を確立するドキュメントである。</span></li><li class="choice" data-correct="0"><span class="lbl">C</span><span class="ctxt">Style Guide Architecture は、必要なリソースだけをロードするために重要である。</span></li><li class="choice" data-correct="0"><span class="lbl">D</span><span class="ctxt">Live Style Guide は、ブランドの Theme、色、パターンを含むドキュメントである。</span></li></ul>
+  <button class="reveal" onclick="toggle(this)">解答を表示</button>
+  <div class="answer">
+    <p class="ans-line"><b>正解：A</b></p>
+    <p class="expl">Style Guide はブランドを伝える明確で一貫した独自のビジュアル形式を確立するドキュメントです。Live Style Guide は Theme／色／パターンを含む実装済みドキュメントであり、Style Guide Architecture は必要なリソースだけをロードするために重要です。すべて正しいため「上記のいずれでもない」が正解です。</p>
+  </div>
+</article><article class="card" id="q37">
+  <header class="qhead"><span class="qnum">Q37</span></header>
+  <p class="qtext">OutSystems アプリで、外部 System of Records のサマリーデータを表示する必要があり、そのデータは変更・更新されることがなく、外部システムからの取得コストが高い場合、最適な統合パターンはどれですか？</p>
+  <ul class="choices"><li class="choice" data-correct="0"><span class="lbl">A</span><span class="ctxt">Direct Integration</span></li><li class="choice" data-correct="0"><span class="lbl">B</span><span class="ctxt">Cold Cache Summary Data + Queued Real-Time Sync</span></li><li class="choice correct" data-correct="1"><span class="lbl">C</span><span class="ctxt">Cold Cache + Batch Sync</span></li><li class="choice" data-correct="0"><span class="lbl">D</span><span class="ctxt">Cold Cache Summary Data + Real-Time Sync</span></li></ul>
+  <button class="reveal" onclick="toggle(this)">解答を表示</button>
+  <div class="answer">
+    <p class="ans-line"><b>正解：C</b></p>
+    <p class="expl">変化しないデータであれば古くなる心配がないため、Batch Sync の欠点（データが古くなる）は問題になりません。API がシンプル、OutSystems 内でのデータマッシュアップ、ソースシステムへの負荷が小さい、同期がコンシューマに影響しない、という利点を最大限に活かせます。</p>
+  </div>
+</article><article class="card" id="q38">
+  <header class="qhead"><span class="qnum">Q38</span></header>
+  <p class="qtext">Core モジュールで使用「できない」命名規則はどれですか？</p>
+  <ul class="choices"><li class="choice" data-correct="0"><span class="lbl">A</span><span class="ctxt">_CW</span></li><li class="choice" data-correct="0"><span class="lbl">B</span><span class="ctxt">_BL</span></li><li class="choice" data-correct="0"><span class="lbl">C</span><span class="ctxt">_Sync</span></li><li class="choice correct" data-correct="1"><span class="lbl">D</span><span class="ctxt">_Drv</span></li></ul>
+  <button class="reveal" onclick="toggle(this)">解答を表示</button>
+  <div class="answer">
+    <p class="ans-line"><b>正解：D</b></p>
+    <p class="expl">_Drv（Driver）は、異なるシステムに対して同種の操作（例：プリンタ）を行う複数の統合サービスを、同じ API で専用実装として提供するモジュールです（Transparency Service パターン）。統合を扱うため Foundation 層に置かれます。_CW、_BL、_Sync は Core 層の命名規則です。</p>
+  </div>
+</article><article class="card" id="q39">
+  <header class="qhead"><span class="qnum">Q39</span></header>
+  <p class="qtext">次のモジュール名と命名規則を考えます。モバイル用モジュールはどれですか？</p>
+  <ul class="choices"><li class="choice correct" data-correct="1"><span class="lbl">A</span><span class="ctxt">Pricing_MBL</span></li><li class="choice" data-correct="0"><span class="lbl">B</span><span class="ctxt">Customer_CW</span></li><li class="choice" data-correct="0"><span class="lbl">C</span><span class="ctxt">Mobile_API</span></li><li class="choice" data-correct="0"><span class="lbl">D</span><span class="ctxt">Service_CS</span></li></ul>
+  <button class="reveal" onclick="toggle(this)">解答を表示</button>
+  <div class="answer">
+    <p class="ans-line"><b>正解：A</b></p>
+    <p class="expl">_BL はビジネスロジックを分離するモジュールです。モバイル固有の場合は M を付けて _MBL とします。Mobile_API は名前に Mobile とあるだけで、_API は外部公開 API のラッパーです。</p>
+  </div>
+</article><article class="card" id="q40">
+  <header class="qhead"><span class="qnum">Q40</span></header>
+  <p class="qtext">正しい記述はどれですか？</p>
+  <ul class="choices"><li class="choice" data-correct="0"><span class="lbl">A</span><span class="ctxt">OutSystems ではアーキテクチャ設計は不要である。</span></li><li class="choice" data-correct="0"><span class="lbl">B</span><span class="ctxt">上記の記述はすべて正しい。</span></li><li class="choice" data-correct="0"><span class="lbl">C</span><span class="ctxt">アーキテクチャ設計は一度きりのイベントである。</span></li><li class="choice correct" data-correct="1"><span class="lbl">D</span><span class="ctxt">アーキテクチャ設計は継続的なプロセスである。</span></li></ul>
+  <button class="reveal" onclick="toggle(this)">解答を表示</button>
+  <div class="answer">
+    <p class="ans-line"><b>正解：D</b></p>
+    <p class="expl">アーキテクチャ設計は一度きりのイベントではなく継続的なプロセスです。ソリューションが進化し、ビジネスから新しい概念やニーズが生まれるたびに、アーキテクチャを反復して見直す必要があります。</p>
+  </div>
+</article>
+<footer>選択肢をクリックすると解答が表示されます。</footer>
+</div>
+<script>
+function toggle(btn){
+  const c=btn.closest('.card'); const on=c.classList.toggle('revealed');
+  btn.textContent=on?'解答を隠す':'解答を表示';
+}
+function allAns(show){
+  document.querySelectorAll('.card').forEach(c=>{
+    c.classList.toggle('revealed',show);
+    const b=c.querySelector('.reveal'); if(b) b.textContent=show?'解答を隠す':'解答を表示';
+  });
+}
+document.querySelectorAll('.choice').forEach(ch=>{
+  ch.addEventListener('click',()=>{
+    const card=ch.closest('.card');
+    card.querySelectorAll('.choice').forEach(x=>x.classList.remove('picked'));
+    ch.classList.add('picked');
+    if(!card.classList.contains('revealed')){
+      const b=card.querySelector('.reveal'); if(b) b.click();
+    }
+  });
+});
+</script>
+</body></html>
